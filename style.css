@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #edf0f5;
+  color: #333;
+  text-align: center;
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+}
+
+/* 배너 스타일 */
+.banner {
+  background-color: #fff;
+  padding: 40px 20px;
+  margin: 40px auto 20px;
+  width: 90%;
+  max-width: 1600px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.banner img {
+  width: 100%;
+  border-radius: 12px;
+  max-height: 320px;
+  object-fit: cover;
+}
+
+/* 옵션 4개 고정, 반응형 적용 */
+.options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* 화면 크기 줄어들면 아래로 내려감 */
+  gap: 20px;
+  padding: 40px 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* 옵션 박스 */
+.option-box {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 16px;
+  width: 400px; /* 이미지 크기 고정 */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.option-box:hover {
+  transform: translateY(-6px);
+}
+
+.option {
+  width: 100%;
+  height: 400px; /* 이미지 크기 고정 */
+  object-fit: cover;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 텍스트 박스 */
+.stock-box {
+  margin-top: 14px;
+  background-color: #f5f7fa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem; /* 텍스트 크기 조정 */
+  font-weight: 600;
+  padding: 12px;
+}
+
+/* 버튼 영역 */
+.bottom-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px 20px 80px;
+}
+
+.button-box {
+  width: 1100px;
+  height: auto; /* 자동 높이 */
+  background-color: #edf0f5;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+}
+
+.button-img {
+  width: 100%;
+  height: 140px; /* 또는 원하는 높이 */
+  object-fit: cover;
+  display: block;
+}
+.button-box:hover {
+  transform: scale(1.03);
+}
+
+
+
+/* 반응형 - 화면이 좁을 때 2개씩 */
+@media (max-width: 960px) {
+  .option-box {
+    width: calc(50% - 20px); /* 2개씩 */
+  }
+}
+
+/* 반응형 - 화면이 더 좁을 때 1개씩 */
+@media (max-width: 600px) {
+  .option-box {
+    width: 100%; /* 1개씩 */
+  }
+}
