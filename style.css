@@ -40,7 +40,7 @@ body {
 .options {
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap; /* 항상 가로 */
+  flex-wrap: nowrap; /* PC에서는 항상 가로 */
   gap: 20px;
   padding: 40px 20px;
   max-width: 1400px;
@@ -94,7 +94,7 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   background-color: #2b2b2b; /* 어두운 회색 */
-  transform: scale(1); /* 기본 크기 1배 */
+  transform: none; /* 기본 확대 제거 */
 }
 .gallery img:hover {
   transform: scale(2.5); /* hover 시 2.5배 확대 */
@@ -117,7 +117,7 @@ body {
     width: 100%;
     max-width: 360px;
     height: auto;
-    transform: none !important; /* 모바일에서는 확대 제거 */
+    transform: none !important; /* 모바일에서는 확대 X */
   }
 }
 
@@ -146,8 +146,8 @@ body {
   transition: transform 0.2s;
 }
 .floating-buttons a img {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 .floating-buttons a:hover {
   transform: translateY(-4px);
