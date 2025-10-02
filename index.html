@@ -68,8 +68,8 @@
 
   <!-- 구글 스프레드시트 데이터 가져오기 -->
   <script>
-    function loadStock(sheet, targetId) {
-      fetch(`https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=${sheet}`)
+    function loadStock(rowIndex, targetId) {
+      fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
         .then(res => res.text())
         .then(text => {
           const start = text.indexOf("{");
@@ -77,7 +77,7 @@
           const jsonText = text.substring(start, end + 1);
           const json = JSON.parse(jsonText);
 
-          const value = json.table.rows[0]?.c[0]?.v;
+          const value = json.table.rows[rowIndex]?.c[0]?.v;
           document.querySelector(`#${targetId} .count`).innerText = value ? `${value}대` : "데이터 없음";
         })
         .catch(err => {
@@ -86,9 +86,10 @@
         });
     }
 
-    loadStock("Sheet1", "stock1");
-    loadStock("Sheet2", "stock2");
-    loadStock("Sheet3", "stock3");
+    // A1 → 옵션1, A2 → 옵션2, A3 → 옵션3
+    loadStock(0, "stock1");
+    loadStock(1, "stock2");
+    loadStock(2, "stock3");
   </script>
 </body>
 </html>
