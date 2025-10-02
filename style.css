@@ -8,44 +8,41 @@ body {
   background-color: #edf0f5;
   color: #333;
   text-align: center;
-  overflow-x: hidden; /* 가로 스크롤 방지 */
+  overflow-x: hidden;
 }
 
 /* 배너 스타일 */
 .banner {
-  background-color: #fff;
-  padding: 10px 20px;   /* 기존 40px → 얇은 배너에 맞게 줄임 */
-  margin: 20px auto;
-  width: 90%;
-  max-width: 1600px;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  background: #fff;
 }
 
 .banner img {
   width: 100%;
-  border-radius: 12px;
-  height: 90px;         /* hd.png 맞춤 */
-  object-fit: cover;
+  height: 200px;       /* 원하는 높이 */
+  object-fit: contain; /* 짤리지 않고 비율 유지 */
+  display: block;
+  background: #fff;    /* 여백 색상 (검정으로 바꾸려면 #000) */
 }
 
 /* 옵션 4개 고정, 반응형 적용 */
 .options {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* 화면 크기 줄어들면 아래로 내려감 */
+  flex-wrap: wrap;
   gap: 20px;
   padding: 40px 20px;
   max-width: 100%;
   margin: 0 auto;
 }
 
-/* 옵션 박스 */
 .option-box {
   background-color: #ffffff;
   border-radius: 20px;
   padding: 16px;
-  width: 400px; /* 이미지 크기 고정 */
+  width: 400px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
@@ -56,14 +53,13 @@ body {
 
 .option {
   width: 100%;
-  height: 400px; /* 이미지 크기 고정 */
+  height: 400px;
   object-fit: cover;
   border-radius: 12px;
   border: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* 텍스트 박스 */
 .stock-box {
   margin-top: 14px;
   background-color: #f5f7fa;
@@ -74,7 +70,6 @@ body {
   padding: 12px;
 }
 
-/* 버튼 영역 */
 .bottom-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -104,14 +99,13 @@ body {
   transform: scale(1.03);
 }
 
-/* 반응형 - 화면이 좁을 때 2개씩 */
+/* 반응형 */
 @media (max-width: 960px) {
   .option-box {
     width: calc(50% - 20px);
   }
 }
 
-/* 반응형 - 화면이 더 좁을 때 1개씩 */
 @media (max-width: 600px) {
   .option-box {
     width: 100%;
