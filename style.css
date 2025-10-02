@@ -42,7 +42,7 @@ body {
   color: #555;
 }
 
-/* 옵션 카드 (3개, 크기 2배 확장) */
+/* 옵션 카드 */
 .options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -64,7 +64,7 @@ body {
 }
 .option {
   width: 100%;
-  height: 400px;   /* 기존 200px → 400px */
+  height: 400px;
   object-fit: cover;
 }
 .stock-box {
@@ -76,42 +76,7 @@ body {
   font-size: 1.1rem;
 }
 
-/* 소셜 버튼 */
-.social-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 30px 0;
-}
-.social-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
-  border-radius: 40px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.2s;
-}
-.social-btn img {
-  width: 24px;
-  height: 24px;
-}
-.social-btn:hover {
-  transform: scale(1.05);
-}
-.kakao {
-  background: #fae100;
-  color: #000;
-}
-.telegram {
-  background: #229ED9;
-  color: #fff;
-}
-
-/* 갤러리 */
+/* 갤러리 (16:9 비율) */
 .gallery-box {
   max-width: 1300px;
   margin: 30px auto 60px;
@@ -128,10 +93,44 @@ body {
 }
 .gallery img {
   width: 100%;
-  height: 300px;   /* 정사각형 */
+  aspect-ratio: 16 / 9;   /* 16:9 비율 유지 */
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* 플로팅 버튼 (오른쪽 고정) */
+.floating-buttons {
+  position: fixed;
+  top: 40%;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+.float-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+.float-btn img {
+  width: 28px;
+  height: 28px;
+}
+.float-btn:hover {
+  transform: scale(1.1);
+}
+.kakao {
+  background: #fae100;
+}
+.telegram {
+  background: #229ED9;
 }
 
 /* 반응형 */
