@@ -96,7 +96,7 @@ body {
   background-color: #2b2b2b; /* 어두운 회색 */
 }
 .gallery img:hover {
-  transform: scale(3);
+  transform: scale(2.5); /* 2.5배 확대 */
   z-index: 10;
   position: relative;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
