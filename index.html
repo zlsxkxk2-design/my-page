@@ -42,11 +42,17 @@
   <!-- 갤러리 -->
   <div class="gallery">
     <div class="gallery-grid">
-      <img src="images/img1.png" alt="갤러리 이미지 1">
-      <img src="images/img2.png" alt="갤러리 이미지 2">
-      <img src="images/img3.jpg" alt="갤러리 이미지 3">
-      <img src="images/img4.jpg" alt="갤러리 이미지 4">
+      <img src="images/img1.png" alt="갤러리 이미지 1" onclick="openModal(this.src)">
+      <img src="images/img2.png" alt="갤러리 이미지 2" onclick="openModal(this.src)">
+      <img src="images/img3.png" alt="갤러리 이미지 3" onclick="openModal(this.src)">
+      <img src="images/img4.png" alt="갤러리 이미지 4" onclick="openModal(this.src)">
     </div>
+  </div>
+
+  <!-- 팝업 모달 -->
+  <div id="modal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
   </div>
 
   <!-- 플로팅 버튼 -->
@@ -92,6 +98,17 @@
           el.innerText = "0대";
         });
       });
+
+    // 모달 열기
+    function openModal(src) {
+      document.getElementById("modal").style.display = "block";
+      document.getElementById("modal-img").src = src;
+    }
+
+    // 모달 닫기
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
   </script>
 </body>
 </html>
