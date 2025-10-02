@@ -29,7 +29,7 @@ body {
   max-width: 1200px;
   margin: 20px auto;
   padding: 15px;
-  background-color: #fef7d5; /* 파스텔톤 */
+  background-color: #fef7d5;
   border-radius: 10px;
   font-weight: 600;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
@@ -121,7 +121,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 30px; /* 2배 크기 */
+  padding: 20px 30px;
   font-size: 1.2rem;
   font-weight: bold;
   color: #fff;
@@ -129,6 +129,12 @@ body {
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: transform 0.2s;
+}
+
+.floating-buttons a img.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
 }
 
 .floating-buttons a:hover {
@@ -171,8 +177,6 @@ body {
   .gallery-grid {
     grid-template-columns: 1fr;
   }
-
-  /* 모바일에서는 확대 제거 */
   .gallery-grid img:hover {
     transform: none;
     box-shadow: none;
