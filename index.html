@@ -12,60 +12,33 @@
     <img src="images/hd.png" alt="나노 원격 임대 배너">
   </header>
 
-  <!-- 메인 콘텐츠 -->
+  <!-- 옵션 카드 영역 -->
   <main>
     <section class="options">
-      <!-- 옵션 1 -->
       <div class="option-box">
         <img src="images/option1.jpg" class="option" alt="옵션1">
-        <div class="stock-box" id="stock1">
-          현재 임대 가능 대수 : <span class="count">불러오는 중...</span>
-        </div>
+        <div class="stock-box">현재 임대 가능 대수 : 34대</div>
       </div>
-
-      <!-- 옵션 2 -->
       <div class="option-box">
         <img src="images/option2.jpg" class="option" alt="옵션2">
-        <div class="stock-box">
-          현재 임대 가능 대수 : <span class="count">10대</span>
-        </div>
+        <div class="stock-box">현재 임대 가능 대수 : 10대</div>
       </div>
-
-      <!-- 옵션 3 -->
       <div class="option-box">
         <img src="images/option3.jpg" class="option" alt="옵션3">
-        <div class="stock-box">
-          현재 임대 가능 대수 : <span class="count">5대</span>
-        </div>
+        <div class="stock-box">현재 임대 가능 대수 : 5대</div>
+      </div>
+      <div class="option-box">
+        <img src="images/option4.jpg" class="option" alt="옵션4">
+        <div class="stock-box">현재 임대 가능 대수 : 8대</div>
       </div>
     </section>
 
     <!-- 카카오톡 버튼 -->
-    <section class="bottom-buttons">
-      <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="kakao-btn">
+    <section class="inquiry">
+      <a href="https://your-kakao-link.com" target="_blank" class="kakao-btn">
         카카오톡 문의하기
       </a>
     </section>
   </main>
-
-  <!-- 구글 스프레드시트 값 가져오기 -->
-  <script>
-    fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
-      .then(res => res.text())
-      .then(text => {
-        const start = text.indexOf("{");
-        const end = text.lastIndexOf("}");
-        const jsonText = text.substring(start, end + 1);
-        const json = JSON.parse(jsonText);
-
-        const value = json.table.rows[0].c[0].v;
-        const target = document.querySelector("#stock1 .count");
-        target.innerText = value ? `${value}대` : "데이터 없음";
-      })
-      .catch(err => {
-        console.error("불러오기 실패", err);
-        document.querySelector("#stock1 .count").innerText = "불러오기 실패";
-      });
-  </script>
 </body>
 </html>
