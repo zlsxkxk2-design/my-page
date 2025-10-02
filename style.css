@@ -15,10 +15,10 @@ body {
   display: block;
 }
 
-/* 공지 */
+/* 공지사항 */
 .notice { margin: 20px auto; }
 .notice-box {
-  background: #fff;
+  background: #fcefe3;   /* 파스텔톤 오렌지 */
   width: 80%;
   max-width: 900px;
   margin: auto;
@@ -60,68 +60,74 @@ body {
   font-weight: 600;
 }
 
-/* 갤러리 박스(가운데 카드) */
+/* 갤러리 */
 .gallery-box {
   width: 92%;
-  max-width: 1800px;            /* ← 더 크게 (이전 대비 약 1.5배 영역) */
+  max-width: 1800px;
   margin: 30px auto 60px;
   padding: 24px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
-
-/* 갤러리: 데스크탑 4칸 고정, 16:9, 크게 */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);  /* ← 4칸 고정 */
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 .gallery-item img {
   width: 100%;
-  aspect-ratio: 16 / 9;         /* 16:9 비율 */
+  aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-/* 플로팅 버튼 (오른쪽 80% 위치) */
+/* 플로팅 버튼 */
 .floating-buttons {
   position: fixed;
   top: 80%;
   right: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
   z-index: 1000;
 }
 .floating-buttons .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 18px;
-  border-radius: 24px;
+  gap: 10px;
+  padding: 24px 36px;   /* ← 기존 12px 18px의 2배 */
+  border-radius: 36px;
+  font-size: 1.2rem;
   font-weight: bold;
   text-decoration: none;
   color: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   transition: transform 0.2s;
   white-space: nowrap;
 }
 .floating-buttons .btn img {
-  width: 20px; height: 20px;
+  width: 30px;
+  height: 30px;
 }
-.floating-buttons .btn:hover { transform: translateX(-5px); }
+.floating-buttons .btn:hover { transform: translateX(-8px); }
 .kakao   { background: #ffeb00; color: #000; }
 .telegram{ background: #0088cc; }
 
 /* 반응형 */
 @media (max-width: 1200px) {
-  .options { gap: 20px; }
-  .gallery { grid-template-columns: repeat(2, 1fr); } /* 태블릿: 2칸 */
+  .gallery { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 700px) {
-  .options { justify-content: center; }
   .option-box { width: 90%; }
-  .gallery { grid-template-columns: 1fr; } /* 모바일: 1칸 */
+  .gallery { grid-template-columns: 1fr; }
+  .floating-buttons .btn {
+    padding: 12px 18px;   /* 모바일에서는 원래 크기 */
+    font-size: 1rem;
+  }
+  .floating-buttons .btn img {
+    width: 20px;
+    height: 20px;
+  }
 }
