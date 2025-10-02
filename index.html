@@ -7,89 +7,85 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 헤더 배너 -->
-  <header class="banner">
-    <img src="images/hd.png" alt="나노 원격 임대 배너">
-  </header>
+  <!-- 배너 -->
+  <div class="banner">
+    <img src="images/hd.png" alt="나노 원격 컴퓨터 임대 배너">
+  </div>
 
   <!-- 공지사항 -->
-  <section class="notice">
-    <div class="notice-box">
-      <h2>공지사항</h2>
-      <p>공지사항 내용을 입력하세요.</p>
-    </div>
-  </section>
+  <div class="notice">
+    공지사항: 현재 서버 점검으로 일부 서비스가 제한될 수 있습니다.
+  </div>
 
   <!-- 옵션 영역 -->
-  <section class="options">
+  <div class="options">
     <div class="option-box">
-      <img src="images/option1.jpg" class="option" alt="옵션1">
+      <img src="images/option1.png" class="option" alt="옵션1">
       <div class="stock-box" id="stock1">
         현재 임대 가능 대수 : <span class="count">불러오는 중...</span>
       </div>
     </div>
     <div class="option-box">
-      <img src="images/option2.jpg" class="option" alt="옵션2">
+      <img src="images/option2.png" class="option" alt="옵션2">
       <div class="stock-box" id="stock2">
         현재 임대 가능 대수 : <span class="count">불러오는 중...</span>
       </div>
     </div>
     <div class="option-box">
-      <img src="images/option3.jpg" class="option" alt="옵션3">
+      <img src="images/option3.png" class="option" alt="옵션3">
       <div class="stock-box" id="stock3">
         현재 임대 가능 대수 : <span class="count">불러오는 중...</span>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- 갤러리 -->
-  <section class="gallery">
+  <div class="gallery">
     <div class="gallery-grid">
-      <img src="images/img1.png" alt="갤러리 이미지1">
-      <img src="images/img2.png" alt="갤러리 이미지2">
-      <img src="images/img3.png" alt="갤러리 이미지3">
-      <img src="images/img4.png" alt="갤러리 이미지4">
+      <img src="images/img1.png" alt="갤러리 이미지 1">
+      <img src="images/img2.png" alt="갤러리 이미지 2">
+      <img src="images/img3.png" alt="갤러리 이미지 3">
+      <img src="images/img4.png" alt="갤러리 이미지 4">
     </div>
-  </section>
+  </div>
 
   <!-- 플로팅 버튼 -->
   <div class="floating-buttons">
-    <a href="https://your-kakao-link.com" class="kakao">💬 카카오톡</a>
-    <a href="https://your-telegram-link.com" class="telegram">✈️ 텔레그램</a>
+    <a href="https://your-kakao-link.com" class="kakao" target="_blank">카카오톡</a>
+    <a href="https://t.me/your-telegram" class="telegram" target="_blank">텔레그램</a>
   </div>
 
-  <!-- 푸터 (사업자 정보) -->
-  <footer class="footer">
-    <p>상호명 : 나노 | 대표자 : 이상경</p>
-    <p>사업자등록번호 : 706-30-02103</p>
-    <p>사업장 주소 : 전라북도 전주시 완산구 용머리로 132, 302호(효자동1가)</p>
-    <p>연락처 : ___________</p>
-  </footer>
+  <!-- 푸터 -->
+  <div class="footer">
+    <p>
+      상호명 | 대표자 | 사업자등록번호 | 사업장 주소 | 연락처  
+    </p>
+  </div>
 
-  <!-- 구글 스프레드시트 데이터 가져오기 -->
+  <!-- 구글 시트 데이터 불러오기 -->
   <script>
-    function loadStock(rowIndex, targetId) {
-      fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
-        .then(res => res.text())
-        .then(text => {
-          const start = text.indexOf("{");
-          const end = text.lastIndexOf("}");
-          const jsonText = text.substring(start, end + 1);
-          const json = JSON.parse(jsonText);
+    fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
+      .then(res => res.text())
+      .then(text => {
+        const start = text.indexOf("{");
+        const end = text.lastIndexOf("}");
+        const jsonText = text.substring(start, end + 1);
+        const json = JSON.parse(jsonText);
 
-          const value = json.table.rows[rowIndex]?.c[0]?.v;
-          document.querySelector(`#${targetId} .count`).innerText = value ? `${value}대` : "0대";
-        })
-        .catch(err => {
-          console.error("불러오기 실패", err);
-          document.querySelector(`#${targetId} .count`).innerText = "불러오기 실패";
+        // 옵션 3개 각각 불러오기 (A열의 1~3행 기준)
+        for (let i = 0; i < 3; i++) {
+          const row = json.table.rows[i];
+          const value = row?.c[0]?.v || 0;
+          const target = document.querySelector(`#stock${i+1} .count`);
+          target.innerText = `${value}대`;
+        }
+      })
+      .catch(err => {
+        console.error("불러오기 실패", err);
+        document.querySelectorAll(".stock-box .count").forEach(el => {
+          el.innerText = "0대";
         });
-    }
-
-    // A1 → 옵션1, A2 → 옵션2, A3 → 옵션3
-    loadStock(0, "stock1");
-    loadStock(1, "stock2");
-    loadStock(2, "stock3");
+      });
   </script>
 </body>
 </html>
