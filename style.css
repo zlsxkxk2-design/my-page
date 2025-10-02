@@ -40,18 +40,19 @@ body {
 .options {
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap; /* 항상 가로로 */
+  flex-wrap: nowrap; /* 항상 가로 */
   gap: 20px;
   padding: 40px 20px;
   max-width: 1400px;
   margin: 0 auto;
 }
 .option-box {
-  background-color: #ffffff;
+  background-color: #2b2b2b; /* 어두운 회색 */
+  color: #fff;
   border-radius: 20px;
   padding: 16px;
-  width: 400px; /* 고정 크기 */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
 }
 .option-box:hover {
@@ -63,16 +64,17 @@ body {
   object-fit: cover;
   border-radius: 12px;
   border: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .stock-box {
   margin-top: 14px;
-  background-color: #f5f7fa;
-  border: 1px solid #ccc;
+  background-color: #3b3b3b;
+  border: 1px solid #555;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
   padding: 12px;
+  color: #fff;
 }
 
 /* 갤러리 */
@@ -90,19 +92,20 @@ body {
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  background-color: #2b2b2b; /* 어두운 회색 */
 }
 .gallery img:hover {
-  transform: scale(3); /* 마우스 오버 시 3배 확대 */
+  transform: scale(3);
   z-index: 10;
   position: relative;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
-/* 모바일에서 갤러리 1개씩 */
+/* 모바일 갤러리 */
 @media (max-width: 768px) {
   .options {
-    flex-wrap: wrap; /* 모바일에서 세로 */
+    flex-wrap: wrap;
   }
   .option-box {
     width: 100%;
@@ -113,7 +116,7 @@ body {
     width: 100%;
     max-width: 360px;
     height: auto;
-    transform: none !important; /* 모바일 확대 비활성화 */
+    transform: none !important;
   }
 }
 
@@ -131,7 +134,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   padding: 14px 22px;
   border-radius: 30px;
   font-size: 1rem;
@@ -140,6 +143,10 @@ body {
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: transform 0.2s;
+}
+.floating-buttons a img {
+  width: 20px;
+  height: 20px;
 }
 .floating-buttons a:hover {
   transform: translateY(-4px);
