@@ -4,7 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>나노 원격 컴퓨터 임대</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      color: #333;
+    }
+
+    /* 배너 */
+    .banner {
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+    }
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 공지사항 박스 */
+    .notice-box {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .notice-box h2 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+      color: #444;
+    }
+    .notice-box p {
+      margin: 0;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* 옵션 카드 */
+    .options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      padding: 50px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .option-box {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .option-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .option {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    .stock-box {
+      padding: 18px;
+      background: #f5f7fa;
+      font-weight: bold;
+      border-top: 1px solid #eee;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    /* 갤러리 (16:9 비율) */
+    .gallery-box {
+      max-width: 1300px;
+      margin: 30px auto 60px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 16 / 9; /* 16:9 비율 유지 */
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    /* 플로팅 버튼 (오른쪽 하단 80%) */
+    .floating-buttons {
+      position: fixed;
+      top: 80%;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+    .float-btn {
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .float-btn:hover {
+      transform: translateX(-5px);
+    }
+    .kakao {
+      background: #fae100;
+      color: #000;
+    }
+    .telegram {
+      background: #229ED9;
+      color: #fff;
+    }
+
+    /* 반응형 */
+    @media (max-width: 1200px) {
+      .options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 700px) {
+      .options {
+        grid-template-columns: 1fr;
+      }
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- 헤더 배너 -->
@@ -47,10 +199,10 @@
   <!-- 플로팅 소셜 버튼 -->
   <div class="floating-buttons">
     <a href="https://your-kakao-link.com" target="_blank" class="float-btn kakao">
-      <img src="images/kakao.png" alt="카카오톡">
+      카카오톡
     </a>
     <a href="https://your-telegram-link.com" target="_blank" class="float-btn telegram">
-      <img src="images/telegram.png" alt="텔레그램">
+      텔레그램
     </a>
   </div>
 </body>
