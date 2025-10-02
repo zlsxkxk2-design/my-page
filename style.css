@@ -48,11 +48,10 @@ body {
 /* 옵션 영역 */
 /* ===================== */
 .options {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 무조건 3개 */
   gap: 20px;
   padding: 30px 20px;
-  flex-wrap: nowrap; /* 항상 가로로 */
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -61,7 +60,7 @@ body {
   background-color: #ffffff;
   border-radius: 20px;
   padding: 20px;
-  width: 350px;
+  width: 100%;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
@@ -93,9 +92,10 @@ body {
 /* 갤러리 */
 /* ===================== */
 .gallery {
-  margin: 40px auto;
-  width: 90%;
   max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  overflow: visible;
 }
 
 .gallery-grid {
@@ -106,33 +106,20 @@ body {
 
 .gallery-grid img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 16 / 9;
   border-radius: 12px;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: center center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
 }
 
-/* hover 시 화면 중앙 팝업 */
+/* hover 시 단순 확대 */
 .gallery-grid img:hover {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.5);
-  z-index: 2000;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
-
-/* hover 시 배경 어둡게 */
-.gallery-grid img:hover::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  z-index: 1999;
+  transform: scale(4.0);  /* 400% 확대 */
+  z-index: 10;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  position: relative;
 }
 
 /* ===================== */
@@ -192,29 +179,21 @@ body {
 /* 반응형 */
 /* ===================== */
 @media (max-width: 960px) {
-  .options {
-    flex-wrap: wrap;
-  }
-  .option-box {
-    width: calc(50% - 20px);
-  }
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .option-box {
-    width: 100%;
+  .options {
+    grid-template-columns: 1fr;
   }
   .gallery-grid {
     grid-template-columns: 1fr;
   }
   /* 모바일에서는 확대 제거 */
   .gallery-grid img:hover {
-    position: static;
     transform: none;
-    z-index: auto;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 }
