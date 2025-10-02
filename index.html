@@ -78,7 +78,7 @@
           const json = JSON.parse(jsonText);
 
           const value = json.table.rows[rowIndex]?.c[0]?.v;
-          document.querySelector(`#${targetId} .count`).innerText = value ? `${value}대` : "0";
+          document.querySelector(`#${targetId} .count`).innerText = value ? `${value}대` : "0대";
         })
         .catch(err => {
           console.error("불러오기 실패", err);
