@@ -8,118 +8,108 @@ body {
   background-color: #edf0f5;
   color: #333;
   text-align: center;
-  overflow-x: hidden;
 }
 
 /* 배너 */
-.banner {
-  width: 100%;
-  max-height: 200px;
-  overflow: hidden;
-}
 .banner img {
   width: 100%;
-  height: auto;
+  height: 150px;  /* 높이 150 */
+  object-fit: cover;
   display: block;
 }
 
 /* 공지사항 */
 .notice {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 20px;
+  margin: 20px auto;
+}
+.notice-box {
   background: #fff;
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-.notice h2 {
+.notice-box h2 {
   margin: 0 0 10px;
-  font-size: 1.5rem;
-}
-.notice p {
-  margin: 0;
-  font-size: 1rem;
 }
 
 /* 옵션 */
 .options {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 30px;
+  gap: 30px;
+  margin: 40px auto;
   flex-wrap: wrap;
 }
 .option-box {
   background: #fff;
   border-radius: 16px;
   padding: 20px;
-  width: 500px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px; /* 기존보다 2배 정도 크게 */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
 }
-.option {
+.option-box:hover {
+  transform: translateY(-6px);
+}
+.option-box img {
   width: 100%;
-  height: 500px;
+  height: 300px;
   object-fit: cover;
   border-radius: 12px;
 }
 .stock-box {
-  margin-top: 12px;
-  padding: 10px;
+  margin-top: 14px;
   background: #f5f7fa;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  font-weight: bold;
+  padding: 10px;
+  font-weight: 600;
 }
 
 /* 갤러리 */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  padding: 30px;
-  max-width: 1400px;
-  margin: auto;
+  width: 80%;
+  margin: 40px auto;
 }
 .gallery-item img {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 /* 플로팅 버튼 */
 .floating-buttons {
   position: fixed;
-  bottom: 20%;
-  right: 0;
+  right: 20px;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  z-index: 1000;
+  gap: 12px;
 }
-.floating-buttons a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  font-size: 1rem;
+.floating-buttons .btn {
+  padding: 12px 18px;
+  border-radius: 24px;
   font-weight: bold;
-  color: #fff;
   text-decoration: none;
-  border-radius: 30px 0 0 30px;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   transition: transform 0.2s;
 }
-.floating-buttons a img {
-  width: 20px;
-  height: 20px;
+.floating-buttons .btn:hover {
+  transform: translateX(-5px);
 }
-.kakao-btn {
-  background-color: #fae100;
+.kakao {
+  background: #ffeb00;
   color: #000;
 }
-.telegram-btn {
-  background-color: #0088cc;
-}
-.floating-buttons a:hover {
-  transform: translateX(-5px);
+.telegram {
+  background: #0088cc;
 }
