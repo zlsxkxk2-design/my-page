@@ -7,76 +7,70 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 배너 영역 -->
-  <div class="banner">
-    <img src="images/hd.png" alt="나노 원격 컴퓨터 임대 배너">
-  </div>
+  <!-- 헤더 배너 -->
+  <header class="banner">
+    <img src="images/hd.png" alt="나노 원격 임대 배너">
+  </header>
 
-  <!-- 공지사항 영역 -->
-  <div class="notice">
-    <h2>공지사항</h2>
-    <p>여기에 공지사항 내용을 입력하세요.</p>
-  </div>
+  <!-- 공지사항 -->
+  <section class="notice">
+    <div class="notice-box">
+      <h2>공지사항</h2>
+      <p>공지사항 내용을 여기에 입력하세요.</p>
+    </div>
+  </section>
 
   <!-- 옵션 영역 -->
-  <div class="options">
-    <div class="option-box" id="stock1">
-      <img src="images/option1.png" class="option" alt="옵션1">
-      <div class="stock-box">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+  <section class="options">
+    <div class="option-box">
+      <img src="images/option1.png" alt="옵션1">
+      <div class="stock-box" id="stock1">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
     </div>
-    <div class="option-box" id="stock2">
-      <img src="images/option2.png" class="option" alt="옵션2">
-      <div class="stock-box">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+    <div class="option-box">
+      <img src="images/option2.png" alt="옵션2">
+      <div class="stock-box" id="stock2">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
     </div>
-    <div class="option-box" id="stock3">
-      <img src="images/option3.png" class="option" alt="옵션3">
-      <div class="stock-box">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+    <div class="option-box">
+      <img src="images/option3.png" alt="옵션3">
+      <div class="stock-box" id="stock3">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
     </div>
-  </div>
+  </section>
 
-  <!-- 갤러리 영역 -->
-  <div class="gallery">
-    <div class="gallery-item"><img src="images/pic1.png" alt="갤러리 이미지1"></div>
-    <div class="gallery-item"><img src="images/pic2.png" alt="갤러리 이미지2"></div>
-    <div class="gallery-item"><img src="images/pic3.png" alt="갤러리 이미지3"></div>
-    <div class="gallery-item"><img src="images/pic4.png" alt="갤러리 이미지4"></div>
-  </div>
+  <!-- 갤러리 -->
+  <section class="gallery">
+    <div class="gallery-item"><img src="images/gallery1.png" alt="갤러리 이미지1"></div>
+    <div class="gallery-item"><img src="images/gallery2.png" alt="갤러리 이미지2"></div>
+    <div class="gallery-item"><img src="images/gallery3.png" alt="갤러리 이미지3"></div>
+    <div class="gallery-item"><img src="images/gallery4.png" alt="갤러리 이미지4"></div>
+  </section>
 
   <!-- 플로팅 버튼 -->
   <div class="floating-buttons">
-    <a href="https://your-kakao-link.com" target="_blank" class="kakao-btn">
-      <img src="images/kakao.png" alt="카카오톡 아이콘"> 카카오톡
-    </a>
-    <a href="https://t.me/your-telegram" target="_blank" class="telegram-btn">
-      <img src="images/telegram.png" alt="텔레그램 아이콘"> 텔레그램
-    </a>
+    <a href="https://open.kakao.com" target="_blank" class="btn kakao">💬 카카오톡</a>
+    <a href="https://t.me/yourtelegram" target="_blank" class="btn telegram">✈️ 텔레그램</a>
   </div>
 
-  <!-- ✅ 구글 스프레드시트 데이터 불러오기 -->
+  <!-- 스크립트: 구글 시트 데이터 불러오기 -->
   <script>
-    fetch("https://opensheet.elk.sh/15tJFoGH4ytd3XJvEeSk2QW4K6b64g5YkITMoD2norJw/Sheet1")
-      .then(res => res.json())
-      .then(data => {
-        const row = data[1]; // 2번째 줄 기준 (필요시 조정)
+    const sheetId = "1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc";
+    const baseUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Sheet1&tq=`;
 
-        const columns = {
-          stock1: "옵션1", // 구글시트의 열 제목과 정확히 일치해야 함
-          stock2: "옵션2",
-          stock3: "옵션3"
-        };
-
-        for (let id in columns) {
-          const value = row[columns[id]];
-          const target = document.querySelector(`#${id} .count`);
-          target.innerText = value ? `${value}대` : "데이터 없음";
-        }
-      })
-      .catch(err => {
-        console.error("불러오기 실패", err);
-        document.querySelectorAll(".stock-box .count").forEach(el => {
-          el.innerText = "불러오기 실패";
+    function fetchData(col, targetId) {
+      fetch(baseUrl + `select%20${col}`)
+        .then(res => res.text())
+        .then(text => {
+          const json = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1));
+          const value = json.table.rows[0]?.c[0]?.v;
+          document.querySelector(`#${targetId} .count`).innerText = value ? `${value}대` : "데이터 없음";
+        })
+        .catch(() => {
+          document.querySelector(`#${targetId} .count`).innerText = "불러오기 실패";
         });
-      });
+    }
+
+    fetchData("A", "stock1");
+    fetchData("B", "stock2");
+    fetchData("C", "stock3");
   </script>
 </body>
 </html>
