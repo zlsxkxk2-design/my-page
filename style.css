@@ -94,9 +94,10 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   background-color: #2b2b2b; /* 어두운 회색 */
+  transform: scale(1); /* 기본 크기 1배 */
 }
 .gallery img:hover {
-  transform: scale(2.5); /* 2.5배 확대 */
+  transform: scale(2.5); /* hover 시 2.5배 확대 */
   z-index: 10;
   position: relative;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
@@ -116,7 +117,7 @@ body {
     width: 100%;
     max-width: 360px;
     height: auto;
-    transform: none !important;
+    transform: none !important; /* 모바일에서는 확대 제거 */
   }
 }
 
