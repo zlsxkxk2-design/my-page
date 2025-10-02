@@ -121,7 +121,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 30px; /* 2배 키움 */
+  padding: 20px 30px; /* 2배 크기 */
   font-size: 1.2rem;
   font-weight: bold;
   color: #fff;
@@ -151,6 +151,7 @@ body {
   padding: 20px;
   font-size: 0.9rem;
   text-align: center;
+  line-height: 1.6;
 }
 
 /* 반응형 */
