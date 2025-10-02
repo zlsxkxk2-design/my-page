@@ -1,11 +1,8 @@
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #edf0f5;
+  background: #edf0f5;
   color: #333;
   text-align: center;
 }
@@ -18,24 +15,20 @@ body {
   display: block;
 }
 
-/* 공지사항 */
-.notice {
-  margin: 20px auto;
-}
+/* 공지 */
+.notice { margin: 20px auto; }
 .notice-box {
   background: #fff;
   width: 80%;
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-.notice-box h2 {
-  margin: 0 0 10px;
-}
+.notice-box h2 { margin: 0 0 10px; }
 
-/* 옵션 */
+/* 옵션 (3개) */
 .options {
   display: flex;
   justify-content: center;
@@ -47,13 +40,11 @@ body {
   background: #fff;
   border-radius: 16px;
   padding: 20px;
-  width: 400px; /* 기존보다 크게 */
+  width: 400px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   transition: transform 0.2s;
 }
-.option-box:hover {
-  transform: translateY(-6px);
-}
+.option-box:hover { transform: translateY(-6px); }
 .option-box img {
   width: 100%;
   height: 300px;
@@ -69,26 +60,68 @@ body {
   font-weight: 600;
 }
 
-/* 갤러리 */
+/* 갤러리 박스(가운데 카드) */
+.gallery-box {
+  width: 92%;
+  max-width: 1800px;            /* ← 더 크게 (이전 대비 약 1.5배 영역) */
+  margin: 30px auto 60px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* 갤러리: 데스크탑 4칸 고정, 16:9, 크게 */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  width: 80%;
-  margin: 40px auto;
+  grid-template-columns: repeat(4, 1fr);  /* ← 4칸 고정 */
+  gap: 24px;
 }
 .gallery-item img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 9;         /* 16:9 비율 */
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-/* 플로팅 버튼 */
+/* 플로팅 버튼 (오른쪽 80% 위치) */
 .floating-buttons {
   position: fixed;
+  top: 80%;
   right: 20px;
-  bottom: 20px;
   display: flex;
-  flex-directi
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+.floating-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+  white-space: nowrap;
+}
+.floating-buttons .btn img {
+  width: 20px; height: 20px;
+}
+.floating-buttons .btn:hover { transform: translateX(-5px); }
+.kakao   { background: #ffeb00; color: #000; }
+.telegram{ background: #0088cc; }
+
+/* 반응형 */
+@media (max-width: 1200px) {
+  .options { gap: 20px; }
+  .gallery { grid-template-columns: repeat(2, 1fr); } /* 태블릿: 2칸 */
+}
+@media (max-width: 700px) {
+  .options { justify-content: center; }
+  .option-box { width: 90%; }
+  .gallery { grid-template-columns: 1fr; } /* 모바일: 1칸 */
+}
