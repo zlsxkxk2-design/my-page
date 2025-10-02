@@ -26,7 +26,7 @@
       <!-- 옵션 2 -->
       <div class="option-box">
         <img src="images/option2.jpg" class="option" alt="옵션2">
-        <div class="stock-box">
+        <div class="stock-box" id="stock2">
           현재 임대 가능 대수 : <span class="count">10대</span>
         </div>
       </div>
@@ -34,7 +34,7 @@
       <!-- 옵션 3 -->
       <div class="option-box">
         <img src="images/option3.jpg" class="option" alt="옵션3">
-        <div class="stock-box">
+        <div class="stock-box" id="stock3">
           현재 임대 가능 대수 : <span class="count">5대</span>
         </div>
       </div>
@@ -64,7 +64,7 @@
       })
       .catch(err => {
         console.error("불러오기 실패", err);
-        document.querySelector("#stock1 .count").innerText = "불러오기 실패";
+        document.querySelector("#stock3 .count").innerText = "불러오기 실패";
       });
   </script>
 </body>
