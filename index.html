@@ -33,7 +33,7 @@
 
   <!-- JavaScript: 구글 스프레드시트 G7 값 가져오기 -->
   <script>
-    fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20a&sheet=Sheet1")
+    fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
       .then(res => res.text())
       .then(text => {
         // 구글 응답에서 JSON 부분 추출
@@ -43,7 +43,7 @@
         const json = JSON.parse(jsonText);
 
         // G7 = rows[6] (배열은 0부터 시작하므로 7번째 행 = 인덱스 6)
-        const value = json.table.rows[1].c[0].v;
+        const value = json.table.rows[0].c[0].v;
 
         // 페이지에 표시
         const target = document.querySelector("#stock1 .count");
