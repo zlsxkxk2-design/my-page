@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>나노 원격 컴퓨터 임대</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <!-- 헤더 배너 -->
@@ -20,7 +20,7 @@
     </div>
   </section>
 
-  <!-- 옵션 영역 -->
+  <!-- 옵션 3개 -->
   <section class="options">
     <div class="option-box">
       <img src="images/option1.jpg" alt="옵션1">
@@ -36,15 +36,17 @@
     </div>
   </section>
 
-  <!-- 갤러리 -->
-  <section class="gallery">
-    <div class="gallery-item"><img src="images/img1.png" alt="갤러리 이미지1"></div>
-    <div class="gallery-item"><img src="images/img2.png" alt="갤러리 이미지2"></div>
-    <div class="gallery-item"><img src="images/gallery3.png" alt="갤러리 이미지3"></div>
-    <div class="gallery-item"><img src="images/gallery4.png" alt="갤러리 이미지4"></div>
+  <!-- 갤러리 (PNG: img1~img4) -->
+  <section class="gallery-box">
+    <div class="gallery">
+      <div class="gallery-item"><img src="images/img1.png" alt="갤러리1"></div>
+      <div class="gallery-item"><img src="images/img2.png" alt="갤러리2"></div>
+      <div class="gallery-item"><img src="images/img3.png" alt="갤러리3"></div>
+      <div class="gallery-item"><img src="images/img4.png" alt="갤러리4"></div>
+    </div>
   </section>
 
-  <!-- 플로팅 버튼 -->
+  <!-- 플로팅 버튼 (오른쪽 80% 높이) -->
   <div class="floating-buttons">
     <a href="https://open.kakao.com" target="_blank" class="btn kakao">
       <img src="images/kakao.png" alt="카카오 로고"> 카카오톡
@@ -54,7 +56,7 @@
     </a>
   </div>
 
-  <!-- 스크립트: 구글 시트 데이터 불러오기 -->
+  <!-- 구글시트 데이터 불러오기 (A/B/C열 1행) -->
   <script>
     const sheetId = "1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc";
     const baseUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Sheet1&tq=`;
