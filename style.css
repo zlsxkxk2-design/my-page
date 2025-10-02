@@ -47,7 +47,7 @@ body {
   background: #fff;
   border-radius: 16px;
   padding: 20px;
-  width: 350px;
+  width: 400px; /* 기존보다 크게 */
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   transition: transform 0.2s;
 }
@@ -91,25 +91,4 @@ body {
   right: 20px;
   bottom: 20px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.floating-buttons .btn {
-  padding: 12px 18px;
-  border-radius: 24px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  transition: transform 0.2s;
-}
-.floating-buttons .btn:hover {
-  transform: translateX(-5px);
-}
-.kakao {
-  background: #ffeb00;
-  color: #000;
-}
-.telegram {
-  background: #0088cc;
-}
+  flex-directi
