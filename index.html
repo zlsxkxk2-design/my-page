@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>나노 원격 컴퓨터 임대</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- 헤더 배너 -->
@@ -16,74 +16,79 @@
   <section class="notice">
     <div class="notice-box">
       <h2>공지사항</h2>
-      <p>공지사항 내용을 여기에 입력하세요.</p>
+      <p>공지사항 내용을 입력하세요.</p>
     </div>
   </section>
 
-  <!-- 옵션 3개 -->
+  <!-- 옵션 영역 -->
   <section class="options">
     <div class="option-box">
-      <img src="images/option1.jpg" alt="옵션1">
-      <div class="stock-box" id="stock1">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+      <img src="images/option1.png" class="option" alt="옵션1">
+      <div class="stock-box" id="stock1">
+        현재 임대 가능 대수 : <span class="count">불러오는 중...</span>
+      </div>
     </div>
     <div class="option-box">
-      <img src="images/option2.jpg" alt="옵션2">
-      <div class="stock-box" id="stock2">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+      <img src="images/option2.png" class="option" alt="옵션2">
+      <div class="stock-box" id="stock2">
+        현재 임대 가능 대수 : <span class="count">불러오는 중...</span>
+      </div>
     </div>
     <div class="option-box">
-      <img src="images/option3.jpg" alt="옵션3">
-      <div class="stock-box" id="stock3">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+      <img src="images/option3.png" class="option" alt="옵션3">
+      <div class="stock-box" id="stock3">
+        현재 임대 가능 대수 : <span class="count">불러오는 중...</span>
+      </div>
     </div>
   </section>
 
   <!-- 갤러리 -->
-  <section class="gallery-box">
-    <div class="gallery">
-      <div class="gallery-item"><img src="images/img1.png" alt="갤러리1"></div>
-      <div class="gallery-item"><img src="images/img2.png" alt="갤러리2"></div>
-      <div class="gallery-item"><img src="images/img3.png" alt="갤러리3"></div>
-      <div class="gallery-item"><img src="images/img4.png" alt="갤러리4"></div>
+  <section class="gallery">
+    <div class="gallery-grid">
+      <img src="images/img1.png" alt="갤러리 이미지1">
+      <img src="images/img2.png" alt="갤러리 이미지2">
+      <img src="images/img3.png" alt="갤러리 이미지3">
+      <img src="images/img4.png" alt="갤러리 이미지4">
     </div>
   </section>
 
   <!-- 플로팅 버튼 -->
   <div class="floating-buttons">
-    <a href="https://open.kakao.com" target="_blank" class="btn kakao">
-      <img src="images/kakao.png" alt="카카오 로고"> 카카오톡
-    </a>
-    <a href="https://t.me/yourtelegram" target="_blank" class="btn telegram">
-      <img src="images/telegram.png" alt="텔레그램 로고"> 텔레그램
-    </a>
+    <a href="https://your-kakao-link.com" class="kakao">💬 카카오톡</a>
+    <a href="https://your-telegram-link.com" class="telegram">✈️ 텔레그램</a>
   </div>
 
   <!-- 푸터 (사업자 정보) -->
   <footer class="footer">
-    <p>상호명: 나노컴퓨터 | 대표자: 이상경 | 사업자등록번호: 123-45-67890</p>
-    <p>통신판매업 신고번호: 2025-서울강남-01234 | 사업장 주소: 서울특별시 강남구 테헤란로 123</p>
-    <p>연락처: 010-1234-5678 | 이메일: contact@nano.com</p>
+    <p>상호명 : 나노 | 대표자 : 이상경</p>
+    <p>사업자등록번호 : 706-30-02103</p>
+    <p>사업장 주소 : 전라북도 전주시 완산구 용머리로 132, 302호(효자동1가)</p>
+    <p>연락처 : ___________</p>
   </footer>
 
-  <!-- 구글시트 데이터 불러오기 -->
+  <!-- 구글 스프레드시트 데이터 가져오기 -->
   <script>
-    const sheetId = "1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc";
-    const baseUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Sheet1&tq=`;
-
-    function fetchData(col, targetId) {
-      fetch(baseUrl + `select%20${col}`)
+    function loadStock(sheet, targetId) {
+      fetch(`https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=${sheet}`)
         .then(res => res.text())
         .then(text => {
-          const json = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1));
+          const start = text.indexOf("{");
+          const end = text.lastIndexOf("}");
+          const jsonText = text.substring(start, end + 1);
+          const json = JSON.parse(jsonText);
+
           const value = json.table.rows[0]?.c[0]?.v;
           document.querySelector(`#${targetId} .count`).innerText = value ? `${value}대` : "데이터 없음";
         })
-        .catch(() => {
+        .catch(err => {
+          console.error("불러오기 실패", err);
           document.querySelector(`#${targetId} .count`).innerText = "불러오기 실패";
         });
     }
 
-    fetchData("A", "stock1");
-    fetchData("B", "stock2");
-    fetchData("C", "stock3");
+    loadStock("Sheet1", "stock1");
+    loadStock("Sheet2", "stock2");
+    loadStock("Sheet3", "stock3");
   </script>
 </body>
 </html>
