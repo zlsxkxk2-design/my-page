@@ -53,7 +53,7 @@ body {
   background: #fff;
   border-radius: 16px;
   padding: 20px;
-  width: 500px; /* 기존 250px → 2배 확대 */
+  width: 500px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 .option {
@@ -81,7 +81,7 @@ body {
 }
 .gallery-item img {
   width: 100%;
-  aspect-ratio: 16 / 9;  /* 16:9 비율 유지 */
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
