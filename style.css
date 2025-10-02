@@ -40,7 +40,7 @@ body {
 .options {
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap; /* PC에서는 항상 가로 */
+  flex-wrap: nowrap; /* 항상 가로 */
   gap: 20px;
   padding: 40px 20px;
   max-width: 1400px;
@@ -85,19 +85,21 @@ body {
   gap: 20px;
   padding: 30px 20px;
 }
+
 .gallery img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
+  width: 400px;
+  height: 400px;
+  object-fit: contain; /* 원본 비율 유지 */
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  background-color: #2b2b2b; /* 어두운 회색 */
-  transform: none; /* 기본 확대 제거 */
+  background-color: #2b2b2b; /* 여백 배경 */
+  transform: none; /* 기본 확대 없음 */
 }
+
 .gallery img:hover {
-  transform: scale(2.5); /* hover 시 2.5배 확대 */
+  transform: scale(2.5); /* hover 시 확대 */
   z-index: 10;
   position: relative;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
@@ -115,9 +117,10 @@ body {
   }
   .gallery img {
     width: 100%;
-    max-width: 360px;
+    max-width: 400px;
     height: auto;
-    transform: none !important; /* 모바일에서는 확대 X */
+    object-fit: contain;
+    transform: none !important; /* 모바일은 확대 제거 */
   }
 }
 
@@ -146,8 +149,8 @@ body {
   transition: transform 0.2s;
 }
 .floating-buttons a img {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 .floating-buttons a:hover {
   transform: translateY(-4px);
