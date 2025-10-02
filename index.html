@@ -16,7 +16,9 @@
   <div class="options">
     <div class="option-box">
       <img src="images/option1.jpg" class="option" alt="옵션1">
-      <div class="stock-box" id="stock1">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+      <div class="stock-box" id="stock1">
+        현재 임대 가능 대수 : <span class="count">불러오는 중...</span>
+      </div>
     </div>
   </div>
 
@@ -31,13 +33,19 @@
 
   <!-- JavaScript: 구글 스프레드시트 G7 값 가져오기 -->
   <script>
-    fetch("https://docs.google.com/spreadsheets/d/15tJFoGH4ytd3XJvEeSk2QW4K6b64g5YkITMoD2norJw/gviz/tq?tqx=out:json&tq=select%20G%20where%20row=7&sheet=Sheet1")
+    fetch("https://docs.google.com/spreadsheets/d/15tJFoGH4ytd3XJvEeSk2QW4K6b64g5YkITMoD2norJw/gviz/tq?tqx=out:json&tq=select%20G&sheet=Sheet1")
       .then(res => res.text())
       .then(text => {
-        // 구글 응답 전처리 (/*O_o*/ ... 구조 제거)
-        const json = JSON.parse(text.substr(47).slice(0, -2));
-        const value = json.table.rows[0].c[0].v; // G7 셀 값
+        // 구글 응답에서 JSON 부분 추출
+        const start = text.indexOf("{");
+        const end = text.lastIndexOf("}");
+        const jsonText = text.substring(start, end + 1);
+        const json = JSON.parse(jsonText);
 
+        // G7 = rows[6] (배열은 0부터 시작하므로 7번째 행 = 인덱스 6)
+        const value = json.table.rows[6].c[0].v;
+
+        // 페이지에 표시
         const target = document.querySelector("#stock1 .count");
         target.innerText = value ? `${value}대` : "데이터 없음";
       })
