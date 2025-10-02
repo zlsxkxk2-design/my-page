@@ -7,50 +7,48 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 헤더 배너 -->
-  <header class="banner">
-    <img src="images/hd.png" alt="나노 원격 임대 배너">
-  </header>
+  <!-- 배너 영역 -->
+  <div class="banner">
+    <img src="images/hd.png" alt="나노 원격 컴퓨터 임대 배너">
+  </div>
 
-  <!-- 공지사항 박스 -->
-  <section class="notice-box">
+  <!-- 공지 영역 -->
+  <div class="notice">
     <h2>공지사항</h2>
-    <p>여기에 공지 내용을 입력하세요. (예: 점검 안내, 이벤트 안내 등)</p>
-  </section>
+    <p>여기에 공지사항 내용을 입력하세요.</p>
+  </div>
 
-  <!-- 옵션 카드 (3개) -->
-  <section class="options">
+  <!-- 옵션 영역 -->
+  <div class="options">
     <div class="option-box">
-      <img src="images/option1.jpg" class="option" alt="옵션1">
-      <div class="stock-box">현재 임대 가능 대수 : 34대</div>
-    </div>
-    <div class="option-box">
-      <img src="images/option2.jpg" class="option" alt="옵션2">
-      <div class="stock-box">현재 임대 가능 대수 : 10대</div>
+      <img src="images/option1.png" class="option" alt="옵션1">
+      <div class="stock-box">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
     </div>
     <div class="option-box">
-      <img src="images/option3.jpg" class="option" alt="옵션3">
-      <div class="stock-box">현재 임대 가능 대수 : 5대</div>
+      <img src="images/option2.png" class="option" alt="옵션2">
+      <div class="stock-box">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
     </div>
-  </section>
-
-  <!-- 사진 갤러리 박스 -->
-  <section class="gallery-box">
-    <div class="gallery">
-      <img src="images/img1.png" alt="갤러리1">
-      <img src="images/img2.png" alt="갤러리2">
-      <img src="images/img3.png" alt="갤러리3">
-      <img src="images/img4.png" alt="갤러리4">
+    <div class="option-box">
+      <img src="images/option3.png" class="option" alt="옵션3">
+      <div class="stock-box">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
     </div>
-  </section>
+  </div>
 
-  <!-- 플로팅 소셜 버튼 -->
+  <!-- 갤러리 -->
+  <div class="gallery">
+    <div class="gallery-item"><img src="images/pic1.png" alt="갤러리 이미지1"></div>
+    <div class="gallery-item"><img src="images/pic2.png" alt="갤러리 이미지2"></div>
+    <div class="gallery-item"><img src="images/pic3.png" alt="갤러리 이미지3"></div>
+    <div class="gallery-item"><img src="images/pic4.png" alt="갤러리 이미지4"></div>
+  </div>
+
+  <!-- 플로팅 버튼 -->
   <div class="floating-buttons">
-    <a href="https://your-kakao-link.com" target="_blank" class="float-btn kakao">
-      카카오톡
+    <a href="https://your-kakao-link.com" target="_blank" class="kakao-btn">
+      <img src="images/kakao.png" alt="카카오톡 아이콘"> 카카오톡
     </a>
-    <a href="https://your-telegram-link.com" target="_blank" class="float-btn telegram">
-      텔레그램
+    <a href="https://t.me/your-telegram" target="_blank" class="telegram-btn">
+      <img src="images/telegram.png" alt="텔레그램 아이콘"> 텔레그램
     </a>
   </div>
 </body>
