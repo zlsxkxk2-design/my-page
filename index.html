@@ -43,7 +43,7 @@
         const json = JSON.parse(jsonText);
 
         // G7 = rows[6] (배열은 0부터 시작하므로 7번째 행 = 인덱스 6)
-        const value = json.table.rows[0].c[0].v;
+        const value = json.table.rows[1].c[0].v;
 
         // 페이지에 표시
         const target = document.querySelector("#stock1 .count");
