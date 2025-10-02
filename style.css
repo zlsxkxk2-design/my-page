@@ -12,23 +12,27 @@ body {
 }
 
 /* 배너 */
+.banner {
+  background-color: #fff;
+  padding: 20px 0;
+  width: 100%;
+}
+
 .banner img {
   width: 100%;
   height: auto;
-  max-height: 150px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
+  object-fit: cover;
 }
 
 /* 공지사항 */
-.notice-box {
-  background-color: #fce4ec; /* 파스텔톤 */
+.notice {
+  max-width: 1200px;
   margin: 20px auto;
-  padding: 20px;
-  max-width: 800px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 15px;
+  background-color: #fef7d5; /* 파스텔톤 */
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
 /* 옵션 */
@@ -36,57 +40,70 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 30px;
-  margin: 40px auto;
+  gap: 20px;
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .option-box {
-  background: #fff;
-  border-radius: 16px;
-  padding: 16px;
-  width: 350px; /* 원래 크기 유지 */
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  width: 500px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.option-box:hover {
+  transform: translateY(-6px);
 }
 
 .option {
   width: 100%;
-  height: 350px; /* 원래 크기 유지 */
+  height: 500px;
   object-fit: cover;
   border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
+/* 재고 표시 */
 .stock-box {
-  margin-top: 12px;
-  background: #f5f7fa;
+  margin-top: 14px;
+  background-color: #f5f7fa;
   border: 1px solid #ccc;
   border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
   padding: 12px;
-  font-weight: bold;
 }
 
 /* 갤러리 */
 .gallery {
+  max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
-  max-width: 1600px;
 }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* PC: 4개 */
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
 }
 
 .gallery-grid img {
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-grid img:hover {
-  transform: scale(1.5); /* 1.5배 확대 */
+  transform: scale(1.5);
   z-index: 10;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  position: relative;
 }
 
 /* 플로팅 버튼 */
@@ -97,53 +114,66 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  z-index: 100;
 }
 
 .floating-buttons a {
-  display: block;
-  padding: 14px 22px;
-  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px; /* 2배 키움 */
+  font-size: 1.2rem;
   font-weight: bold;
+  color: #fff;
+  border-radius: 30px;
   text-decoration: none;
-  color: white;
-  font-size: 18px;
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
 }
 
 .floating-buttons a:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
-.kakao {
-  background-color: #fdd835;
-  color: #000;
+.floating-buttons .kakao {
+  background-color: #fae100;
+  color: #3c1e1e;
 }
 
-.telegram {
+.floating-buttons .telegram {
   background-color: #0088cc;
 }
 
 /* 푸터 */
 .footer {
-  background: #111;
+  background-color: #111;
   color: #fff;
-  padding: 30px 20px;
-  margin-top: 40px;
-  font-size: 14px;
+  padding: 20px;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 /* 반응형 */
-@media (max-width: 1200px) {
+@media (max-width: 960px) {
+  .option-box {
+    width: calc(50% - 20px);
+  }
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr); /* 태블릿: 2개 */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 700px) {
-  .gallery-grid {
-    grid-template-columns: 1fr; /* 모바일: 1개 */
-  }
+@media (max-width: 600px) {
   .option-box {
-    width: 90%;
+    width: 100%;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 모바일에서는 확대 제거 */
+  .gallery-grid img:hover {
+    transform: none;
+    box-shadow: none;
   }
 }
