@@ -14,8 +14,8 @@ body {
 /* 배너 스타일 */
 .banner {
   background-color: #fff;
-  padding: 40px 20px;
-  margin: 40px auto 20px;
+  padding: 10px 20px;   /* 기존 40px → 얇은 배너에 맞게 줄임 */
+  margin: 20px auto;
   width: 90%;
   max-width: 1600px;
   border-radius: 16px;
@@ -25,7 +25,7 @@ body {
 .banner img {
   width: 100%;
   border-radius: 12px;
-  max-height: 320px;
+  height: 90px;         /* hd.png 맞춤 */
   object-fit: cover;
 }
 
@@ -69,7 +69,7 @@ body {
   background-color: #f5f7fa;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem; /* 텍스트 크기 조정 */
+  font-size: 1rem;
   font-weight: 600;
   padding: 12px;
 }
@@ -85,7 +85,7 @@ body {
 
 .button-box {
   width: 1100px;
-  height: auto; /* 자동 높이 */
+  height: auto;
   background-color: #edf0f5;
   border-radius: 40px;
   overflow: hidden;
@@ -95,26 +95,25 @@ body {
 
 .button-img {
   width: 100%;
-  height: 140px; /* 또는 원하는 높이 */
+  height: 140px;
   object-fit: cover;
   display: block;
 }
+
 .button-box:hover {
   transform: scale(1.03);
 }
 
-
-
 /* 반응형 - 화면이 좁을 때 2개씩 */
 @media (max-width: 960px) {
   .option-box {
-    width: calc(50% - 20px); /* 2개씩 */
+    width: calc(50% - 20px);
   }
 }
 
 /* 반응형 - 화면이 더 좁을 때 1개씩 */
 @media (max-width: 600px) {
   .option-box {
-    width: 100%; /* 1개씩 */
+    width: 100%;
   }
 }
