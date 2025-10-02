@@ -11,37 +11,49 @@ body {
   overflow-x: hidden;
 }
 
-/* 배너 */
+/* ===================== */
+/* 배너 스타일 */
+/* ===================== */
 .banner {
   background-color: #fff;
-  padding: 20px 0;
-  width: 100%;
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1600px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .banner img {
   width: 100%;
-  height: auto;
+  border-radius: 12px;
+  max-height: 150px;
   object-fit: cover;
 }
 
+/* ===================== */
 /* 공지사항 */
+/* ===================== */
 .notice {
-  max-width: 1200px;
-  margin: 20px auto;
+  background-color: #fdf5d4; /* 파스텔 노랑 */
   padding: 15px;
-  background-color: #fef7d5;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1000px;
   border-radius: 10px;
   font-weight: 600;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
-/* 옵션 */
+/* ===================== */
+/* 옵션 영역 */
+/* ===================== */
 .options {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* PC: 무조건 3등분 */
+  display: flex;
+  justify-content: center;
   gap: 20px;
   padding: 30px 20px;
-  max-width: 1400px;
+  flex-wrap: nowrap; /* 항상 가로로 */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -49,7 +61,7 @@ body {
   background-color: #ffffff;
   border-radius: 20px;
   padding: 20px;
-  width: 100%;
+  width: 350px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
@@ -60,30 +72,30 @@ body {
 
 .option {
   width: 100%;
-  height: auto;
-  max-height: 400px;
+  height: 350px;
   object-fit: cover;
   border-radius: 12px;
   border: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* 재고 표시 */
 .stock-box {
   margin-top: 14px;
   background-color: #f5f7fa;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   padding: 12px;
 }
 
+/* ===================== */
 /* 갤러리 */
+/* ===================== */
 .gallery {
-  max-width: 1200px;
   margin: 40px auto;
-  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
 }
 
 .gallery-grid {
@@ -94,119 +106,115 @@ body {
 
 .gallery-grid img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: auto;
   border-radius: 12px;
+  transition: all 0.3s ease;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
+/* hover 시 화면 중앙 팝업 */
 .gallery-grid img:hover {
-  transform: scale(1.05);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: 2000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
-/* 모달 */
-.modal {
-  display: none;
+/* hover 시 배경 어둡게 */
+.gallery-grid img:hover::after {
+  content: "";
   position: fixed;
-  z-index: 9999;
-  padding-top: 60px;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.6);
+  z-index: 1999;
 }
 
-.modal-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 80vh;
-}
-
-.close {
-  position: absolute;
-  top: 20px;
-  right: 35px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
+/* ===================== */
 /* 플로팅 버튼 */
+/* ===================== */
 .floating-buttons {
   position: fixed;
-  right: 20px;
   bottom: 20%;
+  right: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  z-index: 100;
+  z-index: 3000;
 }
 
 .floating-buttons a {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 30px;
-  font-size: 1.2rem;
+  gap: 8px;
+  padding: 14px 20px;
+  border-radius: 30px;
+  font-size: 1.1rem;
   font-weight: bold;
   color: #fff;
-  border-radius: 30px;
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: transform 0.2s;
 }
 
-.floating-buttons a img.icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-}
-
 .floating-buttons a:hover {
-  transform: scale(1.05);
+  transform: translateX(-6px);
 }
 
-.floating-buttons .kakao {
+.kakao {
   background-color: #fae100;
   color: #3c1e1e;
 }
 
-.floating-buttons .telegram {
-  background-color: #0088cc;
+.telegram {
+  background-color: #229ED9;
+  color: white;
 }
 
-/* 푸터 */
+/* ===================== */
+/* 하단 사업자 정보 */
+/* ===================== */
 .footer {
   background-color: #111;
-  color: #fff;
+  color: #ddd;
   padding: 20px;
   font-size: 0.9rem;
   text-align: center;
-  line-height: 1.6;
 }
 
+/* ===================== */
 /* 반응형 */
-@media (max-width: 1200px) {
+/* ===================== */
+@media (max-width: 960px) {
+  .options {
+    flex-wrap: wrap;
+  }
+  .option-box {
+    width: calc(50% - 20px);
+  }
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 960px) {
-  .options {
-    grid-template-columns: repeat(2, 1fr); /* 태블릿: 2개 */
-  }
-}
-
 @media (max-width: 600px) {
-  .options {
-    grid-template-columns: 1fr; /* 모바일: 1개 */
+  .option-box {
+    width: 100%;
   }
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+  /* 모바일에서는 확대 제거 */
+  .gallery-grid img:hover {
+    position: static;
+    transform: none;
+    z-index: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 }
