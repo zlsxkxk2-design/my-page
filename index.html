@@ -1,211 +1,98 @@
-* {
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>나노 원격 컴퓨터 임대</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 배너 영역 -->
+  <div class="banner">
+    <img src="images/hd.png" alt="">
+  </div>
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ffffff;
-  color: #333;
-  text-align: center;
-  overflow-x: hidden;
-}
+  <!-- 공지사항 -->
+  <div class="notice">
+    안녕하세요 나노 원격입니다.<br>
+    임대시 리니지M, 뱀피르 스케줄 도우미 무료 지원중입니다.
+  </div>
 
-/* 배너 */
-.banner {
-  text-align: center;
-  padding: 20px 0;
-  background-color: #ffffff;
-}
-.banner img {
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
-}
+  <!-- 옵션 영역 -->
+  <div class="options">
+    <div class="option-box">
+      <img src="images/option1.jpg" class="option" alt="옵션1">
+      <div class="stock-box" id="stock1">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+    </div>
+    <div class="option-box">
+      <img src="images/option2.jpg" class="option" alt="옵션2">
+      <div class="stock-box" id="stock2">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+    </div>
+    <div class="option-box">
+      <img src="images/option3.jpg" class="option" alt="옵션3">
+      <div class="stock-box" id="stock3">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+    </div>
+  </div>
 
-/* 공지사항 */
-.notice {
-  width: 100%;
-  background-color: #fff8dc;   /* 파스텔 배경 전체 */
-  padding: 20px 0;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #444;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-}
+  <!-- 옵션과 갤러리 사이 중앙 버튼 -->
+  <div class="center-buttons">
+    <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="kakao">
+      <img src="images/kakao.png" alt="카카오톡 로고"> 카카오톡 문의하기
+    </a>
+    <a href="https://t.me/nano1computer" target="_blank" class="telegram">
+      <img src="images/telegram.png" alt="텔레그램 로고"> 텔레그램 문의하기
+    </a>
+  </div>
 
-/* 옵션 */
-.options {
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 20px;
-  padding: 40px 20px;
-  width: 100%;
-  background-color: #f0f0f0;
-}
-.option-box {
-  background-color: #2b2b2b;
-  color: #fff;
-  border-radius: 20px;
-  padding: 16px;
-  width: 400px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s;
-}
-.option-box:hover {
-  transform: translateY(-6px);
-}
-.option {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  border: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-.stock-box {
-  margin-top: 14px;
-  background-color: #3b3b3b;
-  border: 1px solid #555;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 12px;
-  color: #fff;
-}
+  <!-- 갤러리 -->
+  <div class="gallery">
+    <div class="gallery-grid">
+      <img src="images/img1.png" alt="갤러리1">
+      <img src="images/img2.png" alt="갤러리2">
+      <img src="images/img3.png" alt="갤러리3">
+      <img src="images/img4.png" alt="갤러리4">
+    </div>
+  </div>
 
-/* 중앙 버튼 */
-.center-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 25px 0;
-  background-color: #eef7ff;   /* 따로 배경색 */
-  margin-top: -20px;           /* 살짝 위로 올림 */
-}
-.center-buttons a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 120px;       /* 좌우 3배, 상하 1.5배 */
-  border-radius: 50px;
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-  transition: transform 0.2s;
-}
-.center-buttons a img {
-  width: 32px;
-  height: 32px;
-}
-.center-buttons a:hover {
-  transform: translateY(-5px);
-}
-.center-buttons .kakao {
-  background-color: #ffeb00;
-  color: #3a1d1d;
-}
-.center-buttons .telegram {
-  background-color: #0088cc;
-}
+  <!-- 플로팅 버튼 -->
+  <div class="floating-buttons">
+    <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="kakao">
+      <img src="images/kakao.png" alt="카카오톡 로고"> 카카오톡
+    </a>
+    <a href="https://t.me/nano1computer" target="_blank" class="telegram">
+      <img src="images/telegram.png" alt="텔레그램 로고"> 텔레그램
+    </a>
+  </div>
 
-/* 갤러리 */
-.gallery {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 30px 20px;
-  background-color: #fdfdfd;
-}
-.gallery img {
-  max-width: 400px;
-  max-height: 400px;
-  width: auto;
-  height: auto;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 1. 0s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  background-color: #2b2b2b;
-}
-.gallery img:hover {
-  transform: scale(2);
-  transform-origin: center center;  /* 확대 중심을 이미지의 중앙으로 */
-  z-index: 10;
-  position: relative;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
+  <!-- 하단 사업자 정보 -->
+  <div class="footer">
+    상호명 | 대표자 | 사업자등록번호 | 사업장 주소 | 연락처
+  </div>
 
-/* 모바일 대응 */
-@media (max-width: 768px) {
-  .options {
-    flex-wrap: wrap;
-  }
-  .option-box {
-    width: 100%;
-    max-width: 360px;
-    margin: 0 auto;
-  }
-  .gallery img {
-  max-width: 400px;
-  max-height: 400px;
-  width: auto;
-  height: auto;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  background-color: #2b2b2b;
-  }
-  .center-buttons {
-    flex-direction: column;
-  }
-}
+  <!-- 구글 시트 데이터 불러오기 -->
+  <script>
+    fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
+      .then(res => res.text())
+      .then(text => {
+        const start = text.indexOf("{");
+        const end = text.lastIndexOf("}");
+        const jsonText = text.substring(start, end + 1);
+        const json = JSON.parse(jsonText);
 
-/* 플로팅 버튼 */
-.floating-buttons {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 100;
-}
-.floating-buttons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 20px;
-  border-radius: 30px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-.floating-buttons a img {
-  width: 18px;
-  height: 18px;
-}
-.floating-buttons .kakao {
-  background-color: #ffeb00;
-  color: #3a1d1d;
-}
-.floating-buttons .telegram {
-  background-color: #0088cc;
-}
+        const stock1 = json.table.rows[0]?.c[0]?.v || 0;
+        const stock2 = json.table.rows[1]?.c[0]?.v || 0;
+        const stock3 = json.table.rows[2]?.c[0]?.v || 0;
 
-/* 푸터 */
-.footer {
-  background-color: #000;
-  color: #fff;
-  padding: 20px;
-  margin-top: 40px;
-  font-size: 0.9rem;
-}
+        document.querySelector("#stock1 .count").innerText = stock1 ? `${stock1}대` : "0대";
+        document.querySelector("#stock2 .count").innerText = stock2 ? `${stock2}대` : "0대";
+        document.querySelector("#stock3 .count").innerText = stock3 ? `${stock3}대` : "0대";
+      })
+      .catch(err => {
+        console.error("불러오기 실패", err);
+        document.querySelectorAll(".stock-box .count").forEach(el => {
+          el.innerText = "0대";
+        });
+      });
+  </script>
+</body>
+</html>
