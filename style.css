@@ -87,6 +87,7 @@ body {
 .center-buttons a {
   display: flex;
   align-items: center;
+  justify-content: center;   /* 글씨 중앙 정렬 */
   gap: 12px;
   padding: 10px 120px;       /* 좌우 3배, 상하 1.5배 */
   border-radius: 50px;
@@ -96,10 +97,7 @@ body {
   text-decoration: none;
   box-shadow: 0 6px 14px rgba(0,0,0,0.25);
   transition: transform 0.2s;
-}
-.center-buttons a img {
-  width: 32px;
-  height: 32px;
+  text-align: center;
 }
 .center-buttons a:hover {
   transform: translateY(-5px);
@@ -169,10 +167,6 @@ body {
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-.floating-buttons a img {
-  width: 18px;
-  height: 18px;
-}
 .floating-buttons .kakao {
   background-color: #ffeb00;
   color: #3a1d1d;
@@ -218,5 +212,6 @@ body {
     max-width: 320px;
     margin: 0 auto;
     padding: 15px 0;
+    justify-content: center;  /* 모바일에서도 글씨 중앙 정렬 */
   }
 }
