@@ -194,3 +194,29 @@ body {
   margin: 3px 0;       /* 여백 최소화 */
   font-weight: 400;
 }
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  /* 옵션 박스: 한 줄에 하나 */
+  .options {
+    flex-wrap: wrap;
+  }
+  .option-box {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  /* 중앙 버튼: 세로 배치 */
+  .center-buttons {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  .center-buttons a {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 15px 0;
+  }
+}
