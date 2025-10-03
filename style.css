@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ffffff; /* 전체 배경 흰색 */
+  background-color: #ffffff;
   color: #333;
   text-align: center;
   overflow-x: hidden;
@@ -15,7 +15,7 @@ body {
 .banner {
   text-align: center;
   padding: 20px 0;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .banner img {
   display: inline-block;
@@ -25,11 +25,9 @@ body {
 
 /* 공지사항 */
 .notice {
-  background-color: #fff8dc; /* 파스텔톤 */
-  border-radius: 8px;
-  padding: 12px 20px;
-  margin: 20px auto;
-  max-width: 800px;
+  width: 100%;
+  background-color: #fff8dc;   /* 파스텔 배경 전체 */
+  padding: 20px 0;
   font-size: 1rem;
   font-weight: 500;
   color: #444;
@@ -40,14 +38,14 @@ body {
 .options {
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap; /* 항상 가로 */
+  flex-wrap: nowrap;
   gap: 20px;
   padding: 40px 20px;
-  max-width: 1400px;
-  margin: 0 auto;
+  width: 100%;
+  background-color: #f0f0f0;
 }
 .option-box {
-  background-color: #2b2b2b; /* 어두운 회색 */
+  background-color: #2b2b2b;
   color: #fff;
   border-radius: 20px;
   padding: 16px;
@@ -59,9 +57,9 @@ body {
   transform: translateY(-6px);
 }
 .option {
-  max-width: 100%;    /* 박스 안에서 꽉 차게 */
-  height: auto;       /* 세로는 비율대로 */
-  object-fit: contain; /* 잘리지 않고 다 보이게 */
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
   border-radius: 12px;
   border: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -77,6 +75,43 @@ body {
   color: #fff;
 }
 
+/* 중앙 버튼 */
+.center-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 25px 0;
+  background-color: #eef7ff;   /* 따로 배경색 */
+  margin-top: -20px;           /* 살짝 위로 올림 */
+}
+.center-buttons a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 120px;       /* 좌우 3배, 상하 1.5배 */
+  border-radius: 50px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  transition: transform 0.2s;
+}
+.center-buttons a img {
+  width: 32px;
+  height: 32px;
+}
+.center-buttons a:hover {
+  transform: translateY(-5px);
+}
+.center-buttons .kakao {
+  background-color: #ffeb00;
+  color: #3a1d1d;
+}
+.center-buttons .telegram {
+  background-color: #0088cc;
+}
+
 /* 갤러리 */
 .gallery {
   display: flex;
@@ -84,29 +119,28 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   padding: 30px 20px;
+  background-color: #fdfdfd;
 }
-
 .gallery img {
-  max-width: 400px;   /* 최대 크기 제한 */
+  max-width: 400px;
   max-height: 400px;
-  width: auto;        /* 원본 비율 유지 */
-  height: auto;       /* 원본 비율 유지 */
+  width: auto;
+  height: auto;
   border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 1. 0s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   background-color: #2b2b2b;
-  transform: none; /* 기본 확대 없음 */
 }
-
 .gallery img:hover {
-  transform: scale(2.5); /* hover 시 확대 */
+  transform: scale(2);
+  transform-origin: center center;  /* 확대 중심을 이미지의 중앙으로 */
   z-index: 10;
   position: relative;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
-/* 모바일 갤러리 */
+/* 모바일 대응 */
 @media (max-width: 768px) {
   .options {
     flex-wrap: wrap;
@@ -117,10 +151,18 @@ body {
     margin: 0 auto;
   }
   .gallery img {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    transform: none !important; /* 모바일은 확대 제거 */
+  max-width: 400px;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  background-color: #2b2b2b;
+  }
+  .center-buttons {
+    flex-direction: column;
   }
 }
 
@@ -139,27 +181,23 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 22px;
+  padding: 12px 20px;
   border-radius: 30px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: #fff;
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
 }
 .floating-buttons a img {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
-.floating-buttons a:hover {
-  transform: translateY(-4px);
-}
-.kakao {
+.floating-buttons .kakao {
   background-color: #ffeb00;
   color: #3a1d1d;
 }
-.telegram {
+.floating-buttons .telegram {
   background-color: #0088cc;
 }
 
@@ -170,7 +208,4 @@ body {
   padding: 20px;
   margin-top: 40px;
   font-size: 0.9rem;
-}
-.footer p {
-  margin: 5px 0;
 }
