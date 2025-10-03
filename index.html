@@ -2,26 +2,31 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>나노 원격 컴퓨터 임대</title>
+
+  <!-- 파비콘 -->
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- 배너 영역 -->
-  <div class="banner">
-    <img src="images/hd.png" alt="">
-  </div>
+  <header class="banner">
+    <div class="logo-title">
+      <img src="images/hd.png" alt="나노 원격 로고" class="logo">
+    </div>
+  </header>
 
   <!-- 공지사항 -->
-  <div class="notice">
-    안녕하세요 나노 원격입니다.<br>
-    임대시 리니지M, 뱀피르 스케줄 도우미 무료 지원중입니다.
-  </div>
+  <section class="notice">
+    안녕하세요, 나노 원격입니다.<br>
+    임대 시 <b>리니지M</b>, <b>뱀피르 스케줄 도우미</b> 무료 지원 중입니다.
+  </section>
 
   <!-- 옵션 영역 -->
-  <div class="options">
+  <section class="options">
     <div class="option-box">
       <img src="images/option1.jpg" class="option" alt="옵션1">
       <div class="stock-box" id="stock1">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
@@ -34,26 +39,31 @@
       <img src="images/option3.jpg" class="option" alt="옵션3">
       <div class="stock-box" id="stock3">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
     </div>
-  </div>
+  </section>
 
-  <!-- 옵션과 갤러리 사이 중앙 버튼 -->
-  <div class="center-buttons">
+  <!-- 중앙 카카오/텔레그램 버튼 -->
+  <section class="center-buttons">
     <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="kakao">
       <img src="images/kakao.png" alt="카카오톡 로고"> 카카오톡 문의하기
     </a>
     <a href="https://t.me/nano1computer" target="_blank" class="telegram">
       <img src="images/telegram.png" alt="텔레그램 로고"> 텔레그램 문의하기
     </a>
-  </div>
+  </section>
 
   <!-- 갤러리 -->
-  <div class="gallery">
+  <section class="gallery">
     <div class="gallery-grid">
       <img src="images/img1.png" alt="갤러리1">
       <img src="images/img2.png" alt="갤러리2">
       <img src="images/img3.png" alt="갤러리3">
       <img src="images/img4.png" alt="갤러리4">
     </div>
+  </section>
+
+  <!-- 확대용 오버레이 -->
+  <div id="overlay">
+    <img id="overlay-img" src="" alt="확대 이미지">
   </div>
 
   <!-- 플로팅 버튼 -->
@@ -67,12 +77,14 @@
   </div>
 
   <!-- 하단 사업자 정보 -->
-  <div class="footer">
-    상호명 | 대표자 | 사업자등록번호 | 사업장 주소 | 연락처
-  </div>
+  <footer class="footer">
+    <p><b>상호명:</b> 나노 | <b>대표자:</b> 이상경</p>
+    <p><b>사업자등록번호:</b> 706-30-02103 | <b>주소:</b> 전북특별자치도 전주시 완산구 용머리로 132, 302호(효자동1가)</p>
+  </footer>
 
-  <!-- 구글 시트 데이터 불러오기 -->
+  <!-- JS: 구글 시트 + 갤러리 확대 -->
   <script>
+    // 구글 시트 재고 불러오기
     fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
       .then(res => res.text())
       .then(text => {
@@ -85,16 +97,29 @@
         const stock2 = json.table.rows[1]?.c[0]?.v || 0;
         const stock3 = json.table.rows[2]?.c[0]?.v || 0;
 
-        document.querySelector("#stock1 .count").innerText = stock1 ? `${stock1}대` : "0대";
-        document.querySelector("#stock2 .count").innerText = stock2 ? `${stock2}대` : "0대";
-        document.querySelector("#stock3 .count").innerText = stock3 ? `${stock3}대` : "0대";
+        document.querySelector("#stock1 .count").innerText = `${stock1}대`;
+        document.querySelector("#stock2 .count").innerText = `${stock2}대`;
+        document.querySelector("#stock3 .count").innerText = `${stock3}대`;
       })
       .catch(err => {
         console.error("불러오기 실패", err);
-        document.querySelectorAll(".stock-box .count").forEach(el => {
-          el.innerText = "0대";
-        });
+        document.querySelectorAll(".stock-box .count").forEach(el => el.innerText = "0대");
       });
+
+    // 갤러리 확대 오버레이
+    const galleryImgs = document.querySelectorAll(".gallery img");
+    const overlay = document.getElementById("overlay");
+    const overlayImg = document.getElementById("overlay-img");
+
+    galleryImgs.forEach(img => {
+      img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
+    });
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
   </script>
 </body>
 </html>
