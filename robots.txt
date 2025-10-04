@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://나노원격임대.xyz/sitemap.xml

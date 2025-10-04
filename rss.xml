@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>나노 원격 컴퓨터 임대 - 업데이트</title>
+    <link>https://나노원격임대.xyz/</link>
+    <description>공지, 재고, 가격 변경 등 최신 소식</description>
+    <language>ko</language>
+    <lastBuildDate>Sat, 04 Oct 2025 13:24:00 +0900</lastBuildDate>
+
+    <item>
+      <title>사이트 최신 상태 안내</title>
+      <link>https://나노원격임대.xyz/</link>
+      <description><![CDATA[사이트와 콘텐츠가 최신 상태입니다. 필요 시 공지/재고 변경사항을 여기로 계속 안내합니다.]]></description>
+      <pubDate>Sat, 04 Oct 2025 13:24:00 +0900</pubDate>
+      <guid isPermaLink="false">nano-remote-latest-2025-10-04-1324</guid>
+    </item>
+  </channel>
+</rss>
