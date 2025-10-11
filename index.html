@@ -13,7 +13,10 @@
   <meta name="description" content="모바일게임 · 앱플레이어 · 다중게임 · 마케팅 전용 원격임대 PC - 나노 원격 임대. 신규 고객 첫 달 3만원, 그 이후 4만원. 리니지M, 뱀피르 스케줄 도우미 무료 제공.">
   <meta name="keywords" content="원격 임대, 원격PC, 컴퓨터 임대, PC렌탈, 리니지M 원격, 게임용 원격PC, 마케팅 자동화, 나노원격임대, 24시간 원격, 앱플레이어 임대, 게임 PC 렌탈">
   <meta name="robots" content="index, follow">
+  <meta name="author" content="나노 원격 임대">
+  <meta name="theme-color" content="#2b2b2b">
   <link rel="canonical" href="https://나노원격임대.xyz/">
+  <link rel="preconnect" href="https://docs.google.com">
 
   <!-- 구글 사이트 인증 -->
   <meta name="google-site-verification" content="9kON5EyO_g3N7cZogHhtNbzcY8oF6XvG9kTFCkXvEus" />
@@ -59,51 +62,63 @@
     <p class="notice-sub" style="color:#FF5555;">
       신규 고객: 첫 임대 시 1대당 3만원 (첫 달만) → 이후 정상금액 4만원
     </p>
-    <p>임대 시 <b>리니지M</b>, <b>뱀피르 스케줄 도우미</b> 무료 지원 중입니다.</p>
+    <p>임대 시 <b>리니지M</b>, <b>뱀피르</b> <b></b>스케줄 도우미</b> 무료 지원 중입니다.</p>
   </section>
 
   <!-- 옵션 영역 -->
   <section class="options" id="options">
     <div class="option-box">
-      <img src="images/option1.jpg" class="option" alt="옵션1">
-      <div class="stock-box" id="stock1">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+      <img src="images/option1.jpg" class="option" alt="원격PC 옵션1 - 라이젠 4350g" loading="lazy">
+      <div class="stock-box" id="stock1">
+        <div class="stock-label">현재 임대 가능 대수</div>
+        <div class="count">불러오는 중...</div>
+        <div class="stock-status">실시간 업데이트</div>
+      </div>
     </div>
     <div class="option-box">
-      <img src="images/option2.jpg" class="option" alt="옵션2">
-      <div class="stock-box" id="stock2">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+      <img src="images/option2.jpg" class="option" alt="원격PC 옵션2 - 라이젠 2600" loading="lazy">
+      <div class="stock-box" id="stock2">
+        <div class="stock-label">현재 임대 가능 대수</div>
+        <div class="count">불러오는 중...</div>
+        <div class="stock-status">실시간 업데이트</div>
+      </div>
     </div>
     <div class="option-box">
-      <img src="images/option3.jpg" class="option" alt="옵션3">
-      <div class="stock-box" id="stock3">현재 임대 가능 대수 : <span class="count">불러오는 중...</span></div>
+      <img src="images/option3.jpg" class="option" alt="원격PC 옵션3 - 라이젠 5700G" loading="lazy">
+      <div class="stock-box" id="stock3">
+        <div class="stock-label">현재 임대 가능 대수</div>
+        <div class="count">불러오는 중...</div>
+        <div class="stock-status">실시간 업데이트</div>
+      </div>
     </div>
   </section>
 
   <!-- 중앙 카카오/텔레그램 버튼 -->
   <section class="center-buttons">
-    <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="kakao">카카오톡 문의하기</a>
-    <a href="https://t.me/nano1computer" target="_blank" class="telegram">텔레그램 문의하기</a>
+    <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="kakao" aria-label="카카오톡으로 문의하기">카카오톡 문의하기</a>
+    <a href="https://t.me/nano1computer" target="_blank" class="telegram" aria-label="텔레그램으로 문의하기">텔레그램 문의하기</a>
   </section>
 
   <!-- 갤러리 -->
   <section class="gallery">
     <div class="gallery-grid">
-      <img src="images/img1.png" alt="갤러리1">
-      <img src="images/img2.png" alt="갤러리2">
-      <img src="images/img3.png" alt="갤러리3">
-      <img src="images/img4.png" alt="갤러리4">
+      <img src="images/img1.png" alt="나노 원격PC 사용 화면 갤러리 1" loading="lazy">
+      <img src="images/img2.png" alt="나노 원격PC 사용 화면 갤러리 2" loading="lazy">
+      <img src="images/img3.png" alt="나노 원격PC 사용 화면 갤러리 3" loading="lazy">
+      <img src="images/img4.png" alt="나노 원격PC 사용 화면 갤러리 4" loading="lazy">
     </div>
   </section>
 
   <!-- 확대용 오버레이 -->
-  <div id="overlay"><img id="overlay-img" src="" alt="확대 이미지"></div>
+  <div id="overlay" role="dialog" aria-label="이미지 확대 보기"><img id="overlay-img" src="" alt="확대된 이미지"></div>
 
   <!-- 플로팅 버튼 -->
   <div class="floating-buttons">
-    <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="kakao">
-      <img src="images/kakao.png" alt="카카오톡 로고"> 카카오톡
+    <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="kakao" aria-label="카카오톡으로 문의하기">
+      <img src="images/kakao.png" alt="카카오톡 로고" loading="lazy"> 카카오톡
     </a>
-    <a href="https://t.me/nano1computer" target="_blank" class="telegram">
-      <img src="images/telegram.png" alt="텔레그램 로고"> 텔레그램
+    <a href="https://t.me/nano1computer" target="_blank" class="telegram" aria-label="텔레그램으로 문의하기">
+      <img src="images/telegram.png" alt="텔레그램 로고" loading="lazy"> 텔레그램
     </a>
   </div>
 
