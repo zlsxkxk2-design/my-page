@@ -216,6 +216,112 @@ body {
   background-color: #0088cc;
 }
 
+/* FAQ 섹션 */
+.faq {
+  background-color: #f8f9fa;
+  padding: 60px 20px;
+}
+.faq h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+  font-size: 2rem;
+}
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-item {
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.faq-question {
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  transition: background-color 0.3s;
+}
+.faq-question:hover {
+  background: #e9ecef;
+}
+.faq-question h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+.faq-toggle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #666;
+  transition: transform 0.3s;
+}
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
+}
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.faq-item.active .faq-answer {
+  padding: 20px;
+  max-height: 200px;
+}
+.faq-answer p {
+  margin: 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 서비스 소개 섹션 */
+.service-intro {
+  background-color: #ffffff;
+  padding: 60px 20px;
+}
+.service-intro h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+  font-size: 2rem;
+}
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.service-item {
+  text-align: center;
+  padding: 30px 20px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+.service-item:hover {
+  transform: translateY(-5px);
+}
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+.service-item h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+.service-item p {
+  color: #666;
+  line-height: 1.6;
+}
+
 /* 푸터 */
 .footer {
   background-color: #000;
@@ -310,8 +416,34 @@ body {
     bottom: 15px;
   }
   
-  .floating-buttons a {
-    padding: 10px 15px;
-    font-size: 0.8rem;
+  /* FAQ 섹션 모바일 최적화 */
+  .faq {
+    padding: 40px 15px;
   }
-}
+  .faq h2 {
+    font-size: 1.5rem;
+  }
+  .faq-question {
+    padding: 15px;
+  }
+  .faq-question h3 {
+    font-size: 1rem;
+  }
+  
+  /* 서비스 소개 모바일 최적화 */
+  .service-intro {
+    padding: 40px 15px;
+  }
+  .service-intro h2 {
+    font-size: 1.5rem;
+  }
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .service-item {
+    padding: 20px 15px;
+  }
+  .service-icon {
+    font-size: 2.5rem;
+  }
