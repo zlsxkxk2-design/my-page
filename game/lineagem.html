@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>리니지M 원격 임대 | 나노원격</title>
 
-  <!-- 🔍 SEO 기본 메타 -->
-  <meta name="description" content="리니지M 전용 원격 임대 서비스. 기반 고성능 PC로 24시간 안정적인 접속과 자동사냥을 제공합니다.">
-  <meta name="keywords" content="리니지M, 원격 임대, 리니지M 원격, 게임 PC 임대, 나노원격, 리니지M 자동사냥, 리니지M 멀티클라">
+  <!-- 🔍 SEO 메타 -->
+  <meta name="description" content="리니지M 전용 원격 임대 서비스. 고성능 PC로 24시간 안정적인 접속과 자동사냥을 제공합니다.">
+  <meta name="keywords" content="리니지M, 원격 임대, 게임 PC 임대, 나노원격, 리니지M 자동사냥, 리니지M 멀티클라">
   <meta name="author" content="나노원격">
 
   <!-- ✅ OG (SNS 공유용) -->
@@ -16,23 +16,14 @@
   <meta property="og:description" content="리니지M에 최적화된 나노원격 PC 임대 서비스. 안정적 24시간 접속과 완벽한 자동사냥 지원.">
   <meta property="og:image" content="https://나노원격임대.xyz/images/game/og-lineagem.jpg">
   <meta property="og:url" content="https://나노원격임대.xyz/game/lineagem/">
-  <meta property="og:site_name" content="나노원격임대">
-
-  <!-- 🐦 Twitter 카드 -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="리니지M 원격 임대 | 나노원격">
-  <meta name="twitter:description" content="리니지M 전용 원격 임대, 고성능 Ryzen 시스템으로 안정적인 멀티 운영 지원.">
-  <meta name="twitter:image" content="https://나노원격임대.xyz/images/game/og-lineagem.jpg">
-
-  <!-- 🔗 Canonical URL -->
-  <link rel="canonical" href="https://나노원격임대.xyz/game/lineagem/">
 
   <style>
     body {
-      font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+      /* 🌸 파스텔톤 배경 */
+      background: linear-gradient(180deg, #fdfbfb 0%, #f3e7e9 100%);
       color: #333;
     }
 
@@ -58,33 +49,80 @@
       border-radius: 12px;
       margin-bottom: 25px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
     }
 
-    .banner img:hover {
-      transform: scale(1.02);
+    /* 🎞 슬라이더 */
+    .slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.6s ease;
+      width: 100%;
+    }
+
+    .slides img {
+      width: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.4);
+      color: #fff;
+      border: none;
+      font-size: 2rem;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+    }
+
+    .arrow:hover {
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
+
+    .dots {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
+      background-color: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #ff7f7f;
     }
 
     .intro h2 {
       font-size: 1.8rem;
-      margin-bottom: 10px;
       color: #2d3436;
+      margin: 25px 0 10px;
     }
 
     .intro p {
       font-size: 1.05rem;
-      line-height: 1.8;
       color: #555;
-      margin-bottom: 30px;
-    }
-
-    .video iframe {
-      width: 100%;
-      max-width: 800px;
-      height: 450px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      line-height: 1.8;
     }
 
     .buttons {
@@ -95,50 +133,51 @@
       display: inline-block;
       padding: 15px 36px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #4CAF50, #45a049);
+      background: linear-gradient(135deg, #ff7f7f, #ffa8a8);
       color: white;
       text-decoration: none;
       font-size: 1.1rem;
       font-weight: 600;
-      box-shadow: 0 4px 12px rgba(72, 180, 97, 0.3);
+      box-shadow: 0 4px 12px rgba(255, 127, 127, 0.3);
       transition: all 0.25s ease;
     }
 
     .btn:hover {
-      background: linear-gradient(135deg, #45a049, #3e8e41);
+      background: linear-gradient(135deg, #ff6b6b, #ff8a8a);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(72, 180, 97, 0.4);
+      box-shadow: 0 6px 16px rgba(255, 127, 127, 0.4);
     }
 
-    .back-home {
+    .btn-secondary {
       display: inline-block;
-      margin-top: 20px;
-      color: #666;
+      margin-top: 15px;
+      padding: 14px 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6ec6ff, #a4e3ff);
+      color: white;
       text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.2s;
+      font-size: 1.05rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(100, 181, 246, 0.3);
+      transition: all 0.25s ease;
     }
 
-    .back-home:hover {
-      color: #111;
-      text-decoration: underline;
+    .btn-secondary:hover {
+      background: linear-gradient(135deg, #42a5f5, #80d6ff);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(100, 181, 246, 0.4);
     }
 
     footer {
-      text-align: center;
       color: #777;
       font-size: 0.85rem;
       margin-top: 50px;
     }
 
     @media (max-width: 768px) {
-      .container {
-        margin: 30px 10px;
-        padding: 25px 15px;
-      }
+      .container { margin: 30px 10px; padding: 25px 15px; }
       .intro h2 { font-size: 1.5rem; }
-      .video iframe { height: 230px; }
-      .btn { font-size: 1rem; padding: 12px 28px; }
+      .btn, .btn-secondary { font-size: 1rem; padding: 12px 28px; }
     }
   </style>
 </head>
@@ -153,28 +192,70 @@
       <p>
         나노원격임대는 리니지M에 최적화된 고성능 PC를 제공합니다.<br>
         24시간 안정적인 자동사냥과 원격 접속 환경을 보장합니다.<br>
-        다계정 운영 및 매크로 실행도 완벽히 지원하여 쾌적한 플레이를 경험하세요.<br>
-        리니지m 스케줄 도우미 지원
+        다계정 운영 및 매크로 실행도 완벽히 지원하며,<br>
+        리니지M 스케줄 도우미 기능까지 제공합니다.
       </p>
     </div>
 
-    <div class="video">
-      <!-- ✅ 유튜브 embed 형식 (v= → embed/ 로 변경됨) -->
-      <iframe src="https://youtu.be/Po7dlMgTqVE?si=0NbFjcF51h8OkT3B"
-              title="리니지M 소개 영상"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-      </iframe>
+    <!-- 🎞 이미지 슬라이드 -->
+    <div class="slider" id="slider">
+      <div class="slides">
+        <img src="/images/game/lineagem/slide1.jpg" alt="리니지M 슬라이드1">
+        <img src="/images/game/lineagem/slide2.jpg" alt="리니지M 슬라이드2">
+        <img src="/images/game/lineagem/slide3.jpg" alt="리니지M 슬라이드3">
+        <!-- slide4.jpg 있으면 자동으로 인식 -->
+      </div>
+      <button class="arrow left" onclick="moveSlide(-1)">❮</button>
+      <button class="arrow right" onclick="moveSlide(1)">❯</button>
     </div>
+    <div class="dots" id="dots"></div>
 
     <div class="buttons">
       <a href="https://open.kakao.com/o/gdQUrDrh" class="btn">💬 카카오톡 문의하기</a><br>
-      <a href="https://나노원격임대.xyz" class="back-home">← 메인 페이지로 돌아가기</a>
+      <a href="https://나노원격임대.xyz" class="btn-secondary">📊 임대 가능 대수 확인하기</a>
     </div>
 
     <footer>
       © 2025 나노원격임대 — All rights reserved.
     </footer>
   </div>
+
+  <script>
+    // 🎞 JS 슬라이드 제어
+    const slides = document.querySelector(".slides");
+    const images = document.querySelectorAll(".slides img");
+    const dotsContainer = document.getElementById("dots");
+    let index = 0;
+
+    // 도트 자동 생성
+    images.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.classList.add("dot");
+      if (i === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".dot");
+
+    function updateDots() {
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+    }
+
+    function moveSlide(direction) {
+      index = (index + direction + images.length) % images.length;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      updateDots();
+    }
+
+    function goToSlide(i) {
+      index = i;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      updateDots();
+    }
+
+    // 자동 슬라이드 (5초 간격)
+    setInterval(() => moveSlide(1), 5000);
+  </script>
 </body>
 </html>
