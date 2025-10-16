@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/lineagem", "destination": "/game/lineagem.html" },
+    { "source": "/rfonline", "destination": "/game/rfonline.html" },
+    { "source": "/vampir", "destination": "/game/vampir.html" }
+  ]
+}
