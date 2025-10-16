@@ -27,6 +27,27 @@
       color: #333;
     }
 
+    /* 상단 헤더 영역 */
+    header {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: white;
+      text-align: center;
+      padding: 18px 10px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
     .container {
       max-width: 900px;
       margin: 60px auto;
@@ -175,6 +196,7 @@
     }
 
     @media (max-width: 768px) {
+      header { font-size: 1.2rem; padding: 14px; }
       .container { margin: 30px 10px; padding: 25px 15px; }
       .intro h2 { font-size: 1.5rem; }
       .btn, .btn-secondary { font-size: 1rem; padding: 12px 28px; }
@@ -182,6 +204,12 @@
   </style>
 </head>
 <body>
+
+  <!-- ✅ 상단 헤더 -->
+  <header>
+    <a href="https://나노원격임대.xyz">나노원격임대.xyz</a>
+  </header>
+
   <div class="container">
     <div class="banner">
       <img src="/images/game/lineage.jpg" alt="리니지M 배너 이미지">
@@ -203,7 +231,6 @@
         <img src="/images/game/lineagem/slide1.jpg" alt="리니지M 슬라이드1">
         <img src="/images/game/lineagem/slide2.jpg" alt="리니지M 슬라이드2">
         <img src="/images/game/lineagem/slide3.jpg" alt="리니지M 슬라이드3">
-        <!-- slide4.jpg 있으면 자동으로 인식 -->
       </div>
       <button class="arrow left" onclick="moveSlide(-1)">❮</button>
       <button class="arrow right" onclick="moveSlide(1)">❯</button>
