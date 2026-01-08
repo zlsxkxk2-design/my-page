@@ -1,17 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.xn--i89ap8ehtas1cs80c54a.xyz"
-        }
-      ],
-      "destination": "https://xn--i89ap8ehtas1cs80c54a.xyz/:path*",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     { "source": "/lineagem", "destination": "/game/lineagem.html" },
     { "source": "/rfonline", "destination": "/game/rfonline.html" },
