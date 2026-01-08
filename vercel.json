@@ -1,21 +1,20 @@
 {
-
   "redirects": [
-    { "source": "http://나노원격임대.xyz/:path*", "destination": "https://나노원격임대.xyz/:path*", "permanent": true },
-    { "source": "https://www.나노원격임대.xyz/:path*", "destination": "https://나노원격임대.xyz/:path*", "permanent": true },
-
-
-    { "source": "http://xn--i89ap8ehtas1cs80c54a.xyz/:path*", "destination": "https://나노원격임대.xyz/:path*", "permanent": true },
-    { "source": "https://xn--i89ap8ehtas1cs80c54a.xyz/:path*", "destination": "https://나노원격임대.xyz/:path*", "permanent": true },
-    { "source": "https://www.xn--i89ap8ehtas1cs80c54a.xyz/:path*", "destination": "https://나노원격임대.xyz/:path*", "permanent": true }
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.xn--i89ap8ehtas1cs80c54a.xyz"
+        }
+      ],
+      "destination": "https://xn--i89ap8ehtas1cs80c54a.xyz/:path*",
+      "permanent": true
+    }
   ],
-
-
   "rewrites": [
     { "source": "/lineagem", "destination": "/game/lineagem.html" },
     { "source": "/rfonline", "destination": "/game/rfonline.html" },
     { "source": "/vampir", "destination": "/game/vampir.html" }
   ]
-
-
 }
