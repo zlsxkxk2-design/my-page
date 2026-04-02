@@ -4,4 +4,4 @@ Allow: /
 User-agent: Yeti
 Allow: /
 
-Sitemap: https://xn--2e0bu9iqnc0g.xyz/sitemap.xml
+Sitemap: https://xn--i89ap8ehtas1cs80c54a.xyz/sitemap.xml
