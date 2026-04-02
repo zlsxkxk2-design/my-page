@@ -924,9 +924,15 @@ ul { list-style: none; }
 .feature-card:hover::after { transform: scaleX(1); }
 
 .feature-icon {
-  font-size: 2.5rem;
-  margin-bottom: 18px;
-  display: block;
+  width: 60px; height: 60px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,229,255,0.06);
+  border: 1px solid rgba(0,229,255,0.12);
+  border-radius: var(--radius-md);
+  color: var(--accent);
 }
 .feature-card h3 {
   font-size: 1.05rem;
@@ -974,6 +980,17 @@ ul { list-style: none; }
 .pricing-card--featured:hover {
   box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.2), 0 16px 60px rgba(0, 229, 255, 0.15);
 }
+
+/* 요금 카드 상단 티어 컬러 바 */
+.pricing-tier-bar {
+  height: 4px;
+  border-radius: 4px 4px 0 0;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+}
+.tier-low-bar  { background: linear-gradient(90deg, #64b4ff, #3a8fe8); }
+.tier-mid-bar  { background: linear-gradient(90deg, #00e5ff, #7c3aed); }
+.tier-high-bar { background: linear-gradient(90deg, #7c3aed, #b48eff); }
 
 .pricing-tag {
   position: absolute;
@@ -1344,6 +1361,41 @@ ul { list-style: none; }
 .option-card:hover::after {
   background-position: -100% 0;
 }
+
+/* 옵션 카드 정보 영역 */
+.option-info {
+  padding: 12px 4px 10px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.option-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.option-specs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* 사양 배지 */
+.option-tier-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+}
+.tier-low  { background: rgba(100,180,255,0.15); color: #64b4ff; border: 1px solid rgba(100,180,255,0.3); }
+.tier-mid  { background: rgba(0,229,255,0.15);   color: var(--accent); border: 1px solid rgba(0,229,255,0.3); }
+.tier-high { background: rgba(124,58,237,0.15);  color: #b48eff; border: 1px solid rgba(124,58,237,0.3); }
 
 /* stock-box 숫자 강조 */
 .count {
