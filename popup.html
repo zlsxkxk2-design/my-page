@@ -231,9 +231,39 @@
       border-color: rgba(0,229,255,0.4);
     }
 
-    /* 모바일: 팝업 숨김 */
-    @media (max-width: 768px) {
-      .popup-overlay { display: none !important; }
+    /* 모바일 반응형 */
+    @media (max-width: 600px) {
+      .popup-box {
+        width: calc(100vw - 24px);
+        max-width: 100%;
+      }
+      .popup-header { padding: 14px 14px; }
+      .popup-title { font-size: 0.83rem; }
+
+      /* 운영사 컬럼 숨김, 3컬럼으로 축소 */
+      .notice-header {
+        grid-template-columns: 1fr 72px 68px;
+        padding: 8px 12px 6px;
+      }
+      .notice-header span:nth-child(2),
+      .notice-header span:nth-child(3) { display: none; }
+      .notice-header span:nth-child(4) { grid-column: 2; }
+      .notice-header span:nth-child(5) { grid-column: 3; }
+
+      .notice-row {
+        grid-template-columns: 1fr 72px 68px;
+        padding: 10px 12px;
+        gap: 6px;
+      }
+      .notice-row > .notice-cell.muted,
+      .notice-row > .notice-cell.date { display: none; }
+
+      .notice-cell.bold { font-size: 0.79rem; }
+      .notice-badge { font-size: 0.62rem; padding: 3px 6px; }
+
+      .popup-footer { padding: 11px 12px; }
+      .popup-today-label { font-size: 0.72rem; }
+      .popup-btn-close { padding: 6px 14px; font-size: 0.75rem; }
     }
   </style>
 </head>
