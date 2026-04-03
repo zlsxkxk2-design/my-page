@@ -240,43 +240,36 @@
 
     /* 모바일 반응형 */
     @media (max-width: 560px) {
-      .popup-overlay { align-items: flex-end; padding-bottom: 0; }
-
       .popup-box {
-        width: 100vw;
-        border-radius: 16px 16px 0 0;
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
+        width: calc(100vw - 28px);
       }
 
-      .popup-header { padding: 14px 16px; }
-      .popup-title { font-size: 0.85rem; }
+      .popup-header { padding: 14px 14px; }
+      .popup-title  { font-size: 0.83rem; }
+      .popup-icon   { width: 28px; height: 28px; }
 
-      /* 그리드 → 카드형 목록 */
+      /* 그리드 → 한 줄 카드 */
       .notice-header { display: none; }
 
       .notice-row {
         display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding: 14px 16px;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 5px;
+        padding: 12px 14px;
       }
       .notice-row::before { display: none; }
 
-      .notice-cell.bold { font-size: 0.88rem; }
-      .notice-cell.muted { font-size: 0.76rem; }
-      .notice-cell.date  { font-size: 0.76rem; }
+      .notice-cell.bold  { flex: 0 0 100%; font-size: 0.84rem; }
+      .notice-cell.muted { font-size: 0.73rem; }
+      .notice-cell.date  { font-size: 0.73rem; }
 
-      .notice-row-badges {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
+      .notice-row-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+      .notice-badge      { font-size: 0.63rem; padding: 2px 7px; }
 
-      .popup-footer { padding: 12px 16px; }
-      .popup-today-label { font-size: 0.74rem; }
-      .popup-btn-close { padding: 7px 18px; font-size: 0.78rem; }
+      .popup-footer      { padding: 11px 14px; }
+      .popup-today-label { font-size: 0.73rem; }
+      .popup-btn-close   { padding: 6px 16px; font-size: 0.76rem; }
     }
   </style>
 </head>
