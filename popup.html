@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>공지 팝업</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: popupFadeIn 0.3s ease;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    @keyframes popupFadeIn  { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes popupFadeOut { to   { opacity: 0; } }
+    @keyframes popupSlideUp {
+      from { opacity: 0; transform: translateY(30px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+
+    .popup-overlay * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .popup-box {
+      width: 560px;
+      background: #0d0d1a;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(0, 229, 255, 0.05),
+        0 24px 80px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(0, 229, 255, 0.06);
+      animation: popupSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* 헤더 */
+    .popup-header {
+      background: linear-gradient(135deg, rgba(0,229,255,0.08), rgba(124,58,237,0.08));
+      border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .popup-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .popup-icon {
+      width: 36px; height: 36px;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00e5ff;
+      flex-shrink: 0;
+    }
+    .popup-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #f0f0ff;
+      letter-spacing: -0.01em;
+    }
+    .popup-title span { color: #00e5ff; }
+    .popup-close-x {
+      width: 30px; height: 30px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #6060a0;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .popup-close-x:hover {
+      background: rgba(255,80,80,0.12);
+      border-color: rgba(255,80,80,0.3);
+      color: #ff5050;
+    }
+
+    .popup-scan {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+      opacity: 0.4;
+    }
+
+    /* 컬럼 헤더: 게임명 | 운영사 | 날짜 | 상태 | 서버 */
+    .notice-header {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 90px 80px 90px;
+      gap: 8px;
+      padding: 10px 20px 8px;
+      border-bottom: 1px solid rgba(0,229,255,0.08);
+    }
+    .notice-header span {
+      font-size: 0.63rem;
+      font-weight: 700;
+      color: #4a4a6a;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    /* 목록 */
+    .popup-body {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .popup-body::-webkit-scrollbar { width: 4px; }
+    .popup-body::-webkit-scrollbar-track { background: transparent; }
+    .popup-body::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); border-radius: 4px; }
+
+    .notice-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 90px 80px 90px;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.2s ease;
+      position: relative;
+    }
+    .notice-row:last-child { border-bottom: none; }
+    .notice-row:hover { background: rgba(0,229,255,0.03); }
+    .notice-row::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 3px; height: 0;
+      background: #00e5ff;
+      border-radius: 0 2px 2px 0;
+      transition: height 0.2s ease;
+    }
+    .notice-row:hover::before { height: 55%; }
+
+    .notice-cell {
+      font-size: 0.82rem;
+      color: #c0c0e0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .notice-cell.bold  { font-weight: 700; color: #e0e0f8; }
+    .notice-cell.muted { color: #6060a0; font-size: 0.78rem; }
+    .notice-cell.date  { color: #7070a0; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+
+    /* 상태 배지 */
+    .notice-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    /* 상태 */
+    .badge-soon  { background: rgba(255,188,46,0.12); color: #febc2e; border: 1px solid rgba(255,188,46,0.3); }
+    .badge-open  { background: rgba(0,255,136,0.1);   color: #00ff88; border: 1px solid rgba(0,255,136,0.25); }
+    .badge-tbd   { background: rgba(150,150,200,0.1); color: #9090c0; border: 1px solid rgba(150,150,200,0.2); }
+    /* 서버 구분 */
+    .badge-first  { background: rgba(0,229,255,0.1);  color: #00e5ff; border: 1px solid rgba(0,229,255,0.25); }
+    .badge-new    { background: rgba(124,58,237,0.12); color: #b48eff; border: 1px solid rgba(124,58,237,0.3); }
+
+    /* 하단 */
+    .popup-footer {
+      padding: 14px 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.2);
+    }
+    .popup-today {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .popup-check-box {
+      width: 16px; height: 16px;
+      border: 1.5px solid #3a3a5a;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .popup-today:hover .popup-check-box { border-color: #00e5ff; }
+    .popup-check-box.checked { background: #00e5ff; border-color: #00e5ff; }
+    .popup-check-box.checked::after {
+      content: '';
+      width: 9px; height: 6px;
+      border-left: 2px solid #000;
+      border-bottom: 2px solid #000;
+      transform: rotate(-45deg) translate(1px, -1px);
+      display: block;
+    }
+    .popup-today-label { font-size: 0.78rem; color: #5a5a7a; }
+    .popup-btn-close {
+      padding: 7px 20px;
+      background: transparent;
+      border: 1px solid rgba(0,229,255,0.2);
+      border-radius: 20px;
+      color: #00e5ff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .popup-btn-close:hover {
+      background: rgba(0,229,255,0.08);
+      border-color: rgba(0,229,255,0.4);
+    }
+  </style>
+</head>
+<body>
+
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-box">
+
+    <div class="popup-header">
+      <div class="popup-header-left">
+        <div class="popup-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </div>
+        <div class="popup-title">게임 오픈 및 <span>신규 서버 안내</span></div>
+      </div>
+      <div class="popup-close-x" id="popupCloseX">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </div>
+    </div>
+
+    <div class="popup-scan"></div>
+
+    <div class="notice-header">
+      <span>게임명</span>
+      <span>운영사</span>
+      <span>날짜</span>
+      <span>상태</span>
+      <span>서버</span>
+    </div>
+
+    <div class="popup-body">
+
+      <!-- ✏️ 여기서 항목 추가/수정 -->
+
+      <div class="notice-row">
+        <div class="notice-cell bold">SOL : 인챈트</div>
+        <div class="notice-cell muted">Netmarble</div>
+        <div class="notice-cell date">03월 23일</div>
+        <div class="notice-badge badge-soon">오픈예정</div>
+        <div class="notice-badge badge-first">첫 오픈</div>
+      </div>
+
+      <!-- 추가 예시 (복붙해서 사용):
+      <div class="notice-row">
+        <div class="notice-cell bold">게임명</div>
+        <div class="notice-cell muted">운영사</div>
+        <div class="notice-cell date">00월 00일</div>
+        <div class="notice-badge badge-soon">오픈예정</div>
+        <div class="notice-badge badge-first">첫 오픈</div>
+      </div>
+
+      상태: badge-soon(오픈예정) / badge-open(오픈) / badge-tbd(미정)
+      서버: badge-first(첫 오픈) / badge-new(신규 서버)
+      -->
+
+    </div>
+
+    <div class="popup-footer">
+      <div class="popup-today" id="popupToday">
+        <div class="popup-check-box" id="popupCheckBox"></div>
+        <span class="popup-today-label">오늘 하루 보지 않기</span>
+      </div>
+      <button class="popup-btn-close" id="popupCloseBtn">닫기</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function() {
+    const overlay  = document.getElementById('popupOverlay');
+    const closeX   = document.getElementById('popupCloseX');
+    const closeBtn = document.getElementById('popupCloseBtn');
+    const today    = document.getElementById('popupToday');
+    const checkBox = document.getElementById('popupCheckBox');
+    let checked = false;
+
+    today.addEventListener('click', () => {
+      checked = !checked;
+      checkBox.classList.toggle('checked', checked);
+    });
+
+    const close = () => {
+      if (checked) {
+        const exp = new Date();
+        exp.setHours(23, 59, 59, 0);
+        document.cookie = 'nanopopup=hide; expires=' + exp.toUTCString() + '; path=/';
+      }
+      overlay.style.animation = 'popupFadeOut 0.2s ease forwards';
+      setTimeout(() => overlay.remove(), 200);
+    };
+
+    closeX.addEventListener('click', close);
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  })();
+</script>
+
+</body>
+</html>

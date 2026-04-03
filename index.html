@@ -570,5 +570,29 @@
   </footer>
 
   <script src="script.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const hide = document.cookie.split(';').some(c => c.trim().startsWith('nanopopup=hide'));
+      if (hide) return;
+      fetch('popup.html')
+        .then(r => r.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          doc.querySelectorAll('style').forEach(s => {
+            const style = document.createElement('style');
+            style.textContent = s.textContent;
+            document.head.appendChild(style);
+          });
+          const overlay = doc.getElementById('popupOverlay');
+          if (overlay) document.body.appendChild(overlay);
+          doc.querySelectorAll('script').forEach(s => {
+            const sc = document.createElement('script');
+            sc.textContent = s.textContent;
+            document.body.appendChild(sc);
+          });
+        });
+    });
+  </script>
 </body>
 </html>
