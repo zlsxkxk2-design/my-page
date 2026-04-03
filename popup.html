@@ -97,10 +97,10 @@
       opacity: 0.4;
     }
 
-    /* 컬럼 헤더: 게임명 | 운영사 | 날짜 | 배지 */
+    /* 컬럼 헤더: 게임명 | 날짜 | 상태 | 서버 */
     .notice-header {
       display: grid;
-      grid-template-columns: 1.4fr 1fr 90px 1fr;
+      grid-template-columns: 2fr 90px 80px 90px;
       gap: 8px;
       padding: 10px 20px 8px;
       border-bottom: 1px solid rgba(0,229,255,0.08);
@@ -124,7 +124,7 @@
 
     .notice-row {
       display: grid;
-      grid-template-columns: 1.4fr 1fr 90px 1fr;
+      grid-template-columns: 2fr 90px 80px 90px;
       align-items: center;
       gap: 8px;
       padding: 13px 20px;
@@ -249,24 +249,22 @@
       .popup-title  { font-size: 0.83rem; }
       .popup-icon   { width: 28px; height: 28px; }
 
-      /* 그리드 → 한 줄 카드 */
-      .notice-header { display: none; }
+      /* 날짜 숨기고 3컬럼: 게임명 | 상태 | 서버 */
+      .notice-header {
+        grid-template-columns: 1fr 76px 76px;
+        padding: 8px 14px 6px;
+      }
+      .notice-header span:nth-child(2) { display: none; }
 
       .notice-row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 5px;
-        padding: 12px 14px;
+        grid-template-columns: 1fr 76px 76px;
+        padding: 11px 14px;
+        gap: 6px;
       }
-      .notice-row::before { display: none; }
+      .notice-row .notice-cell.date { display: none; }
 
-      .notice-cell.bold  { flex: 0 0 100%; font-size: 0.84rem; }
-      .notice-cell.muted { font-size: 0.73rem; }
-      .notice-cell.date  { font-size: 0.73rem; }
-
-      .notice-row-badges { display: flex; gap: 5px; flex-wrap: wrap; }
-      .notice-badge      { font-size: 0.63rem; padding: 2px 7px; }
+      .notice-cell.bold { font-size: 0.82rem; }
+      .notice-badge     { font-size: 0.63rem; padding: 3px 7px; }
 
       .popup-footer      { padding: 11px 14px; }
       .popup-today-label { font-size: 0.73rem; }
@@ -297,9 +295,9 @@
 
     <div class="notice-header">
       <span>게임명</span>
-      <span>운영사</span>
       <span>날짜</span>
-      <span>상태 / 서버</span>
+      <span>상태</span>
+      <span>서버</span>
     </div>
 
     <div class="popup-body">
@@ -308,23 +306,17 @@
 
       <div class="notice-row">
         <div class="notice-cell bold">SOL : enchant</div>
-        <div class="notice-cell muted">Netmarble</div>
         <div class="notice-cell date">04월 24일</div>
-        <div class="notice-row-badges">
-          <div class="notice-badge badge-soon">오픈예정</div>
-          <div class="notice-badge badge-first">첫 오픈</div>
-        </div>
+        <div class="notice-badge badge-soon">오픈예정</div>
+        <div class="notice-badge badge-first">첫 오픈</div>
       </div>
 
       <!-- 추가 예시 (복붙해서 사용):
       <div class="notice-row">
         <div class="notice-cell bold">게임명</div>
-        <div class="notice-cell muted">운영사</div>
         <div class="notice-cell date">00월 00일</div>
-        <div class="notice-row-badges">
-          <div class="notice-badge badge-soon">오픈예정</div>
-          <div class="notice-badge badge-first">첫 오픈</div>
-        </div>
+        <div class="notice-badge badge-soon">오픈예정</div>
+        <div class="notice-badge badge-first">첫 오픈</div>
       </div>
 
       상태: badge-soon(오픈예정) / badge-open(오픈) / badge-tbd(미정)
