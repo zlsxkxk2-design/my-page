@@ -28,7 +28,7 @@
     .popup-overlay * { box-sizing: border-box; margin: 0; padding: 0; }
 
     .popup-box {
-      width: 560px;
+      width: 440px;
       background: #0d0d1a;
       border: 1px solid rgba(0, 229, 255, 0.2);
       border-radius: 16px;
@@ -97,10 +97,10 @@
       opacity: 0.4;
     }
 
-    /* 컬럼 헤더: 게임명 | 날짜 | 상태 | 서버 */
+    /* 컬럼 헤더: 게임명 | 날짜 | 서버 */
     .notice-header {
       display: grid;
-      grid-template-columns: 2fr 90px 80px 90px;
+      grid-template-columns: 1fr 100px 90px;
       gap: 8px;
       padding: 10px 20px 8px;
       border-bottom: 1px solid rgba(0,229,255,0.08);
@@ -124,7 +124,7 @@
 
     .notice-row {
       display: grid;
-      grid-template-columns: 2fr 90px 80px 90px;
+      grid-template-columns: 1fr 100px 90px;
       align-items: center;
       gap: 8px;
       padding: 13px 20px;
@@ -153,18 +153,9 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .notice-cell.bold  { font-weight: 700; color: #e0e0f8; }
-    .notice-cell.muted { color: #6060a0; font-size: 0.78rem; }
-    .notice-cell.date  { color: #7070a0; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+    .notice-cell.bold { font-weight: 700; color: #e0e0f8; }
 
-    .notice-row-badges {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    /* 상태 배지 */
+    /* 배지 공통 */
     .notice-badge {
       display: inline-flex;
       align-items: center;
@@ -176,13 +167,11 @@
       letter-spacing: 0.02em;
       white-space: nowrap;
     }
-    /* 상태 */
-    .badge-soon  { background: rgba(255,188,46,0.12); color: #febc2e; border: 1px solid rgba(255,188,46,0.3); }
-    .badge-open  { background: rgba(0,255,136,0.1);   color: #00ff88; border: 1px solid rgba(0,255,136,0.25); }
-    .badge-tbd   { background: rgba(150,150,200,0.1); color: #9090c0; border: 1px solid rgba(150,150,200,0.2); }
+    /* 날짜 배지 */
+    .badge-date  { background: rgba(255,188,46,0.12); color: #febc2e; border: 1px solid rgba(255,188,46,0.3); }
     /* 서버 구분 */
-    .badge-first  { background: rgba(0,229,255,0.1);  color: #00e5ff; border: 1px solid rgba(0,229,255,0.25); }
-    .badge-new    { background: rgba(124,58,237,0.12); color: #b48eff; border: 1px solid rgba(124,58,237,0.3); }
+    .badge-first { background: rgba(0,229,255,0.1);   color: #00e5ff; border: 1px solid rgba(0,229,255,0.25); }
+    .badge-new   { background: rgba(124,58,237,0.12); color: #b48eff; border: 1px solid rgba(124,58,237,0.3); }
 
     /* 하단 */
     .popup-footer {
@@ -239,31 +228,23 @@
     }
 
     /* 모바일 반응형 */
-    @media (max-width: 560px) {
+    @media (max-width: 480px) {
       .popup-box {
         width: calc(100% - 28px);
-        max-width: 560px;
       }
-
       .popup-header { padding: 14px 14px; }
       .popup-title  { font-size: 0.83rem; }
       .popup-icon   { width: 28px; height: 28px; }
 
-      /* 날짜 숨기고 3컬럼: 게임명 | 상태 | 서버 */
       .notice-header {
-        grid-template-columns: 1fr 76px 76px;
+        grid-template-columns: 1fr 88px 78px;
         padding: 8px 14px 6px;
       }
-      .notice-header span:nth-child(2) { display: none; }
-
       .notice-row {
-        grid-template-columns: 1fr 76px 76px;
+        grid-template-columns: 1fr 88px 78px;
         padding: 11px 14px;
-        gap: 6px;
       }
-      .notice-row .notice-cell.date { display: none; }
-
-      .notice-cell.bold { font-size: 0.82rem; }
+      .notice-cell.bold { font-size: 0.8rem; }
       .notice-badge     { font-size: 0.63rem; padding: 3px 7px; }
 
       .popup-footer      { padding: 11px 14px; }
@@ -296,7 +277,6 @@
     <div class="notice-header">
       <span>게임명</span>
       <span>날짜</span>
-      <span>상태</span>
       <span>서버</span>
     </div>
 
@@ -306,20 +286,17 @@
 
       <div class="notice-row">
         <div class="notice-cell bold">SOL : enchant</div>
-        <div class="notice-cell date">04월 24일</div>
-        <div class="notice-badge badge-soon">오픈예정</div>
+        <div class="notice-badge badge-date">04월 24일</div>
         <div class="notice-badge badge-first">첫 오픈</div>
       </div>
 
       <!-- 추가 예시 (복붙해서 사용):
       <div class="notice-row">
         <div class="notice-cell bold">게임명</div>
-        <div class="notice-cell date">00월 00일</div>
-        <div class="notice-badge badge-soon">오픈예정</div>
+        <div class="notice-badge badge-date">00월 00일</div>
         <div class="notice-badge badge-first">첫 오픈</div>
       </div>
 
-      상태: badge-soon(오픈예정) / badge-open(오픈) / badge-tbd(미정)
       서버: badge-first(첫 오픈) / badge-new(신규 서버)
       -->
 
