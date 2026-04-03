@@ -1509,8 +1509,7 @@ ul { list-style: none; }
 }
 
 @media (max-width: 768px) {
-  .nav-links { display: flex; gap: 2px; }
-  .nav-links li:not(:last-child) { display: none; }
+  .nav-links { display: none; }
   .nav-toggle { display: none; }
 
   .hero { padding: 90px 20px 70px; }

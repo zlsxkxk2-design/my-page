@@ -97,10 +97,10 @@
       opacity: 0.4;
     }
 
-    /* 컬럼 헤더: 게임명 | 운영사 | 날짜 | 상태 | 서버 */
+    /* 컬럼 헤더: 게임명 | 운영사 | 날짜 | 배지 */
     .notice-header {
       display: grid;
-      grid-template-columns: 1.4fr 1fr 90px 80px 90px;
+      grid-template-columns: 1.4fr 1fr 90px 1fr;
       gap: 8px;
       padding: 10px 20px 8px;
       border-bottom: 1px solid rgba(0,229,255,0.08);
@@ -124,7 +124,7 @@
 
     .notice-row {
       display: grid;
-      grid-template-columns: 1.4fr 1fr 90px 80px 90px;
+      grid-template-columns: 1.4fr 1fr 90px 1fr;
       align-items: center;
       gap: 8px;
       padding: 13px 20px;
@@ -156,6 +156,13 @@
     .notice-cell.bold  { font-weight: 700; color: #e0e0f8; }
     .notice-cell.muted { color: #6060a0; font-size: 0.78rem; }
     .notice-cell.date  { color: #7070a0; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+
+    .notice-row-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
 
     /* 상태 배지 */
     .notice-badge {
@@ -232,38 +239,44 @@
     }
 
     /* 모바일 반응형 */
-    @media (max-width: 600px) {
-      .popup-box {
-        width: calc(100vw - 24px);
-        max-width: 100%;
-      }
-      .popup-header { padding: 14px 14px; }
-      .popup-title { font-size: 0.83rem; }
+    @media (max-width: 560px) {
+      .popup-overlay { align-items: flex-end; padding-bottom: 0; }
 
-      /* 운영사 컬럼 숨김, 3컬럼으로 축소 */
-      .notice-header {
-        grid-template-columns: 1fr 72px 68px;
-        padding: 8px 12px 6px;
+      .popup-box {
+        width: 100vw;
+        border-radius: 16px 16px 0 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
       }
-      .notice-header span:nth-child(2),
-      .notice-header span:nth-child(3) { display: none; }
-      .notice-header span:nth-child(4) { grid-column: 2; }
-      .notice-header span:nth-child(5) { grid-column: 3; }
+
+      .popup-header { padding: 14px 16px; }
+      .popup-title { font-size: 0.85rem; }
+
+      /* 그리드 → 카드형 목록 */
+      .notice-header { display: none; }
 
       .notice-row {
-        grid-template-columns: 1fr 72px 68px;
-        padding: 10px 12px;
-        gap: 6px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 14px 16px;
       }
-      .notice-row > .notice-cell.muted,
-      .notice-row > .notice-cell.date { display: none; }
+      .notice-row::before { display: none; }
 
-      .notice-cell.bold { font-size: 0.79rem; }
-      .notice-badge { font-size: 0.62rem; padding: 3px 6px; }
+      .notice-cell.bold { font-size: 0.88rem; }
+      .notice-cell.muted { font-size: 0.76rem; }
+      .notice-cell.date  { font-size: 0.76rem; }
 
-      .popup-footer { padding: 11px 12px; }
-      .popup-today-label { font-size: 0.72rem; }
-      .popup-btn-close { padding: 6px 14px; font-size: 0.75rem; }
+      .notice-row-badges {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .popup-footer { padding: 12px 16px; }
+      .popup-today-label { font-size: 0.74rem; }
+      .popup-btn-close { padding: 7px 18px; font-size: 0.78rem; }
     }
   </style>
 </head>
@@ -292,8 +305,7 @@
       <span>게임명</span>
       <span>운영사</span>
       <span>날짜</span>
-      <span>상태</span>
-      <span>서버</span>
+      <span>상태 / 서버</span>
     </div>
 
     <div class="popup-body">
@@ -304,8 +316,10 @@
         <div class="notice-cell bold">SOL : enchant</div>
         <div class="notice-cell muted">Netmarble</div>
         <div class="notice-cell date">04월 24일</div>
-        <div class="notice-badge badge-soon">오픈예정</div>
-        <div class="notice-badge badge-first">첫 오픈</div>
+        <div class="notice-row-badges">
+          <div class="notice-badge badge-soon">오픈예정</div>
+          <div class="notice-badge badge-first">첫 오픈</div>
+        </div>
       </div>
 
       <!-- 추가 예시 (복붙해서 사용):
@@ -313,8 +327,10 @@
         <div class="notice-cell bold">게임명</div>
         <div class="notice-cell muted">운영사</div>
         <div class="notice-cell date">00월 00일</div>
-        <div class="notice-badge badge-soon">오픈예정</div>
-        <div class="notice-badge badge-first">첫 오픈</div>
+        <div class="notice-row-badges">
+          <div class="notice-badge badge-soon">오픈예정</div>
+          <div class="notice-badge badge-first">첫 오픈</div>
+        </div>
       </div>
 
       상태: badge-soon(오픈예정) / badge-open(오픈) / badge-tbd(미정)
