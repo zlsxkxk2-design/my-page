@@ -730,7 +730,6 @@ ul { list-style: none; }
 /* ========================================
    섹션 공통 레이아웃
 ======================================== */
-.options,
 .features,
 .pricing,
 .gallery,
@@ -746,93 +745,278 @@ ul { list-style: none; }
    임대 옵션
 ======================================== */
 .options {
-  padding-top: 90px;
-  padding-bottom: 60px;
+  padding: 90px 40px 60px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
+/* ── options-grid ── */
 .options-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   margin-bottom: 48px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.option-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 20px;
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-.option-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,229,255,0.03), transparent 60%);
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-.option-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(0,229,255,0.3);
-  box-shadow: 0 16px 48px rgba(0, 229, 255, 0.1), 0 0 0 1px rgba(0, 229, 255, 0.1);
-}
-.option-card:hover::before { opacity: 1; }
-.option-card--best {
-  border-color: rgba(0, 229, 255, 0.25);
-  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.1);
-}
-
-.option-img-wrap {
-  position: relative;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  margin-bottom: 16px;
-}
-.option-img {
   width: 100%;
-  height: auto;
+}
+
+/* ── Option Card (oc) ── */
+.oc {
+  position: relative;
+  background: #0b0b17;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+.oc:hover {
+  transform: translateY(-6px);
+  border-color: var(--tc);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px var(--tc), 0 0 30px var(--tc-dim);
+}
+
+/* tier accent colours */
+.oc[data-tier="low"]  { --tc: #4ade80; --tc-dim: rgba(74,222,128,0.1); }
+.oc[data-tier="mid"]  { --tc: #38bdf8; --tc-dim: rgba(56,189,248,0.1); }
+.oc[data-tier="high"] { --tc: #a78bfa; --tc-dim: rgba(167,139,250,0.1); }
+.oc[data-tier="best"] { --tc: #f59e0b; --tc-dim: rgba(245,158,11,0.13); }
+
+/* top accent line */
+.oc-stripe {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--tc), transparent);
+  box-shadow: 0 0 10px var(--tc);
+  flex-shrink: 0;
+}
+
+/* big background number */
+.oc-index {
+  position: absolute;
+  bottom: 80px; right: 12px;
+  font-size: 7rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.025);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: -0.04em;
+}
+
+/* BEST badge */
+.oc-best-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--tc);
+  color: #000;
+  font-size: 0.62rem;
+  font-weight: 900;
+  padding: 4px 11px;
+  border-radius: 4px;
+  letter-spacing: 0.12em;
+  z-index: 10;
+  box-shadow: 0 0 16px var(--tc);
+}
+
+/* image area */
+.oc-img-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 190px;
+  flex-shrink: 0;
+  background: #080810;
+}
+.oc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform 0.5s ease;
 }
-.option-card:hover .option-img { transform: scale(1.04); }
-
-.option-badge {
+.oc:hover .oc-img { transform: scale(1.04); }
+.oc-img-overlay {
   position: absolute;
-  top: 12px; right: 12px;
-  background: var(--accent);
-  color: #000;
-  font-size: 0.7rem;
-  font-weight: 900;
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.08em;
-  box-shadow: 0 0 16px rgba(0,229,255,0.5);
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.08) 0%,
+    transparent 40%,
+    #0b0b17 100%);
+  pointer-events: none;
 }
 
-.stock-box {
-  background: rgba(0, 229, 255, 0.03);
-  border: 1px solid rgba(0, 229, 255, 0.1);
-  border-radius: var(--radius-md);
-  padding: 16px;
-  text-align: center;
+/* body */
+.oc-body {
+  padding: 16px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  position: relative;
+  z-index: 1;
 }
-.stock-label {
+
+/* tier + cpu header */
+.oc-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.oc-tier-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tc);
+  background: var(--tc-dim);
+  border: 1px solid var(--tc);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.oc-cpu {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--tc);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-shadow: 0 0 8px var(--tc), 0 0 20px var(--tc);
+}
+
+/* spec list */
+.oc-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.oc-spec-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.78rem;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  letter-spacing: 0.02em;
 }
+.oc-spec-key {
+  color: rgba(255,255,255,0.35);
+  min-width: 52px;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+.oc-spec-val {
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+}
+
+/* use-case chips */
+.oc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.oc-chips span {
+  font-size: 0.67rem;
+  color: var(--tc);
+  background: var(--tc-dim);
+  border: 1px solid color-mix(in srgb, var(--tc) 40%, transparent);
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* perf bar */
+.oc-perf-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.oc-perf-track {
+  flex: 1;
+  height: 5px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.oc-perf-fill {
+  height: 100%;
+  width: var(--perf);
+  background: linear-gradient(90deg, var(--tc), color-mix(in srgb, var(--tc) 50%, #fff));
+  border-radius: 3px;
+  box-shadow: 0 0 8px var(--tc);
+  transition: width 1.2s ease 0.4s;
+}
+.oc-perf-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--tc);
+  min-width: 30px;
+  text-align: right;
+}
+
+/* divider */
+.oc-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+/* stock row */
+.oc-stock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--tc-dim);
+  border: 1px solid color-mix(in srgb, var(--tc) 25%, transparent);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.oc-stock-dot { display: flex; align-items: center; }
+.oc-stock-text {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  flex: 1;
+}
+.oc-stock-count {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--tc);
+  text-shadow: 0 0 12px var(--tc);
+  line-height: 1;
+}
+.oc-stock-unit {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.3);
+  align-self: flex-end;
+  margin-bottom: 2px;
+}
+
+/* CTA button */
+.oc-btn {
+  display: block;
+  text-align: center;
+  background: var(--tc-dim);
+  border: 1px solid var(--tc);
+  color: var(--tc);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 11px;
+  border-radius: 10px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  margin-top: auto;
+}
+.oc-btn:hover {
+  background: var(--tc);
+  color: #000;
+  box-shadow: 0 0 20px var(--tc);
+}
+
+/* legacy count class (used by JS) */
 .count {
   font-size: 1.5rem;
   font-weight: 900;
   color: var(--accent);
-  margin-bottom: 6px;
   text-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
 }
 .stock-status {
@@ -1504,7 +1688,7 @@ ul { list-style: none; }
   .hero-layout { gap: 32px; }
   .monitor { width: 280px; }
 
-  .options-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .options-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .pricing-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
 }
