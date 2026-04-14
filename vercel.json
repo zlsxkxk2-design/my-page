@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "xn--i89ap8ehtas1cs80c54a.xyz" }],
+      "destination": "https://xn--i89a73jyusvua.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.xn--i89ap8ehtas1cs80c54a.xyz" }],
+      "destination": "https://xn--i89a73jyusvua.com/$1",
+      "permanent": true
+    }
+  ]
+}
