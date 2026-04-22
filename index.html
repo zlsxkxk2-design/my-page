@@ -217,24 +217,14 @@
           </div>
         </div>
 
-        <!-- 오른쪽: 모니터 부팅 애니메이션 -->
+        <!-- 오른쪽: 인트로 영상 -->
         <div class="hero-right" aria-hidden="true">
-          <div class="monitor-wrap">
-            <div class="monitor">
-              <div class="monitor-screen">
-                <div class="boot-scanline"></div>
-                <div class="boot-content">
-                  <div class="boot-logo">NANO</div>
-                  <div class="boot-sub">원격임대</div>
-                  <div class="boot-cursor"></div>
-                </div>
-                <div class="screen-glow"></div>
-              </div>
-              <div class="monitor-bezel-bottom"></div>
-              <div class="monitor-neck"></div>
-              <div class="monitor-base"></div>
-            </div>
-            <div class="monitor-shadow"></div>
+          <div class="hero-video-wrap">
+            <div class="vframe-corner vfc-tl"></div>
+            <div class="vframe-corner vfc-tr"></div>
+            <div class="vframe-corner vfc-bl"></div>
+            <div class="vframe-corner vfc-br"></div>
+            <video id="heroVideo" class="hero-video" src="NANO.mp4" muted playsinline></video>
           </div>
         </div>
       </div>
@@ -568,7 +558,11 @@
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const hide = document.cookie.split(';').some(c => c.trim().startsWith('nanopopup=hide'));
-      if (hide) return;
+      if (hide) {
+        const v = document.getElementById('heroVideo');
+        if (v) { v.play(); v.classList.add('is-playing'); }
+        return;
+      }
       fetch('popup.html')
         .then(r => r.text())
         .then(html => {

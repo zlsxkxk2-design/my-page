@@ -286,7 +286,13 @@
 
       <!-- ✏️ 여기서 항목 추가/수정 -->
 
-        <div class="notice-row">
+      <div class="notice-row">
+        <div class="notice-cell bold">리니지클래식</div>
+        <div class="notice-badge badge-date">04월 22일</div>
+        <div class="notice-badge badge-new ">신규 서버</div>
+      </div>
+
+      <div class="notice-row">
         <div class="notice-cell bold">RF온라인</div>
         <div class="notice-badge badge-date">04월 22일</div>
         <div class="notice-badge badge-new ">신규 서버</div>
@@ -351,7 +357,11 @@
         document.cookie = 'nanopopup=hide; expires=' + exp.toUTCString() + '; path=/';
       }
       overlay.style.animation = 'popupFadeOut 0.2s ease forwards';
-      setTimeout(() => overlay.remove(), 200);
+      setTimeout(() => {
+        overlay.remove();
+        const v = document.getElementById('heroVideo');
+        if (v) { v.play(); v.classList.add('is-playing'); }
+      }, 200);
     };
 
     closeX.addEventListener('click', close);
