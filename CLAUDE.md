@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 사용자가 "업로드해줘" 또는 "올려줘"라고 하면 재확인 없이 즉시 git add → commit → push 한다.
 커밋 메시지, 수정 내용, 추가 내용에 대해 사용자에게 재질문하지 않는다. 알아서 적절한 커밋 메시지를 작성하고 바로 실행한다.
+작업 완료 후 "업로드할까요?", "진행할까요?", "맞나요?" 등 모든 확인성 질문을 하지 않는다. 작업 요청이 들어오면 끝까지 완료한 후 결과만 보고한다.
 
 ---
 
