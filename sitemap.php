@@ -1,52 +1,39 @@
 <?php
 header("Content-Type: application/xml; charset=utf-8");
 $today = date("Y-m-d");
-echo <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://원격임대.com/</loc>
-    <lastmod>{$today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
+$base = "https://원격임대.com";
+$game_dir = __DIR__ . "/game/game";
+$game_files = glob($game_dir . "/*.html");
 
-  <url>
-    <loc>https://원격임대.com/#notice</loc>
-    <lastmod>{$today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
 
-  <url>
-    <loc>https://원격임대.com/#options</loc>
-    <lastmod>{$today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+$static = [
+  ["loc" => "$base/",          "changefreq" => "daily",   "priority" => "1.0"],
+  ["loc" => "$base/#notice",   "changefreq" => "weekly",  "priority" => "0.8"],
+  ["loc" => "$base/#options",  "changefreq" => "weekly",  "priority" => "0.8"],
+  ["loc" => "$base/#contact",  "changefreq" => "monthly", "priority" => "0.6"],
+];
 
-  <url>
-    <loc>https://원격임대.com/#contact</loc>
-    <lastmod>{$today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+foreach ($static as $url) {
+  echo "  <url>\n";
+  echo "    <loc>{$url['loc']}</loc>\n";
+  echo "    <lastmod>{$today}</lastmod>\n";
+  echo "    <changefreq>{$url['changefreq']}</changefreq>\n";
+  echo "    <priority>{$url['priority']}</priority>\n";
+  echo "  </url>\n";
+}
 
-  <url>
-    <loc>https://원격임대.com/game/game/lineagem.html</loc>
-    <lastmod>{$today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+foreach ($game_files as $file) {
+  $filename = basename($file);
+  echo "  <url>\n";
+  echo "    <loc>{$base}/game/game/{$filename}</loc>\n";
+  echo "    <lastmod>" . date("Y-m-d", filemtime($file)) . "</lastmod>\n";
+  echo "    <changefreq>monthly</changefreq>\n";
+  echo "    <priority>0.8</priority>\n";
+  echo "  </url>\n";
+}
 
-  <url>
-    <loc>https://원격임대.com/game/game/LC.html</loc>
-    <lastmod>{$today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-</urlset>
-XML;
+echo '</urlset>';
 ?>
