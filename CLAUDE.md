@@ -64,6 +64,18 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 
 ---
 
+## 게임 페이지 자동 생성 규칙
+
+사용자가 특정 게임의 HTML 페이지 생성을 요청하면 아래 순서로 자동 처리한다. 사용자에게 중간에 재질문하지 않는다.
+
+1. **공식 사양 자동 조회** — 해당 게임의 공식 홈페이지(plaync.com, nexon.com 등)에서 최소/권장 사양(CPU, RAM, GPU, OS, 저장공간 등)을 웹 검색으로 찾아 적용
+2. **이미지 적용** — 사용자가 `game/gimg/`에 넣은 이미지 파일명을 확인 후 자동 연결. 이미지가 없으면 파일명만 비워두고 나머지 완성
+3. **HTML 생성** — `game/game/lineagem.html` 양식과 동일한 구조로 생성. 게임명·사양·FAQ 내용을 해당 게임에 맞게 모두 교체
+4. **sitemap.xml 업데이트** — 새 페이지 URL을 `sitemap.xml`에 자동 추가
+5. **업로드** — 사용자가 "업로드해줘"라고 하면 즉시 git add → commit → push
+
+---
+
 ## 게임 서브페이지
 
 `game/game/` 폴더에 게임별 HTML 파일. 모두 동일한 레이아웃 구조:  
