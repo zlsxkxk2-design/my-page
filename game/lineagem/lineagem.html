@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리니지M 원격 임대 | 나노원격임대</title>
+  <meta name="description" content="리니지M 전용 원격 임대 서비스. 24시간 자동사냥, 스케줄도우미 무료 제공.">
+  <meta property="og:title" content="리니지M 원격 임대 | 나노원격임대">
+  <meta property="og:description" content="리니지M 전용 원격 임대 서비스. 24시간 자동사냥, 스케줄도우미 무료 제공.">
+  <meta property="og:image" content="https://원격임대.com/images/lineagem/lineage.jpg">
+  <meta property="og:url" content="https://원격임대.com/game/lineagem/lineagem.html">
+  <link rel="canonical" href="https://원격임대.com/game/lineagem/lineagem.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #0a0a12;
+      --card:     #13131f;
+      --border:   rgba(255,255,255,0.08);
+      --text:     #f0f0ff;
+      --muted:    #8888aa;
+      --accent:   #c084fc;
+      --gold:     #f59e0b;
+      --kakao:    #ffeb00;
+      --telegram: #0088cc;
+      --radius:   16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 메인으로 버튼 */
+    .top-bar {
+      width: 100%;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--text); }
+    .site-name {
+      font-size: 0.9rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7c3aed, #0088cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* 본문 래퍼 */
+    .wrap {
+      width: 100%;
+      max-width: 640px;
+      padding: 48px 24px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* 이미지 */
+    .game-image {
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .game-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* 게임 소개 */
+    .game-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .game-title span {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .game-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-top: 10px;
+    }
+
+    /* 구분선 */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* 원격 서비스 설명 */
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .service-card h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .service-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .service-list li .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+    .service-list li strong { color: var(--text); }
+
+    /* CTA 버튼 영역 */
+    .cta {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cta-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: inherit;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-kakao {
+      background: var(--kakao);
+      color: #3a1d1d;
+      box-shadow: 0 4px 20px rgba(255,235,0,0.2);
+    }
+    .btn-telegram {
+      background: var(--telegram);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(0,136,204,0.2);
+    }
+    .btn-main {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .btn-main:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="../../index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+      메인으로
+    </a>
+    <span class="site-name">나노원격임대</span>
+  </div>
+
+  <div class="wrap">
+
+    <!-- 리니지M 이미지 -->
+    <div class="game-image">
+      <img src="../../images/lineagem/lineage.jpg" alt="리니지M" loading="eager">
+    </div>
+
+    <!-- 게임 소개 -->
+    <div>
+      <h1 class="game-title"><span>리니지M</span> 원격 임대</h1>
+      <p class="game-desc">
+        리니지M을 PC 없이도 24시간 돌릴 수 있습니다.<br>
+        나노원격임대의 고성능 PC를 원격으로 빌려 자동사냥, 다계정 운영을 안정적으로 운영하세요.
+      </p>
+    </div>
+
+    <hr>
+
+    <!-- 원격 서비스 설명 -->
+    <div class="service-card">
+      <h2>나노원격임대 서비스 안내</h2>
+      <ul class="service-list">
+        <li>
+          <span class="dot"></span>
+          <span><strong>리니지M 스케줄도우미 무료 제공</strong> — 설정한 시간에 자동으로 스케줄 실행</span>
+        </li>
+        <li>
+          <span class="dot"></span>
+          <span><strong>24시간 무중단 운영</strong> — PC는 항상 켜져 있어 언제든 원격 접속 가능</span>
+        </li>
+        <li>
+          <span class="dot"></span>
+          <span><strong>다계정 멀티 운영</strong> — 앱플레이어 최적화 환경에서 여러 계정 동시 운영</span>
+        </li>
+        <li>
+          <span class="dot"></span>
+          <span><strong>3개월 결제 시 할인 혜택</strong> — 장기 이용 고객 할인 적용</span>
+        </li>
+        <li>
+          <span class="dot"></span>
+          <span>저사양 · 중사양 · 고사양 3가지 플랜 — 용도에 맞게 선택 가능</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <p class="cta-label">지금 바로 문의하거나, 자세한 내용을 확인하세요</p>
+      <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="btn btn-kakao">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 11c0 2.937 1.635 5.5 4.11 7.1l-.97 3.57 3.94-2.06C10.3 19.87 11.13 20 12 20c5.523 0 10-3.477 10-8s-4.477-9-10-9z"/></svg>
+        카카오톡 문의하기
+      </a>
+      <a href="https://t.me/nano1computer" target="_blank" class="btn btn-telegram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.69 7.96c-.12.56-.45.7-.91.43l-2.52-1.86-1.22 1.17c-.13.13-.25.25-.51.25l.18-2.58 4.67-4.22c.2-.18-.04-.28-.31-.1L7.74 14.5 5.25 13.73c-.55-.17-.56-.55.12-.82l8.9-3.43c.46-.17.87.11.37.32z"/></svg>
+        텔레그램 문의하기
+      </a>
+      <a href="../../index.html" class="btn btn-main">
+        자세한 내용 보기 → 나노 홈페이지
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
