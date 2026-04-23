@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>옵션 카드 예제</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #060610;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 60px 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 16px;
+  }
+
+  .card {
+    flex: 1;
+    min-width: 0;
+    background: #0a0a18;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    border-color: rgba(0,229,255,0.2);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.6), 0 0 30px rgba(0,229,255,0.06);
+  }
+  .card.best {
+    border-color: rgba(0,229,255,0.2);
+  }
+
+  /* 상단 콘텐츠 */
+  .card-left {
+    flex: 1;
+    padding: 22px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  /* 상단: 티어 + 모델명 */
+
+  .card-tier {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #00e5ff;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.8;
+  }
+  .card-title {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #f0f0ff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  .card-title span { color: #00e5ff; }
+  .card-desc {
+    font-size: 0.72rem;
+    color: #4a4a6a;
+    font-weight: 500;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* BEST 배지 */
+  .badge-best {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(124,58,237,0.15));
+    border: 1px solid rgba(0,229,255,0.3);
+    color: #00e5ff;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    width: fit-content;
+  }
+
+  /* 스펙 목록 */
+  .spec-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .spec-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .spec-icon-wrap {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .i-cpu { background: rgba(0,229,255,0.08); }
+  .i-ram { background: rgba(180,142,255,0.08); }
+  .i-ssd { background: rgba(254,188,46,0.08); }
+  .i-gpu { background: rgba(0,255,136,0.08); }
+
+  .spec-icon-wrap svg { opacity: 0.85; }
+
+
+  .spec-name {
+    font-size: 0.68rem;
+    color: #3a3a5a;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .spec-val {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #c8c8e8;
+    line-height: 1;
+  }
+
+  /* 구분선 */
+  .spec-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 2px 0;
+  }
+
+  /* 용도 태그 */
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .tag {
+    font-size: 0.63rem;
+    color: #4a4a70;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-weight: 600;
+  }
+
+  /* 하단 이미지 */
+  .card-right {
+    height: 160px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: brightness(0.6) saturate(0.7);
+    transition: transform 0.5s, filter 0.3s;
+    display: block;
+  }
+  .card:hover .card-right img {
+    transform: scale(1.05);
+    filter: brightness(0.8) saturate(1);
+  }
+  /* 상단 페이드 */
+  .card-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, #0a0a18 0%, transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- 카드 1: 라이젠 4350G -->
+<div class="card">
+  <div class="card-left">
+    <div class="card-head">
+      <div class="card-tier">Entry Class · Option 01</div>
+      <div class="card-title">RYZEN <span>4350G</span></div>
+      <div class="card-desc">저사양 다중 멀티 · 앱플레이어 · 매크로</div>
+    </div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-cpu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Processor</div>
+          <div class="spec-val">라이젠 4350G &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">4코어 8쓰레드</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-ram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b48eff" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M7 17v2M12 17v2M17 17v2M7 7V5M12 7V5M17 7V5"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Memory</div>
+          <div class="spec-val">RAM 24GB &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">DDR4</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-ssd">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#febc2e" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01M8 12h.01M16 12h.01"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Storage</div>
+          <div class="spec-val">SSD 250G &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">NVMe M.2</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-gpu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M12 12h.01M8 10v4M16 10v4"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Graphics</div>
+          <div class="spec-val">내장 그래픽 &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">Vega 6</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-tags">
+      <span class="tag">저사양 멀티</span>
+      <span class="tag">앱플레이어</span>
+      <span class="tag">3D게임</span>
+      <span class="tag">매크로</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <img src="images/option1.jpg" alt="라이젠 4350G">
+  </div>
+</div>
+
+<!-- 카드 2: 라이젠 5700G (BEST) -->
+<div class="card best">
+  <div class="card-left">
+    <div class="card-head">
+      <div class="badge-best">★ BEST CHOICE</div>
+      <div class="card-tier">High Class · Option 03</div>
+      <div class="card-title">RYZEN <span>5700G</span></div>
+      <div class="card-desc">다중 멀티 게임 · 3D게임 · 앱플레이어</div>
+    </div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-cpu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Processor</div>
+          <div class="spec-val">라이젠 5700G &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">8코어 16쓰레드</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-ram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b48eff" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M7 17v2M12 17v2M17 17v2M7 7V5M12 7V5M17 7V5"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Memory</div>
+          <div class="spec-val">RAM 32GB &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">DDR4</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-ssd">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#febc2e" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01M8 12h.01M16 12h.01"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Storage</div>
+          <div class="spec-val">SSD 250G &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">NVMe M.2</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-gpu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M12 12h.01M8 10v4M16 10v4"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Graphics</div>
+          <div class="spec-val">내장 그래픽 &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">Vega 8</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-tags">
+      <span class="tag">다중 멀티</span>
+      <span class="tag">3D게임</span>
+      <span class="tag">앱플레이어</span>
+      <span class="tag">매크로</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <img src="images/option3.jpg" alt="라이젠 5700G">
+  </div>
+</div>
+
+<!-- 카드 3: 라이젠 5600GT -->
+<div class="card">
+  <div class="card-left">
+    <div class="card-head">
+      <div class="card-tier">Mid Class · Option 04</div>
+      <div class="card-title">RYZEN <span>5600GT</span></div>
+      <div class="card-desc">중사양 다중 멀티 · 3D게임 · 앱플레이어</div>
+    </div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-cpu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Processor</div>
+          <div class="spec-val">라이젠 5600GT &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">6코어 12쓰레드</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-ram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b48eff" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M7 17v2M12 17v2M17 17v2M7 7V5M12 7V5M17 7V5"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Memory</div>
+          <div class="spec-val">RAM 24GB &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">DDR4</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-ssd">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#febc2e" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01M8 12h.01M16 12h.01"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Storage</div>
+          <div class="spec-val">SSD 250G &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">NVMe M.2</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-gpu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M12 12h.01M8 10v4M16 10v4"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Graphics</div>
+          <div class="spec-val">내장 그래픽 &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">Radeon</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-tags">
+      <span class="tag">중사양 멀티</span>
+      <span class="tag">3D게임</span>
+      <span class="tag">앱플레이어</span>
+      <span class="tag">매크로</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <img src="images/option4.jpg" alt="라이젠 5600GT">
+  </div>
+</div>
+
+<!-- 카드 4: 라이젠 2600 -->
+<div class="card">
+  <div class="card-left">
+    <div class="card-head">
+      <div class="card-tier">Standard · Option 02</div>
+      <div class="card-title">RYZEN <span>2600</span></div>
+      <div class="card-desc">단독 고사양 게임 · 3D게임 · 매크로</div>
+    </div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-cpu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Processor</div>
+          <div class="spec-val">라이젠 2600 &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">6코어 12쓰레드</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-ram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b48eff" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M7 17v2M12 17v2M17 17v2M7 7V5M12 7V5M17 7V5"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Memory</div>
+          <div class="spec-val">RAM 24GB &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">DDR4</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-ssd">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#febc2e" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01M8 12h.01M16 12h.01"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Storage</div>
+          <div class="spec-val">SSD 250G &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">NVMe M.2</span></div>
+        </div>
+      </div>
+      <div class="spec-divider"></div>
+      <div class="spec-item">
+        <div class="spec-icon-wrap i-gpu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M12 12h.01M8 10v4M16 10v4"/></svg>
+        </div>
+        <div class="spec-text">
+          <div class="spec-name">Graphics</div>
+          <div class="spec-val">외장 그래픽 &nbsp;<span style="color:#3a3a5a;font-size:0.72rem">별도</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-tags">
+      <span class="tag">단독 고사양</span>
+      <span class="tag">3D게임</span>
+      <span class="tag">매크로</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <img src="images/option2.jpg" alt="라이젠 2600">
+  </div>
+</div>
+
+</body>
+</html>

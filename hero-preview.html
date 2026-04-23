@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>히어로 우측 버전 비교</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#00e5ff;
+  --accent-2:#7c3aed;
+  --bg:#080810;
+  --card:#0b0b17;
+}
+body{background:#080810;color:#f0f0ff;font-family:'Noto Sans KR','Segoe UI',sans-serif;padding:40px 20px;}
+h1{text-align:center;font-size:1.2rem;color:#888;margin-bottom:40px;letter-spacing:0.1em;}
+
+/* 버전 라벨 */
+.ver-label{
+  text-align:center;
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:0.15em;
+  color:#555;
+  margin-bottom:16px;
+  text-transform:uppercase;
+}
+.ver-title{
+  text-align:center;
+  font-size:1.1rem;
+  font-weight:800;
+  color:#fff;
+  margin-bottom:6px;
+}
+.ver-desc{
+  text-align:center;
+  font-size:0.8rem;
+  color:#555;
+  margin-bottom:28px;
+}
+
+/* 히어로 공통 래퍼 */
+.hero-preview{
+  position:relative;
+  background:#080810;
+  border:1px solid rgba(0,229,255,0.1);
+  border-radius:20px;
+  padding:60px 48px;
+  max-width:1100px;
+  margin:0 auto 80px;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.hero-preview::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-glow-1{
+  position:absolute;
+  width:400px;height:400px;
+  background:rgba(124,58,237,0.08);
+  border-radius:50%;filter:blur(80px);
+  top:-150px;left:-150px;pointer-events:none;
+}
+.hero-glow-2{
+  position:absolute;
+  width:350px;height:350px;
+  background:rgba(0,229,255,0.06);
+  border-radius:50%;filter:blur(80px);
+  bottom:-150px;right:-100px;pointer-events:none;
+}
+
+/* 왼쪽 텍스트 (공통) */
+.hero-left{position:relative;z-index:1;}
+.hero-badge{
+  display:inline-block;
+  background:#ff3b6b;
+  color:#fff;font-size:0.75rem;font-weight:700;
+  padding:4px 14px;border-radius:999px;
+  margin-bottom:1.2rem;
+  box-shadow:0 4px 16px rgba(255,59,107,0.4);
+}
+.hero-title{font-size:2.4rem;font-weight:900;line-height:1.18;letter-spacing:-0.03em;margin-bottom:1rem;}
+.hero-title .g{
+  display:block;
+  background:linear-gradient(90deg,#00e5ff,#7c3aed);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 16px rgba(0,229,255,0.35));
+}
+.hero-desc{font-size:0.95rem;color:#8888aa;line-height:1.85;margin-bottom:2rem;}
+.hero-desc strong{color:#f0f0ff;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2rem;}
+.btn-k{background:#ffeb00;color:#1a1000;padding:11px 24px;border-radius:999px;font-weight:700;font-size:0.9rem;text-decoration:none;}
+.btn-t{background:transparent;color:#f0f0ff;border:1.5px solid rgba(255,255,255,0.25);padding:11px 24px;border-radius:999px;font-weight:700;font-size:0.9rem;text-decoration:none;}
+.hero-stats{display:flex;align-items:center;border:1px solid rgba(0,229,255,0.1);border-radius:14px;background:rgba(0,229,255,0.03);padding:16px 20px;gap:0;}
+.stat{flex:1;display:flex;flex-direction:column;gap:3px;padding:0 14px;}
+.stat:first-child{padding-left:0;}
+.stat-cat{font-size:0.65rem;font-weight:700;color:#4a4a6a;letter-spacing:0.1em;text-transform:uppercase;}
+.stat-value{font-size:0.9rem;font-weight:800;color:#f0f0ff;white-space:nowrap;}
+.stat-vline{width:1px;height:32px;background:rgba(0,229,255,0.12);flex-shrink:0;}
+
+/* 오른쪽 공통 */
+.hero-right{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;}
+
+/* ============================================
+   버전 A — 스펙 대시보드 카드
+============================================ */
+.dash-wrap{
+  width:100%;
+  background:#0b0b17;
+  border:1px solid rgba(0,229,255,0.12);
+  border-radius:18px;
+  padding:24px;
+  box-shadow:0 0 60px rgba(0,229,255,0.06);
+}
+.dash-header{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:20px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.dash-dot{width:8px;height:8px;border-radius:50%;}
+.dash-dot.r{background:#ff5f56;}
+.dash-dot.y{background:#ffbd2e;}
+.dash-dot.g{background:#27c93f;}
+.dash-title-txt{font-size:0.72rem;color:#444;margin-left:4px;letter-spacing:0.05em;}
+
+.dash-specs{display:flex;flex-direction:column;gap:14px;margin-bottom:20px;}
+.dash-spec-row{display:flex;flex-direction:column;gap:5px;}
+.dash-spec-top{display:flex;justify-content:space-between;align-items:center;}
+.dash-spec-key{font-size:0.7rem;color:#555;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;}
+.dash-spec-val{font-size:0.7rem;color:#00e5ff;font-weight:700;}
+.dash-bar-track{height:4px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden;}
+.dash-bar-fill{height:100%;border-radius:2px;animation:barGrow 1.2s ease forwards;}
+@keyframes barGrow{from{width:0}to{width:var(--w)}}
+.c1{background:linear-gradient(90deg,#00e5ff,#7c3aed);--w:72%;}
+.c2{background:linear-gradient(90deg,#4ade80,#00e5ff);--w:85%;}
+.c3{background:linear-gradient(90deg,#a78bfa,#7c3aed);--w:60%;}
+.c4{background:linear-gradient(90deg,#f59e0b,#ff3b6b);--w:45%;}
+
+.dash-bottom{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+}
+.dash-stat-box{
+  background:rgba(0,229,255,0.04);
+  border:1px solid rgba(0,229,255,0.08);
+  border-radius:10px;padding:12px;
+}
+.dash-stat-label{font-size:0.62rem;color:#444;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
+.dash-stat-value{font-size:1.2rem;font-weight:900;color:#00e5ff;text-shadow:0 0 12px rgba(0,229,255,0.5);}
+.dash-stat-unit{font-size:0.65rem;color:#555;margin-left:2px;}
+
+.online-badge{
+  display:flex;align-items:center;gap:6px;
+  margin-top:14px;
+  font-size:0.7rem;color:#27c93f;font-weight:600;
+}
+.online-dot{
+  width:6px;height:6px;border-radius:50%;background:#27c93f;
+  box-shadow:0 0 8px #27c93f;
+  animation:blink 1.5s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+
+/* ============================================
+   버전 B — 플로팅 카드 스택
+============================================ */
+.cards-wrap{
+  position:relative;
+  width:100%;
+  height:320px;
+}
+.float-card{
+  position:absolute;
+  background:#0b0b17;
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:16px;
+  padding:18px 20px;
+  width:220px;
+}
+.float-card .fc-stripe{height:2px;border-radius:2px;margin-bottom:12px;}
+.float-card .fc-tier{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;margin-bottom:4px;}
+.float-card .fc-cpu{font-size:1rem;font-weight:800;margin-bottom:8px;}
+.float-card .fc-specs{display:flex;flex-direction:column;gap:3px;}
+.float-card .fc-spec{font-size:0.7rem;color:#555;}
+.float-card .fc-spec span{color:rgba(255,255,255,0.7);font-weight:600;}
+
+/* 카드1 (저) */
+.fc1{
+  top:0;left:0;
+  border-color:rgba(74,222,128,0.15);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+  animation:fcFloat1 4s ease-in-out infinite alternate;
+  z-index:1;
+}
+.fc1 .fc-stripe{background:linear-gradient(90deg,#4ade80,transparent);}
+.fc1 .fc-tier{color:#4ade80;}
+.fc1 .fc-cpu{color:#4ade80;text-shadow:0 0 12px rgba(74,222,128,0.5);}
+
+/* 카드2 (고) */
+.fc2{
+  bottom:0;right:0;
+  border-color:rgba(245,158,11,0.2);
+  box-shadow:0 12px 48px rgba(0,0,0,0.5),0 0 0 1px rgba(245,158,11,0.15);
+  animation:fcFloat2 5s ease-in-out infinite alternate;
+  z-index:3;
+}
+.fc2 .fc-stripe{background:linear-gradient(90deg,#f59e0b,transparent);}
+.fc2 .fc-tier{color:#f59e0b;}
+.fc2 .fc-cpu{color:#f59e0b;text-shadow:0 0 12px rgba(245,158,11,0.5);}
+
+/* 카드3 (중) */
+.fc3{
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  border-color:rgba(167,139,250,0.2);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+  animation:fcFloat3 4.5s ease-in-out infinite alternate;
+  z-index:2;
+}
+.fc3 .fc-stripe{background:linear-gradient(90deg,#a78bfa,transparent);}
+.fc3 .fc-tier{color:#a78bfa;}
+.fc3 .fc-cpu{color:#a78bfa;text-shadow:0 0 12px rgba(167,139,250,0.5);}
+
+@keyframes fcFloat1{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+@keyframes fcFloat2{from{transform:translateY(0)}to{transform:translateY(-14px)}}
+@keyframes fcFloat3{from{transform:translate(-50%,-50%) translateY(0)}to{transform:translate(-50%,-50%) translateY(-8px)}}
+
+.best-tag{
+  position:absolute;top:-8px;right:12px;
+  background:#f59e0b;color:#000;
+  font-size:0.58rem;font-weight:900;padding:3px 10px;border-radius:4px;
+  letter-spacing:0.1em;box-shadow:0 0 12px rgba(245,158,11,0.5);
+}
+
+/* ============================================
+   버전 C — 풀 텍스트 센터 (우측 없음)
+============================================ */
+.hero-preview.ver-c{
+  grid-template-columns:1fr;
+  text-align:center;
+  padding:80px 80px;
+  max-width:900px;
+}
+.hero-preview.ver-c .hero-left{
+  display:flex;flex-direction:column;align-items:center;
+}
+.hero-preview.ver-c .hero-title{font-size:3rem;}
+.hero-preview.ver-c .hero-desc{max-width:560px;}
+.hero-preview.ver-c .hero-stats{justify-content:center;}
+
+/* 큰 글로우 장식 */
+.ver-c-glow{
+  position:absolute;
+  width:500px;height:300px;
+  background:radial-gradient(ellipse,rgba(0,229,255,0.08) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+
+</style>
+</head>
+<body>
+
+<h1>HERO 우측 버전 비교 — 원하는 스타일 골라주세요</h1>
+
+<!-- ===== 버전 A ===== -->
+<div class="ver-label">VERSION A</div>
+<div class="ver-title">스펙 대시보드</div>
+<div class="ver-desc">서버 모니터링 느낌 — 기술적이고 정보 전달력 강함</div>
+
+<div class="hero-preview">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-left">
+    <div class="hero-badge">3개월 결제 시 할인 이벤트 진행중</div>
+    <h1 class="hero-title">고성능 원격PC를<br><span class="g">합리적인 가격에</span></h1>
+    <p class="hero-desc">모바일게임 · 앱플레이어 · 다중게임 · 마케팅 자동화<br><strong>3개월 결제 시 할인 혜택</strong> — 리니지M 스케줄도우미 <strong>무료</strong> 제공</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-k">카카오톡 문의</a>
+      <a href="#" class="btn-t">텔레그램 상담</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-cat">SUPPORT</span><span class="stat-value">365일 연중무휴</span></div>
+      <div class="stat-vline"></div>
+      <div class="stat"><span class="stat-cat">BENEFIT</span><span class="stat-value">3개월 할인</span></div>
+      <div class="stat-vline"></div>
+      <div class="stat"><span class="stat-cat">FREE TOOL</span><span class="stat-value">스케줄도우미</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="dash-wrap">
+      <div class="dash-header">
+        <div class="dash-dot r"></div><div class="dash-dot y"></div><div class="dash-dot g"></div>
+        <span class="dash-title-txt">nano-server · 실시간 현황</span>
+      </div>
+      <div class="dash-specs">
+        <div class="dash-spec-row">
+          <div class="dash-spec-top"><span class="dash-spec-key">CPU 점유율</span><span class="dash-spec-val">72%</span></div>
+          <div class="dash-bar-track"><div class="dash-bar-fill c1" style="--w:72%"></div></div>
+        </div>
+        <div class="dash-spec-row">
+          <div class="dash-spec-top"><span class="dash-spec-key">메모리 사용</span><span class="dash-spec-val">21.4 GB / 32 GB</span></div>
+          <div class="dash-bar-track"><div class="dash-bar-fill c2" style="--w:67%"></div></div>
+        </div>
+        <div class="dash-spec-row">
+          <div class="dash-spec-top"><span class="dash-spec-key">네트워크 송수신</span><span class="dash-spec-val">38 Mbps</span></div>
+          <div class="dash-bar-track"><div class="dash-bar-fill c3" style="--w:38%"></div></div>
+        </div>
+        <div class="dash-spec-row">
+          <div class="dash-spec-top"><span class="dash-spec-key">SSD 사용량</span><span class="dash-spec-val">112 GB / 250 GB</span></div>
+          <div class="dash-bar-track"><div class="dash-bar-fill c4" style="--w:45%"></div></div>
+        </div>
+      </div>
+      <div class="dash-bottom">
+        <div class="dash-stat-box">
+          <div class="dash-stat-label">가동 시간</div>
+          <div class="dash-stat-value">99.9<span class="dash-stat-unit">%</span></div>
+        </div>
+        <div class="dash-stat-box">
+          <div class="dash-stat-label">응답 속도</div>
+          <div class="dash-stat-value">12<span class="dash-stat-unit">ms</span></div>
+        </div>
+      </div>
+      <div class="online-badge"><div class="online-dot"></div> 현재 서버 정상 운영중</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== 버전 B ===== -->
+<div class="ver-label">VERSION B</div>
+<div class="ver-title">플로팅 옵션 카드</div>
+<div class="ver-desc">각 사양이 카드로 떠다님 — 상품을 바로 보여주는 느낌</div>
+
+<div class="hero-preview">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-left">
+    <div class="hero-badge">3개월 결제 시 할인 이벤트 진행중</div>
+    <h1 class="hero-title">고성능 원격PC를<br><span class="g">합리적인 가격에</span></h1>
+    <p class="hero-desc">모바일게임 · 앱플레이어 · 다중게임 · 마케팅 자동화<br><strong>3개월 결제 시 할인 혜택</strong> — 리니지M 스케줄도우미 <strong>무료</strong> 제공</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-k">카카오톡 문의</a>
+      <a href="#" class="btn-t">텔레그램 상담</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-cat">SUPPORT</span><span class="stat-value">365일 연중무휴</span></div>
+      <div class="stat-vline"></div>
+      <div class="stat"><span class="stat-cat">BENEFIT</span><span class="stat-value">3개월 할인</span></div>
+      <div class="stat-vline"></div>
+      <div class="stat"><span class="stat-cat">FREE TOOL</span><span class="stat-value">스케줄도우미</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="cards-wrap">
+      <div class="float-card fc1">
+        <div class="fc-stripe"></div>
+        <div class="fc-tier">저사양 ENTRY</div>
+        <div class="fc-cpu">라이젠 4350G</div>
+        <div class="fc-specs">
+          <div class="fc-spec">RAM <span>24GB</span></div>
+          <div class="fc-spec">SSD <span>250GB</span></div>
+          <div class="fc-spec">그래픽 <span>Vega 6</span></div>
+        </div>
+      </div>
+      <div class="float-card fc3">
+        <div class="fc-stripe"></div>
+        <div class="fc-tier">중사양 MID</div>
+        <div class="fc-cpu">라이젠 5600GT</div>
+        <div class="fc-specs">
+          <div class="fc-spec">RAM <span>24GB</span></div>
+          <div class="fc-spec">SSD <span>250GB</span></div>
+          <div class="fc-spec">그래픽 <span>Vega 7</span></div>
+        </div>
+      </div>
+      <div class="float-card fc2">
+        <div class="best-tag">BEST</div>
+        <div class="fc-stripe"></div>
+        <div class="fc-tier">고사양 TOP</div>
+        <div class="fc-cpu">라이젠 5700G</div>
+        <div class="fc-specs">
+          <div class="fc-spec">RAM <span>32GB</span></div>
+          <div class="fc-spec">SSD <span>250GB</span></div>
+          <div class="fc-spec">그래픽 <span>Vega 8</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== 버전 C ===== -->
+<div class="ver-label">VERSION C</div>
+<div class="ver-title">풀스크린 텍스트 센터</div>
+<div class="ver-desc">우측 제거, 텍스트 중앙 정렬 — 심플하고 고급스러운 느낌</div>
+
+<div class="hero-preview ver-c">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="ver-c-glow"></div>
+  <div class="hero-left">
+    <div class="hero-badge">3개월 결제 시 할인 이벤트 진행중</div>
+    <h1 class="hero-title">고성능 원격PC를<br><span class="g">합리적인 가격에</span></h1>
+    <p class="hero-desc">모바일게임 · 앱플레이어 · 다중게임 · 마케팅 자동화<br><strong>3개월 결제 시 할인 혜택</strong> — 리니지M 스케줄도우미 <strong>무료</strong> 제공</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-k">카카오톡 문의</a>
+      <a href="#" class="btn-t">텔레그램 상담</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-cat">SUPPORT</span><span class="stat-value">365일 연중무휴</span></div>
+      <div class="stat-vline"></div>
+      <div class="stat"><span class="stat-cat">BENEFIT</span><span class="stat-value">3개월 할인</span></div>
+      <div class="stat-vline"></div>
+      <div class="stat"><span class="stat-cat">FREE TOOL</span><span class="stat-value">스케줄도우미</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
