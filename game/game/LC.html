@@ -77,6 +77,22 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(135deg, #7c3aed, #0088cc);
+      padding: 12px 22px;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(124,58,237,0.35);
+      transition: opacity 0.2s, transform 0.2s;
+      margin-bottom: 4px;
+    }
+    .home-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
     /* 본문 래퍼 */
     .wrap {
@@ -289,6 +305,10 @@
 
     <!-- 게임 소개 -->
     <div>
+      <a href="../../index.html" class="home-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12L12 3l9 9"/><path d="M9 21V12h6v9"/></svg>
+        실시간 임대 컴퓨터 확인
+      </a>
       <h1 class="game-title"><span>리니지 클래식</span> 원격 임대</h1>
       <p class="game-desc">
         리니지 클래식을 PC 없이도 24시간 돌릴 수 있습니다.<br>
