@@ -11,6 +11,10 @@
   <meta property="og:image" content="https://원격임대.com/game/gimg/aion2.webp">
   <meta property="og:url" content="https://원격임대.com/game/game/aion2.html">
   <link rel="canonical" href="https://원격임대.com/game/game/aion2.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+  <meta property="og:site_name" content="나노원격임대">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -50,15 +54,20 @@
       border-bottom: 1px solid var(--border);
     }
     .back-link {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.85rem;
-      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
       text-decoration: none;
-      transition: color 0.2s;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background 0.2s;
     }
-    .back-link:hover { color: var(--text); }
+    .back-link:hover { background: rgba(255,255,255,0.16); }
     .site-name {
       font-size: 0.9rem;
       font-weight: 800;
