@@ -77,7 +77,8 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 2. **이미지 적용** — 사용자가 `game/gimg/`에 넣은 이미지 파일명을 확인 후 자동 연결. 이미지가 없으면 파일명만 비워두고 나머지 완성
 3. **HTML 생성** — `game/game/lineagem.html` 양식과 동일한 구조로 생성. 게임명·사양·FAQ 내용을 해당 게임에 맞게 모두 교체
 4. **sitemap.xml 업데이트** — 새 페이지 URL을 `sitemap.xml`에 자동 추가
-5. **업로드** — 사용자가 "업로드해줘"라고 하면 즉시 git add → commit → push
+5. **nav 드랍다운 업데이트** — `index.html`의 `.nav-dropdown-menu` 안에 `<li role="menuitem"><a href="game/game/<파일명>.html">게임명</a></li>` 항목 추가
+6. **업로드** — 사용자가 "업로드해줘"라고 하면 즉시 git add → commit → push
 
 ---
 
@@ -90,7 +91,7 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 - 메인으로 링크: `../../index.html`
 - canonical/og:url: `https://원격임대.com/game/game/<파일명>.html`
 
-새 게임 페이지 추가 시 `sitemap.xml`에도 URL 추가 필요.
+새 게임 페이지 추가 시 `sitemap.xml`과 `index.html` nav 드랍다운 양쪽에 모두 추가 필요.
 
 ---
 
