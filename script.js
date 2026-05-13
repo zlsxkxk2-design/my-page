@@ -6,6 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // ===== 게임 드랍다운 =====
+  const dropdownBtn = document.querySelector(".nav-dropdown-btn");
+  const dropdownMenu = document.querySelector(".nav-dropdown-menu");
+  dropdownBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = dropdownMenu.classList.toggle("open");
+    dropdownBtn.setAttribute("aria-expanded", isOpen);
+  });
+  document.addEventListener("click", () => dropdownMenu?.classList.remove("open"));
+
   // ===== 모바일 메뉴 토글 =====
   const navToggle = document.querySelector(".nav-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
