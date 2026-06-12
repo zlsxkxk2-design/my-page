@@ -903,6 +903,17 @@ ul { list-style: none; }
   text-shadow: 0 0 12px var(--tc);
   line-height: 1;
 }
+.oc-stock.is-soldout .oc-stock-count {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.35);
+  text-shadow: none;
+  letter-spacing: 0.05em;
+}
+.oc-stock.is-soldout .pulse-dot,
+.oc-stock.is-soldout .pulse-dot::after {
+  background: rgba(255,255,255,0.25);
+  animation: none;
+}
 .oc-stock-unit {
   font-size: 0.72rem;
   color: rgba(255,255,255,0.3);

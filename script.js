@@ -139,6 +139,17 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(update);
   }
 
+  function setStock(el, to) {
+    const box = el.closest(".oc-stock");
+    if (to <= 0) {
+      el.textContent = "SOLD OUT";
+      if (box) box.classList.add("is-soldout");
+    } else {
+      if (box) box.classList.remove("is-soldout");
+      animateCount(el, to);
+    }
+  }
+
   function fetchStock() {
     fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
       .then(r => r.text())
@@ -146,11 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const json = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1));
         [0,1,2,3].forEach(i => {
           const el = document.querySelector(`#stock${i+1} .count`);
-          if (el) animateCount(el, json.table.rows[i]?.c[0]?.v ?? 0);
+          if (el) setStock(el, json.table.rows[i]?.c[0]?.v ?? 0);
         });
       })
       .catch(() => {
-        document.querySelectorAll(".stock-box .count").forEach(el => { el.textContent = "0대"; });
+        document.querySelectorAll(".oc-stock .count").forEach(el => { setStock(el, 0); });
       });
   }
   fetchStock();
