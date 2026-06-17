@@ -574,7 +574,7 @@
   <script src="script.js" defer></script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      const hide = document.cookie.split(';').some(c => c.trim().startsWith('nanopopup=hide'));
+      const hide = true || document.cookie.split(';').some(c => c.trim().startsWith('nanopopup=hide'));
       if (hide) {
         const v = document.getElementById('heroVideo');
         if (v) { v.play(); v.classList.add('is-playing'); }
