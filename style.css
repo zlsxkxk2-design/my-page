@@ -804,6 +804,11 @@ ul { list-style: none; }
   line-height: 1.2;
   text-shadow: 0 0 8px var(--tc), 0 0 20px var(--tc);
 }
+.oc-price-tag {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+}
 
 /* spec list */
 .oc-specs {
