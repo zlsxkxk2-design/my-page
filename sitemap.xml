@@ -144,4 +144,11 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://원격임대.com/game/game/eclipse.html</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
