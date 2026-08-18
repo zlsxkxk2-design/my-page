@@ -345,8 +345,6 @@
       overlay.style.animation = 'popupFadeOut 0.2s ease forwards';
       setTimeout(() => {
         overlay.remove();
-        const v = document.getElementById('heroVideo');
-        if (v) { v.play(); v.classList.add('is-playing'); }
       }, 200);
     };
 

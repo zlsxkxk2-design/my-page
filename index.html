@@ -239,15 +239,15 @@
           </div>
         </div>
 
-        <!-- 오른쪽: 인트로 영상 -->
-        <div class="hero-right" aria-hidden="true">
-          <div class="hero-video-wrap">
+        <!-- 오른쪽: 배너 -->
+        <div class="hero-right">
+          <a href="https://example.com" target="_blank" rel="noopener" class="hero-banner-wrap" aria-label="이벤트 배너 바로가기">
             <div class="vframe-corner vfc-tl"></div>
             <div class="vframe-corner vfc-tr"></div>
             <div class="vframe-corner vfc-bl"></div>
             <div class="vframe-corner vfc-br"></div>
-            <video id="heroVideo" class="hero-video" src="NANO.mp4" muted playsinline></video>
-          </div>
+            <img src="banner/banner1.jpg" alt="이벤트 배너" class="hero-banner">
+          </a>
         </div>
       </div>
 
@@ -594,11 +594,7 @@
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const hide = document.cookie.split(';').some(c => c.trim().startsWith('nanopopup=hide'));
-      if (hide) {
-        const v = document.getElementById('heroVideo');
-        if (v) { v.play(); v.classList.add('is-playing'); }
-        return;
-      }
+      if (hide) return;
       fetch('popup.html')
         .then(r => r.text())
         .then(html => {
