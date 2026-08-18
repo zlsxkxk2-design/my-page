@@ -530,7 +530,7 @@ ul { list-style: none; }
   position: relative;
   display: block;
   width: 100%;
-  min-height: 460px;
+  aspect-ratio: 16 / 9;
   border-radius: 12px;
   border: 1px solid rgba(0, 229, 255, 0.25);
   overflow: hidden;
@@ -1658,7 +1658,6 @@ ul { list-style: none; }
 ======================================== */
 @media (max-width: 1024px) {
   .hero-layout { gap: 32px; }
-  .hero-banner-wrap { min-height: 380px; }
 
   .options-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1675,7 +1674,6 @@ ul { list-style: none; }
     gap: 40px;
   }
   .hero-right { order: -1; }
-  .hero-banner-wrap { min-height: 220px; }
 
   .hero-stats { padding: 14px 16px; }
   .stat { padding: 0 10px; }
