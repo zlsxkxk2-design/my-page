@@ -239,15 +239,22 @@
           </div>
         </div>
 
-        <!-- 오른쪽: 배너 -->
+        <!-- 오른쪽: 배너 슬라이드 -->
         <div class="hero-right">
-          <a href="https://example.com" target="_blank" rel="noopener" class="hero-banner-wrap" aria-label="이벤트 배너 바로가기">
+          <div class="hero-banner-wrap">
             <div class="vframe-corner vfc-tl"></div>
             <div class="vframe-corner vfc-tr"></div>
             <div class="vframe-corner vfc-bl"></div>
             <div class="vframe-corner vfc-br"></div>
-            <img src="banner/banner1.jpg" alt="이벤트 배너" class="hero-banner">
-          </a>
+            <div class="hero-banner-slides">
+              <img src="banner/banner1.jpg" alt="배너 1" class="hero-banner-slide is-active">
+              <img src="banner/banner2.jpg" alt="배너 2" class="hero-banner-slide">
+            </div>
+            <div class="hero-banner-dots" role="tablist" aria-label="배너 선택">
+              <button class="hero-banner-dot is-active" role="tab" aria-label="배너 1로 이동"></button>
+              <button class="hero-banner-dot" role="tab" aria-label="배너 2로 이동"></button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -593,7 +600,7 @@
   <script src="script.js" defer></script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      const hide = document.cookie.split(';').some(c => c.trim().startsWith('nanopopup=hide'));
+      const hide = true || document.cookie.split(';').some(c => c.trim().startsWith('nanopopup=hide'));
       if (hide) return;
       fetch('popup.html')
         .then(r => r.text())

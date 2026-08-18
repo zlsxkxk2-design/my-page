@@ -538,14 +538,6 @@ ul { list-style: none; }
     0 0 0 1px rgba(0, 229, 255, 0.08),
     0 0 40px rgba(0, 229, 255, 0.12),
     0 0 80px rgba(0, 229, 255, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.hero-banner-wrap:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px rgba(0, 229, 255, 0.14),
-    0 0 50px rgba(0, 229, 255, 0.18),
-    0 0 90px rgba(0, 229, 255, 0.1);
 }
 
 /* 코너 브라켓 */
@@ -562,13 +554,49 @@ ul { list-style: none; }
 .vfc-bl { bottom: -1px; left: -1px;  border-width: 0 0 2px 2px; border-radius: 0 0 0 12px; }
 .vfc-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; border-radius: 0 0 12px 0; }
 
-.hero-banner {
+.hero-banner-slides {
+  position: relative;
   width: 100%;
   height: 100%;
-  min-height: 460px;
+}
+
+.hero-banner-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.hero-banner-slide.is-active {
+  opacity: 1;
+}
+
+.hero-banner-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.hero-banner-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.hero-banner-dot.is-active {
+  background: #00e5ff;
+  transform: scale(1.3);
 }
 
 /* 히어로 스크롤 화살표 */
@@ -1630,7 +1658,7 @@ ul { list-style: none; }
 ======================================== */
 @media (max-width: 1024px) {
   .hero-layout { gap: 32px; }
-  .hero-banner-wrap, .hero-banner { min-height: 380px; }
+  .hero-banner-wrap { min-height: 380px; }
 
   .options-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1647,7 +1675,7 @@ ul { list-style: none; }
     gap: 40px;
   }
   .hero-right { order: -1; }
-  .hero-banner-wrap, .hero-banner { min-height: 220px; }
+  .hero-banner-wrap { min-height: 220px; }
 
   .hero-stats { padding: 14px 16px; }
   .stat { padding: 0 10px; }

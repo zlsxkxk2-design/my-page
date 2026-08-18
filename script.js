@@ -218,6 +218,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // ===== 히어로 배너 슬라이드 =====
+  const bannerSlides = document.querySelectorAll(".hero-banner-slide");
+  const bannerDots = document.querySelectorAll(".hero-banner-dot");
+  if (bannerSlides.length > 1) {
+    let bannerIdx = 0;
+    let bannerTimer = null;
+    const showBanner = (i) => {
+      bannerSlides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+      bannerDots.forEach((d, idx) => d.classList.toggle("is-active", idx === i));
+      bannerIdx = i;
+    };
+    const startBannerTimer = () => {
+      clearInterval(bannerTimer);
+      bannerTimer = setInterval(() => showBanner((bannerIdx + 1) % bannerSlides.length), 4000);
+    };
+    bannerDots.forEach((dot, idx) => dot.addEventListener("click", () => {
+      showBanner(idx);
+      startBannerTimer();
+    }));
+    startBannerTimer();
+  }
+
   // ===== 부드러운 앵커 스크롤 =====
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", e => {
