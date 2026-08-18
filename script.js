@@ -219,26 +219,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ===== 히어로 배너 슬라이드 =====
-  const bannerWrap = document.querySelector(".hero-banner-wrap");
   const bannerSlides = document.querySelectorAll(".hero-banner-slide");
   const bannerDots = document.querySelectorAll(".hero-banner-dot");
   if (bannerSlides.length > 1) {
     let bannerIdx = 0;
     let bannerTimer = null;
-    const applyBannerRatio = (img) => {
-      if (bannerWrap && img.naturalWidth && img.naturalHeight) {
-        bannerWrap.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
-      }
-    };
-    const setBannerRatio = (img) => {
-      if (img.complete) applyBannerRatio(img);
-      else img.addEventListener("load", () => applyBannerRatio(img), { once: true });
-    };
     const showBanner = (i) => {
       bannerSlides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
       bannerDots.forEach((d, idx) => d.classList.toggle("is-active", idx === i));
       bannerIdx = i;
-      setBannerRatio(bannerSlides[i]);
     };
     const startBannerTimer = () => {
       clearInterval(bannerTimer);
@@ -248,7 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
       showBanner(idx);
       startBannerTimer();
     }));
-    setBannerRatio(bannerSlides[0]);
     startBannerTimer();
   }
 
