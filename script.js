@@ -1,3 +1,6 @@
+// ===== 우클릭(컨텍스트 메뉴) 차단 =====
+document.addEventListener("contextmenu", (e) => e.preventDefault());
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // ===== 네비게이션: 스크롤 시 배경 추가 =====
