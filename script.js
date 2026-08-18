@@ -218,25 +218,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ===== 히어로 배너 슬라이드 =====
-  const bannerSlides = document.querySelectorAll(".hero-banner-slide");
+  // ===== 히어로 배너 슬라이드 (우→좌 무한 루프) =====
+  const bannerTrack = document.querySelector(".hero-banner-slides");
   const bannerDots = document.querySelectorAll(".hero-banner-dot");
-  if (bannerSlides.length > 1) {
-    let bannerIdx = 0;
+  const bannerRealSlides = bannerTrack ? Array.from(bannerTrack.children) : [];
+  if (bannerTrack && bannerRealSlides.length > 1) {
+    const total = bannerRealSlides.length;
+    const firstClone = bannerRealSlides[0].cloneNode(true);
+    bannerTrack.appendChild(firstClone);
+
+    let trackIdx = 0;
     let bannerTimer = null;
-    const showBanner = (i) => {
-      bannerSlides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
-      bannerDots.forEach((d, idx) => d.classList.toggle("is-active", idx === i));
-      bannerIdx = i;
+
+    const setDot = (i) => bannerDots.forEach((d, idx) => d.classList.toggle("is-active", idx === i));
+
+    const goTo = (i, animate = true) => {
+      bannerTrack.style.transition = animate ? "" : "none";
+      bannerTrack.style.transform = `translateX(-${i * 100}%)`;
+      if (!animate) bannerTrack.offsetHeight; // 리플로우 강제로 즉시 이동 적용
+      trackIdx = i;
     };
+
+    const nextBanner = () => {
+      const i = trackIdx + 1;
+      goTo(i);
+      setDot(i % total);
+      if (i === total) {
+        setTimeout(() => goTo(0, false), 620);
+      }
+    };
+
     const startBannerTimer = () => {
       clearInterval(bannerTimer);
-      bannerTimer = setInterval(() => showBanner((bannerIdx + 1) % bannerSlides.length), 4000);
+      bannerTimer = setInterval(nextBanner, 5000);
     };
+
     bannerDots.forEach((dot, idx) => dot.addEventListener("click", () => {
-      showBanner(idx);
+      goTo(idx);
+      setDot(idx);
       startBannerTimer();
     }));
+
+    setDot(0);
     startBannerTimer();
   }
 
