@@ -153,6 +153,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // 4350G(0), 2600(1), 5600GT(2) 강제 품절 처리. 복구하려면 이 배열을 []로 비우면 됨
+  const FORCE_SOLDOUT = [0, 1, 2];
+
   function fetchStock() {
     fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
       .then(r => r.text())
@@ -160,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const json = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1));
         [0,1,2,3].forEach(i => {
           const el = document.querySelector(`#stock${i+1} .count`);
-          if (el) setStock(el, json.table.rows[i]?.c[0]?.v ?? 0);
+          if (el) setStock(el, FORCE_SOLDOUT.includes(i) ? 0 : (json.table.rows[i]?.c[0]?.v ?? 0));
         });
       })
       .catch(() => {
