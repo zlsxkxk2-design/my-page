@@ -15,7 +15,6 @@
   --accent-2-glow: rgba(124, 58, 237, 0.25);
   --kakao:         #ffeb00;
   --kakao-text:    #1a1000;
-  --telegram:      #0088cc;
   --success:       #00ff88;
   --danger:        #ff3b6b;
   --border:        rgba(0, 229, 255, 0.08);
@@ -124,39 +123,6 @@ ul { list-style: none; }
   box-shadow: 0 4px 20px rgba(255, 235, 0, 0.3);
 }
 .btn-kakao:hover { box-shadow: 0 8px 32px rgba(255, 235, 0, 0.5); }
-
-.btn-telegram {
-  background: var(--telegram);
-  color: #fff;
-  box-shadow: 0 4px 20px rgba(0, 136, 204, 0.3);
-}
-.btn-telegram:hover { box-shadow: 0 8px 32px rgba(0, 136, 204, 0.5); }
-
-/* 아웃라인 텔레그램 버튼 (히어로) */
-.btn-telegram-outline {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1.5px solid rgba(255,255,255,0.25);
-  box-shadow: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 32px;
-  border-radius: var(--radius-full);
-  font-size: 1rem;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
-  white-space: nowrap;
-}
-.btn-telegram-outline:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
-  background: rgba(0, 229, 255, 0.05);
-}
 
 .btn-lg { padding: 16px 48px; font-size: 1.1rem; }
 
@@ -338,11 +304,6 @@ ul { list-style: none; }
   color: var(--kakao-text) !important;
   font-weight: 700 !important;
   margin-top: 8px;
-}
-.mobile-telegram {
-  background: var(--telegram) !important;
-  color: #fff !important;
-  font-weight: 700 !important;
 }
 
 /* ========================================
@@ -1368,11 +1329,6 @@ ul { list-style: none; }
   box-shadow: 0 4px 20px rgba(255, 235, 0, 0.3);
 }
 .floating-kakao:hover { box-shadow: 0 8px 28px rgba(255, 235, 0, 0.45); }
-.floating-telegram {
-  background: var(--telegram);
-  box-shadow: 0 4px 20px rgba(0, 136, 204, 0.3);
-}
-.floating-telegram:hover { box-shadow: 0 8px 28px rgba(0, 136, 204, 0.45); }
 
 /* ========================================
    푸터
@@ -1690,8 +1646,7 @@ ul { list-style: none; }
   .hero-stats { flex-direction: column; gap: 12px; align-items: flex-start; }
   .stat-vline { width: 60px; height: 1px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
-  .hero-actions .btn,
-  .hero-actions .btn-telegram-outline { width: 100%; text-align: center; justify-content: center; }
+  .hero-actions .btn { width: 100%; text-align: center; justify-content: center; }
   .features-grid { grid-template-columns: 1fr; }
   .options-cta { flex-direction: column; align-items: center; }
   .options-cta .btn { width: 100%; max-width: 360px; }
