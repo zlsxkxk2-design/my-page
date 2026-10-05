@@ -101,7 +101,7 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 배너 이미지는 `banner/` 폴더, 마크업은 `index.html`의 `.hero-banner-slides` / `.hero-banner-dots`.
 
 - 사용자가 "배너 올렸어", "배너 N 교체/추가/제거" 라고 하면 `banner/` 폴더의 파일명을 확인 후 자동 반영
-- 슬라이드는 링크로 감싼 구조: `<a href="game/game/<게임>.html" class="hero-banner-slide"><img src="banner/<파일명>" alt="게임명 원격PC 임대"></a>` (해당 게임 서브페이지로 연결. 링크 지정 없으면 배너 내용에 맞는 게임 페이지로 연결)
+- 슬라이드는 링크로 감싼 구조: `<a href="<게임 공식 홈페이지>" target="_blank" rel="noopener" class="hero-banner-slide"><img src="banner/<파일명>" alt="게임명 공식 홈페이지"></a>` (**해당 게임의 공식 홈페이지**를 웹 검색으로 찾아 새 탭 링크로 연결. 우리 사이트 서브페이지 아님)
 - 슬라이드와 dot `<button class="hero-banner-dot" role="tab" aria-label="배너 N로 이동"></button>` 은 **항상 개수를 맞출 것**
 - 첫 번째 슬라이드와 첫 번째 dot에만 `is-active` 클래스
 - 슬라이드 루프/자동재생(5초)은 `script.js`가 자식 개수 기준으로 처리하므로 JS 수정 불필요
