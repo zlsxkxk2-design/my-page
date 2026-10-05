@@ -95,6 +95,18 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 
 ---
 
+## 히어로 배너 교체 규칙
+
+배너 이미지는 `banner/` 폴더, 마크업은 `index.html`의 `.hero-banner-slides` / `.hero-banner-dots`.
+
+- 사용자가 "배너 올렸어", "배너 N 교체/추가/제거" 라고 하면 `banner/` 폴더의 파일명을 확인 후 자동 반영
+- 슬라이드 `<img src="banner/<파일명>" alt="배너 N" class="hero-banner-slide">` 와 dot `<button class="hero-banner-dot" role="tab" aria-label="배너 N로 이동"></button>` 은 **항상 개수를 맞출 것**
+- 첫 번째 슬라이드와 첫 번째 dot에만 `is-active` 클래스
+- 슬라이드 루프/자동재생(5초)은 `script.js`가 자식 개수 기준으로 처리하므로 JS 수정 불필요
+- 반영 후 바로 git add(해당 이미지 + index.html) → commit → push
+
+---
+
 ## 팝업 로딩 방식
 
 `index.html`의 히어로 영상 로드 완료(`loadedmetadata`) 시점에 `fetch('popup.html')`로 내용을 가져와 `<body>`에 appendChild.  
