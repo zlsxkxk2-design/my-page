@@ -116,6 +116,7 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 - width/height는 실제 이미지 픽셀 크기로 기입
 - 슬라이드와 dot `<button class="hero-banner-dot" role="tab" aria-label="배너 N로 이동"></button>` 은 **항상 개수를 맞출 것**
 - 첫 번째 슬라이드와 첫 번째 dot에만 `is-active` 클래스
+- **배너 내리기**: 슬라이드·dot 제거와 함께 해당 이미지 파일도 `git rm`으로 `banner/` 폴더에서 삭제
 - 슬라이드 루프/자동재생(5초)은 `script.js`가 자식 개수 기준으로 처리하므로 JS 수정 불필요
 - 반영 후 바로 git add(해당 이미지 + index.html) → commit → push → 메인 페이지 네이버 색인 요청 (`tools/indexnow.ps1 / game/game/<해당 게임>.html` — 루트 `/` 단독 전송은 네이버가 422를 반환하므로 관련 게임 페이지와 함께 전송)
 
