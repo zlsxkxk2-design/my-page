@@ -147,10 +147,10 @@
   ],
 
   "gallery": [
-    { "src": "images/img1.png", "alt": "나노 원격PC 사용 화면 1" },
-    { "src": "images/img2.png", "alt": "나노 원격PC 사용 화면 2" },
-    { "src": "images/img3.png", "alt": "나노 원격PC 사용 화면 3" },
-    { "src": "images/img4.png", "alt": "나노 원격PC 사용 화면 4" }
+    { "src": "images/img1.webp", "alt": "나노 원격PC 사용 화면 1" },
+    { "src": "images/img2.webp", "alt": "나노 원격PC 사용 화면 2" },
+    { "src": "images/img3.webp", "alt": "나노 원격PC 사용 화면 3" },
+    { "src": "images/img4.webp", "alt": "나노 원격PC 사용 화면 4" }
   ],
 
   "faq": [
