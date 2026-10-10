@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.xn--i89a73jyusvua.com" }],
+      "destination": "https://xn--i89a73jyusvua.com/:path*",
+      "permanent": true
+    }
+  ]
+}
