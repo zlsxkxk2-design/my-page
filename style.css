@@ -1636,7 +1636,7 @@ ul { list-style: none; }
 
 @media (max-width: 768px) {
   .nav-links { display: none; }
-  .nav-toggle { display: none; }
+  .nav-toggle { display: flex; }
 
   .hero { padding: 90px 20px 70px; }
   .hero-layout {
@@ -1692,6 +1692,7 @@ ul { list-style: none; }
 .game-card-desc b { font-weight: 700; color: var(--gc, var(--accent)); }
 @media (max-width: 900px) { .games-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 768px) { .games { padding: 64px 16px; } .games-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 768px) { .game-card-desc { display: flex; flex-direction: column; gap: 2px; } .game-card-desc .sep { display: none; } }
 @media (max-width: 380px) { .game-card { padding: 14px 12px; } .game-card-name { font-size: 0.9rem; } }
 /* ===== 게임별 추천 사양 끝 ===== */
 /* ===== 다크/라이트 모드 ===== */
@@ -1709,7 +1710,7 @@ ul { list-style: none; }
 .theme-toggle .icon-moon { display: none; }
 html[data-theme="light"] .theme-toggle .icon-sun { display: none; }
 html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
-@media (max-width: 768px) { .nav-inner { gap: 12px; } }
+@media (max-width: 768px) { .nav-inner { gap: 8px; } .theme-toggle { margin-left: auto; } }
 
 html[data-theme="light"] {
   --bg-primary:    #f5f7fb;

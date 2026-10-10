@@ -191,9 +191,23 @@
         <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
+      <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
-  <main>
+
+  <!-- 모바일 메뉴 -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="#options">임대 옵션</a></li>
+      <li><a href="#games">게임별 추천 사양</a></li>
+      <li><a href="#service">장점</a></li>
+      <li><a href="#gallery">갤러리</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" rel="noopener" class="mobile-kakao">카카오톡 문의하기</a></li>
+    </ul>
+  </div>  <main>
 
     <!-- 히어로 -->
     <section class="hero" aria-label="서비스 소개">
@@ -417,11 +431,11 @@
         <div class="games-grid">
           <a class="game-card" href="game/game/lineagem.html" style="--gc:#f59e0b">
             <span class="game-card-name">리니지M</span>
-            <span class="game-card-desc"><b>라이젠 5700G</b> · <b>라이젠 4350G</b></span>
+            <span class="game-card-desc"><b>라이젠 5700G</b><span class="sep"> · </span><b>라이젠 4350G</b></span>
           </a>
           <a class="game-card" href="game/game/dokkaebi.html" style="--gc:#a78bfa">
             <span class="game-card-name">도깨비의세계</span>
-            <span class="game-card-desc"><b>라이젠 2600</b> · <b>라이젠 5700G</b></span>
+            <span class="game-card-desc"><b>라이젠 2600</b><span class="sep"> · </span><b>라이젠 5700G</b></span>
           </a>
           <a class="game-card" href="game/game/night.html" style="--gc:#818cf8">
             <span class="game-card-name">나이트크로우</span>
@@ -429,19 +443,19 @@
           </a>
           <a class="game-card" href="game/game/sol.html" style="--gc:#fbbf24">
             <span class="game-card-name">SOL: enchant</span>
-            <span class="game-card-desc"><b>라이젠 2600</b> · <b>라이젠 5700G</b></span>
+            <span class="game-card-desc"><b>라이젠 2600</b><span class="sep"> · </span><b>라이젠 5700G</b></span>
           </a>
           <a class="game-card" href="game/game/asdal.html" style="--gc:#f97316">
             <span class="game-card-name">아스달 연대기</span>
-            <span class="game-card-desc"><b>라이젠 2600</b> · <b>라이젠 5700G</b></span>
+            <span class="game-card-desc"><b>라이젠 2600</b><span class="sep"> · </span><b>라이젠 5700G</b></span>
           </a>
           <a class="game-card" href="game/game/gs.html" style="--gc:#facc15">
             <span class="game-card-name">거상</span>
-            <span class="game-card-desc"><b>라이젠 4350G</b> · <b>라이젠 5600GT</b></span>
+            <span class="game-card-desc"><b>라이젠 4350G</b><span class="sep"> · </span><b>라이젠 5600GT</b></span>
           </a>
           <a class="game-card" href="game/game/overgeared.html" style="--gc:#c084fc">
             <span class="game-card-name">템빨: 오버기어드</span>
-            <span class="game-card-desc"><b>라이젠 5700G</b> · <b>라이젠 2600</b></span>
+            <span class="game-card-desc"><b>라이젠 5700G</b><span class="sep"> · </span><b>라이젠 2600</b></span>
           </a>
           <a class="game-card" href="game/game/vam.html" style="--gc:#dc2626">
             <span class="game-card-name">뱀피르</span>
@@ -453,7 +467,7 @@
           </a>
           <a class="game-card" href="game/game/lordnine.html" style="--gc:#e11d48">
             <span class="game-card-name">로드나인</span>
-            <span class="game-card-desc"><b>라이젠 2600</b> · <b>라이젠 5700G</b></span>
+            <span class="game-card-desc"><b>라이젠 2600</b><span class="sep"> · </span><b>라이젠 5700G</b></span>
           </a>
           <a class="game-card" href="game/game/rf.html" style="--gc:#f43f5e">
             <span class="game-card-name">RF온라인 넥스트</span>
@@ -465,35 +479,35 @@
           </a>
           <a class="game-card" href="game/game/dk.html" style="--gc:#ef4444">
             <span class="game-card-name">DK모바일 리본</span>
-            <span class="game-card-desc"><b>라이젠 4350G</b> · <b>라이젠 5700G</b></span>
+            <span class="game-card-desc"><b>라이젠 4350G</b><span class="sep"> · </span><b>라이젠 5700G</b></span>
           </a>
           <a class="game-card" href="game/game/jo.html" style="--gc:#10b981">
             <span class="game-card-name">조선협객전 클래식</span>
-            <span class="game-card-desc"><b>라이젠 5700G</b> · <b>라이젠 2600</b></span>
+            <span class="game-card-desc"><b>라이젠 5700G</b><span class="sep"> · </span><b>라이젠 2600</b></span>
           </a>
           <a class="game-card" href="game/game/odin.html" style="--gc:#38bdf8">
             <span class="game-card-name">오딘: 발할라 라이징</span>
-            <span class="game-card-desc"><b>라이젠 2600</b> · <b>라이젠 5600GT</b></span>
+            <span class="game-card-desc"><b>라이젠 2600</b><span class="sep"> · </span><b>라이젠 5600GT</b></span>
           </a>
           <a class="game-card" href="game/game/zeus.html" style="--gc:#eab308">
             <span class="game-card-name">제우스: 오만의 신</span>
-            <span class="game-card-desc"><b>라이젠 2600</b> · <b>라이젠 5700G</b></span>
+            <span class="game-card-desc"><b>라이젠 2600</b><span class="sep"> · </span><b>라이젠 5700G</b></span>
           </a>
           <a class="game-card" href="game/game/LC.html" style="--gc:#eab308">
             <span class="game-card-name">리니지 클래식</span>
-            <span class="game-card-desc"><b>라이젠 5700G</b> · <b>라이젠 2600</b></span>
+            <span class="game-card-desc"><b>라이젠 5700G</b><span class="sep"> · </span><b>라이젠 2600</b></span>
           </a>
           <a class="game-card" href="game/game/eclipse.html" style="--gc:#22d3ee">
             <span class="game-card-name">이클립스: 더 어웨이크닝</span>
-            <span class="game-card-desc"><b>라이젠 2600</b> · <b>라이젠 5700G</b></span>
+            <span class="game-card-desc"><b>라이젠 2600</b><span class="sep"> · </span><b>라이젠 5700G</b></span>
           </a>
           <a class="game-card" href="game/game/maple.html" style="--gc:#fb923c">
             <span class="game-card-name">메이플스토리</span>
-            <span class="game-card-desc"><b>라이젠 4350G</b> · <b>라이젠 5600GT</b></span>
+            <span class="game-card-desc"><b>라이젠 4350G</b><span class="sep"> · </span><b>라이젠 5600GT</b></span>
           </a>
           <a class="game-card" href="game/game/rohan2.html" style="--gc:#34d399">
             <span class="game-card-name">로한2</span>
-            <span class="game-card-desc"><b>라이젠 2600</b> · <b>라이젠 5700G</b></span>
+            <span class="game-card-desc"><b>라이젠 2600</b><span class="sep"> · </span><b>라이젠 5700G</b></span>
           </a>
         </div>
         <!-- GAMES:END -->
