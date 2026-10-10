@@ -4,4 +4,4 @@ Allow: /
 User-agent: Yeti
 Allow: /
 
-Sitemap: https://원격임대.com/sitemap.xml
+Sitemap: https://xn--i89a73jyusvua.com/sitemap.xml
