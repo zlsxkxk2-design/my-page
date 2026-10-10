@@ -95,6 +95,10 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 
 `game/game/` 폴더에 게임별 HTML 파일. `tools/game-pages/build.mjs`(레이아웃·CSS) + `data.mjs`(게임별 내용)로 생성된다. **페이지를 고칠 때는 HTML이 아니라 data.mjs를 수정하고 다시 빌드**한다 (HTML 직접 수정 시 다음 빌드에서 덮어써짐).
 
+### 주제 페이지 (kind: "topic")
+
+게임이 아닌 주제 페이지(예: `ssalmuk.html` 쌀먹+원격임대)는 `data.mjs`에 `kind: "topic"`으로 추가. 게임 메뉴 드롭다운에는 넣지 않고, 메인 '게임별 추천 사양' 카드에서도 자동 제외. 사이트맵·RSS에는 포함되며, 메인 푸터에 링크를 둔다. 쌀먹 관련 문구는 수익 보장 표현 금지, 게임 약관·공식 기능 범위 안내 유지
+
 ### 게임 페이지 개성 규칙 (필수)
 
 **페이지는 각각 다른 개성으로 만든다.** 게임 이름만 바꾼 복붙 페이지는 구글이 중복 콘텐츠로 판단해 노출하지 않는다.

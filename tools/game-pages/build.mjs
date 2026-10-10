@@ -303,7 +303,7 @@ function updateIndexGames() {
   const html = readFileSync(file, "utf8");
   const re = /(<!-- GAMES:START[^>]*-->)[\s\S]*?(<!-- GAMES:END -->)/;
   if (!re.test(html)) return console.log("index.html: GAMES 마커 없음 (추천 사양 섹션 생략)");
-  const cards = GAMES.map((g) => `
+  const cards = GAMES.filter((g) => g.kind !== "topic").map((g) => `
           <a class="game-card" href="game/game/${g.file}.html" style="--gc:${g.accent}">
             <span class="game-card-name">${g.name}</span>
             <span class="game-card-desc"><span class="lbl">추천</span><span class="cpus">${g.recommend.ids.map((id) => `<b>${OPTIONS[id].name}</b>`).join(`<span class="sep"> · </span>`)}</span></span>
@@ -312,7 +312,7 @@ function updateIndexGames() {
         <div class="games-grid">${cards}
         </div>
         $2`));
-  console.log("index.html (게임별 추천 사양 " + GAMES.length + "개)");
+  console.log("index.html (게임별 추천 사양 " + GAMES.filter((g) => g.kind !== "topic").length + "개)");
 }
 
 // ---------- sitemap.xml (이미지 사이트맵 포함) — 메인 + 게임 페이지로 매번 재생성 ----------
