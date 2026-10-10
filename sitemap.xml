@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://xn--i89a73jyusvua.com/</loc>
     <lastmod>2026-10-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-ryzen-4350g.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-ryzen-2600.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-ryzen-5600gt.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-ryzen-5700g.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-lineagem-appplayer.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-multi-game.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-access-screen.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-server-24h.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -13,114 +21,7 @@
     <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/LC.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/aion2.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/sol.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/jo.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/rohan2.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/maple.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/wind.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/gs.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/odin.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/night.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/rf.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/asdal.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/zeus.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/vam.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/eclipse.html</loc>
-    <lastmod>2026-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/lineagem-remote-pc.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -128,20 +29,39 @@
     <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/dokkaebi-world-remote-pc.jpg</image:loc></image:image>
   </url>
 
   <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/dk.html</loc>
+    <loc>https://xn--i89a73jyusvua.com/game/game/night.html</loc>
     <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/night-crows-remote-pc.webp</image:loc></image:image>
   </url>
 
   <url>
-    <loc>https://xn--i89a73jyusvua.com/game/game/lordnine.html</loc>
+    <loc>https://xn--i89a73jyusvua.com/game/game/sol.html</loc>
     <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/sol-enchant-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/asdal.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/asdal-chronicles-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/gs.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/gersang-remote-pc.webp</image:loc></image:image>
   </url>
 
   <url>
@@ -149,6 +69,111 @@
     <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/overgeared-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/vam.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/vampir-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/aion2.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/aion2-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/lordnine.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/lordnine-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/rf.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/rf-online-next-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/wind.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/baram-remote-pc.jpg</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/dk.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/dk-mobile-reborn-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/jo.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/joseon-hyeopgaekjeon-classic-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/odin.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/odin-valhalla-rising-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/zeus.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/zeus-god-of-pride-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/LC.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/lineage-classic-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/eclipse.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/eclipse-the-awakening-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/maple.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/maplestory-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/rohan2.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/rohan2-remote-pc.webp</image:loc></image:image>
   </url>
 
 </urlset>

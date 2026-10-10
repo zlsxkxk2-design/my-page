@@ -100,7 +100,7 @@ const hexToRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)).jo
 const S = {
   image: (g) => `
     <div class="game-image">
-      <img src="../gimg/${g.img}" alt="${esc(g.name)} 원격PC 임대 - 나노원격임대" loading="eager">
+      <img src="../gimg/${g.img}" alt="${esc(g.name)} 원격임대 · 원격PC 임대 - 나노원격임대" loading="eager">
     </div>`,
   head: (g) => `
     <div>
@@ -313,10 +313,35 @@ function updateIndexGames() {
   console.log("index.html (게임별 추천 사양 " + GAMES.length + "개)");
 }
 
+// ---------- sitemap.xml (이미지 사이트맵 포함) — 메인 + 게임 페이지로 매번 재생성 ----------
+function renderSitemap() {
+  const idx = readFileSync(join(ROOT, "index.html"), "utf8");
+  // 메인 페이지의 자체 이미지(옵션·이용 화면)만 이미지 사이트맵에 포함
+  const homeImgs = [...idx.matchAll(/<img src="(images\/[^"]+)"/g)].map((m) => `${PUNY}/${m[1]}`);
+  const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
+  const url = (loc, lastmod, freq, prio, imgs) => `
+  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${freq}</changefreq>
+    <priority>${prio}</priority>${imgs.map((i) => `
+    <image:image><image:loc>${i}</image:loc></image:image>`).join("")}
+  </url>`;
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${url(`${PUNY}/`, today, "daily", "1.0", homeImgs)}
+${GAMES.map((g) => url(`${PUNY}/game/game/${g.file}.html`, g.updated, "monthly", "0.8", [`${PUNY}/game/gimg/${g.img}`])).join("\n")}
+
+</urlset>
+`;
+}
+
 const only = process.argv.slice(2);
 updateIndexGames();
 for (const g of GAMES) if (!/^\d{4}-\d{2}-\d{2}$/.test(g.updated || "")) throw new Error(`${g.file}: updated(YYYY-MM-DD) 필요`);
 writeFileSync(join(ROOT, "rss.xml"), renderRss());
+writeFileSync(join(ROOT, "sitemap.xml"), renderSitemap());
+console.log("sitemap.xml");
 console.log("rss.xml");
 for (const g of GAMES) {
   if (only.length && !only.includes(g.file)) continue;

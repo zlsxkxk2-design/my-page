@@ -74,9 +74,9 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 
 0. **keywords 메타태그** — "게임명 원격PC, 게임명 원격임대, 게임명 PC임대, 원격PC 임대, 나노원격임대" + 그 게임에 실제로 해당하는 키워드(다계정·자동사냥·PC버전 등)만 작성. 게임에 없는 기능(예: 자동사냥 없는 게임의 "자동사냥/무한사냥")은 넣지 않는다
 1. **공식 정보 조회** — 공식 홈페이지/공식 공지에서 최소·권장 사양, 출시일, 개발·서비스사, PC 실행 방식(런처), **자동사냥·다중 클라이언트 정책**을 웹 검색으로 확인. 확인되지 않은 사양은 임의로 채우지 말고 "공식 미공개"로 표기
-2. **이미지 적용** — 사용자가 `game/gimg/`에 넣은 이미지 파일명을 확인 후 자동 연결. 이미지가 없으면 배너 이미지를 복사해 사용
+2. **이미지 적용** — 사용자가 `game/gimg/`에 넣은 이미지를 WebP로 변환(커지면 원본 유지, `.jfif`는 `.jpg`로)하고 파일명을 `<영문게임명>-remote-pc.<확장자>`로 바꿔 연결. 이미지 alt에는 "원격임대"를 독립 단어로 포함. 이미지가 없으면 배너 이미지를 복사해 사용
 3. **HTML 생성 (생성기 사용)** — `tools/game-pages/data.mjs`의 `GAMES` 배열에 게임 데이터(`updated: "오늘 날짜"` 포함)를 추가하고 `node tools/game-pages/build.mjs <파일명>`으로 생성. 빌드 시 `rss.xml`도 자동 재생성되므로 커밋에 `rss.xml` 포함. 기존 페이지 내용을 고칠 때도 `updated`를 오늘 날짜로 갱신. HTML을 직접 복사해 만들지 않는다. 아래 **게임 페이지 개성 규칙**을 따른다
-4. **sitemap.xml 업데이트** — 새 페이지 URL을 `sitemap.xml`에 자동 추가. `<loc>` 도메인은 반드시 퓨니코드 `https://xn--i89a73jyusvua.com/...` 로 작성 (한글 도메인 직접 기입 금지), lastmod는 오늘 날짜
+4. **sitemap.xml** — 빌드 시 `data.mjs`로 자동 생성(이미지 사이트맵 포함, 퓨니코드 도메인). **직접 수정 금지** — 페이지 추가/수정은 data.mjs만 고치고 빌드
 4-1. **메인 "게임별 추천 사양" 섹션** — `index.html`의 `<!-- GAMES:START -->`~`<!-- GAMES:END -->` 카드 목록은 빌드 시 자동 갱신 (게임명 + `recommend.ids`의 추천 CPU명, 직접 수정 금지). 섹션을 빼려면 index.html의 '게임별 추천 사양 섹션 시작~끝' 주석 블록과 style.css의 '게임별 추천 사양' 블록을 삭제
 5. **nav 드랍다운 업데이트** — `index.html`의 `.nav-dropdown-menu` 안에 `<li role="menuitem"><a href="game/game/<파일명>.html">게임명</a></li>` 항목 추가
 6. **업로드** — 사용자가 "업로드해줘"라고 하면 즉시 git add → commit → push
@@ -123,7 +123,7 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 - **파일명 변경**: 사용자가 올린 이미지(`banner3.jpg` 등)는 `git mv`로 게임 영문 슬러그 파일명으로 바꾼다 (예: `rf-online-next.jpg`, `dokkaebi-world.jpg`) — 이미지 검색 SEO용
 - 슬라이드 구조 (**해당 게임의 공식 홈페이지**를 웹 검색으로 찾아 새 탭 링크로 연결. 우리 사이트 서브페이지 아님):
   ```html
-  <a href="<공식 홈페이지>" target="_blank" rel="noopener" class="hero-banner-slide"><img src="banner/<슬러그>.jpg" alt="게임명 원격PC 임대 - 나노원격임대" width="<실제 가로>" height="<실제 세로>"><span class="sr-only">게임명 원격PC 임대 · 게임명 자동사냥 · 게임명 공식 홈페이지</span></a>
+  <a href="<공식 홈페이지>" target="_blank" rel="noopener" class="hero-banner-slide"><img src="banner/<슬러그>.jpg" alt="게임명 원격임대 · 원격PC 임대 - 나노원격임대" width="<실제 가로>" height="<실제 세로>"><span class="sr-only">게임명 원격PC 임대 · 게임명 자동사냥 · 게임명 공식 홈페이지</span></a>
   ```
 - 게임명은 **화면에 보이지 않고 검색엔진에만 노출**: `alt` + `.sr-only` 숨김 텍스트(style.css에 정의). 이미지 위에 글자를 표시하지 말 것
 - width/height는 실제 이미지 픽셀 크기로 기입
