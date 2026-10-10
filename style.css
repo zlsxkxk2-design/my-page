@@ -1671,3 +1671,24 @@ ul { list-style: none; }
   .floating-btn span { display: none; }
   .floating-btn { padding: 12px; }
 }
+
+/* ===== 지원 게임 시작 (index.html '지원 게임 섹션'과 함께 삭제 가능) ===== */
+.games { padding: 90px 24px; max-width: 1200px; margin: 0 auto; }
+.games-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.game-card {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 18px 18px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gc, var(--accent));
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+.game-card:hover { transform: translateY(-3px); border-color: var(--gc, var(--accent)); background: var(--bg-card-alt); }
+.game-card-name { font-size: 0.98rem; font-weight: 700; color: var(--text-primary); }
+.game-card-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+@media (max-width: 900px) { .games-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 768px) { .games { padding: 64px 16px; } .games-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 380px) { .game-card { padding: 14px 12px; } .game-card-name { font-size: 0.9rem; } }
+/* ===== 지원 게임 끝 ===== */

@@ -13,7 +13,7 @@ const HIGH_GPU_NOTE = "공식 사양의 그래픽카드 기준을 맞추려면 �
 export const GAMES = [
   // ───────────────────────── L1 ─────────────────────────
   {
-    file: "lineagem", name: "리니지M", img: "lineagem.webp", accent: "#f59e0b", layout: "L1", updated: "2026-10-10",
+    file: "lineagem", name: "리니지M", card: "퍼플 멀티 로그인 다계정", img: "lineagem.webp", accent: "#f59e0b", layout: "L1", updated: "2026-10-10",
     title: "리니지M 원격 임대 | 리니지M 퍼플 다계정 원격PC | 나노원격임대",
     description: "리니지M 원격PC 임대. 퍼플(PURPLE) 멀티 로그인·앱플레이어로 리니지M 다계정을 24시간 자동사냥. 휴대폰 배터리·발열 걱정 없이 원격PC로 운영하세요.",
     keywords: "리니지M 원격PC, 리니지M 원격임대, 리니지M 자동사냥, 리니지M 다계정, 리니지M 퍼플 다계정, 리니지M 멀티 로그인, 리니지M PC임대, 원격PC 임대, 리니지M 앱플레이어, 나노원격임대, 리니지M 사양, 리니지M 권장사양",
@@ -42,7 +42,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "dokkaebi", name: "도깨비의세계", img: "do.jpg", accent: "#a78bfa", layout: "L1", updated: "2026-10-10",
+    file: "dokkaebi", name: "도깨비의세계", card: "구글 플레이 게임즈 · 오프라인 사냥", img: "do.jpg", accent: "#a78bfa", layout: "L1", updated: "2026-10-10",
     title: "도깨비의세계 원격 임대 | 도깨비의세계 PC 원격PC | 나노원격임대",
     description: "도깨비의세계 원격PC 임대. 구글 플레이 게임즈 PC 버전으로 접속 중 자동사냥을 이어가고, 휴대폰은 원격 앱으로 확인하세요. 오프라인 사냥 8시간 이후에도 접속 유지 가능.",
     keywords: "도깨비의세계 원격PC, 도깨비의세계 원격임대, 도깨비의세계 PC버전, 도깨비의세계 자동사냥, 도깨비의세계 오프라인 사냥, 도깨비의세계 구글 플레이 게임즈, 도깨비의세계 사양, 원격PC 임대, 나노원격임대",
@@ -71,7 +71,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "night", name: "나이트크로우", img: "night.webp", accent: "#818cf8", layout: "L1", updated: "2026-10-10",
+    file: "night", name: "나이트크로우", card: "언리얼 엔진5 · 외장 그래픽 추천", img: "night.webp", accent: "#818cf8", layout: "L1", updated: "2026-10-10",
     title: "나이트크로우 원격 임대 | 나이트크로우 자동사냥 원격PC | 나노원격임대",
     description: "나이트크로우 원격PC 임대. 언리얼 엔진5 기반 나이트크로우를 외장 그래픽 원격PC로 24시간 자동사냥. 스마트폰으로 접속해 거래소·상태 확인까지.",
     keywords: "나이트크로우 원격PC, 나이트크로우 원격임대, 나이트크로우 자동사냥, 나이트크로우 다계정, 나이트크로우 PC임대, 나이트크로우 사양, 나이트크로우 권장사양, 원격PC 임대, 나노원격임대",
@@ -97,7 +97,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "sol", name: "SOL: enchant", img: "sol.webp", accent: "#fbbf24", layout: "L1", updated: "2026-10-10",
+    file: "sol", name: "SOL: enchant", card: "무접속 플레이 + 다계정 접속", img: "sol.webp", accent: "#fbbf24", layout: "L1", updated: "2026-10-10",
     title: "솔: 인챈트 원격 임대 | SOL: enchant 원격PC | 나노원격임대",
     description: "SOL: enchant(솔 인챈트) 원격PC 임대. 24시간 무접속 플레이로는 안 되는 접속형 콘텐츠·다계정을 원격PC로. GPG 넷마블 런처 기반 PC 버전 이용.",
     keywords: "솔 인챈트 원격PC, SOL enchant 원격임대, 솔 인챈트 다계정, 솔 인챈트 무접속 플레이, 솔 인챈트 PC버전, 솔 인챈트 사양, 솔 인챈트 권장사양, 원격PC 임대, 나노원격임대",
@@ -126,7 +126,7 @@ export const GAMES = [
 
   // ───────────────────────── L2 ─────────────────────────
   {
-    file: "asdal", name: "아스달 연대기", img: "as.webp", accent: "#f97316", layout: "L2", updated: "2026-10-10",
+    file: "asdal", name: "아스달 연대기", card: "세력전 시간 원격 접속", img: "as.webp", accent: "#f97316", layout: "L2", updated: "2026-10-10",
     title: "아스달 연대기 원격 임대 | 아스달 연대기 자동사냥 원격PC | 나노원격임대",
     description: "아스달 연대기: 세 개의 세력 원격PC 임대. 넷마블 PC 버전을 원격PC에서 24시간 자동사냥, 세력전 시간엔 휴대폰으로 바로 접속.",
     keywords: "아스달연대기 원격PC, 아스달 연대기 원격임대, 아스달연대기 자동사냥, 아스달연대기 다계정, 아스달연대기 PC버전, 아스달연대기 사양, 원격PC 임대, 나노원격임대",
@@ -148,7 +148,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "gs", name: "거상", img: "gs.webp", accent: "#facc15", layout: "L2", updated: "2026-10-10",
+    file: "gs", name: "거상", card: "공식 3클라 · 저사양", img: "gs.webp", accent: "#facc15", layout: "L2", updated: "2026-10-10",
     title: "거상 원격 임대 | 천하제일상 거상 3클라 원격PC | 나노원격임대",
     description: "천하제일상 거상 원격PC 임대. PC 1대 최대 3클라이언트 공식 허용 범위에서 다클라를 24시간 접속 유지. 저사양 게임이라 경제적인 옵션으로 충분.",
     keywords: "거상 원격PC, 거상 원격임대, 거상 다클라, 거상 3클라, 거상 다중클라이언트, 천하제일상 거상 원격임대, 거상 PC임대, 거상 사양, 원격PC 임대, 나노원격임대",
@@ -170,7 +170,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "overgeared", name: "템빨: 오버기어드", img: "overgeared.webp", accent: "#c084fc", layout: "L2", updated: "2026-10-10",
+    file: "overgeared", name: "템빨: 오버기어드", card: "넥슨 신작 · 사전등록 중", img: "overgeared.webp", accent: "#c084fc", layout: "L2", updated: "2026-10-10",
     title: "템빨 오버기어드 원격 임대 | 템빨 원격PC | 나노원격임대",
     description: "템빨: 오버기어드 원격PC 임대. 넥슨·GRAYGAMES 신작 크로스플랫폼 MMORPG를 원격PC로. 공식 사양 공개 시 바로 업데이트.",
     keywords: "템빨 원격PC, 템빨 원격임대, 템빨 오버기어드, 오버기어드 원격PC, 템빨 PC버전, 템빨 사양, 템빨 사전등록, Overgeared 원격PC, 원격PC 임대, 나노원격임대",
@@ -193,7 +193,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "vam", name: "뱀피르", img: "vam.webp", accent: "#dc2626", layout: "L2", updated: "2026-10-10",
+    file: "vam", name: "뱀피르", card: "넷마블 런처 PC 버전", img: "vam.webp", accent: "#dc2626", layout: "L2", updated: "2026-10-10",
     title: "뱀피르 원격 임대 | 뱀피르 자동사냥 원격PC | 나노원격임대",
     description: "뱀피르 원격PC 임대. 넷마블 성인 MMORPG 뱀피르를 넷마블 런처 PC 버전으로 24시간. 넷마블 커넥트 대신 PC 자체를 빌려 집 PC는 끄세요.",
     keywords: "뱀피르 원격PC, 뱀피르 원격임대, 뱀피르 자동사냥, 뱀피르 다계정, 뱀피르 PC버전, 뱀피르 넷마블 런처, 뱀피르 사양, 뱀피르 권장사양, 원격PC 임대, 나노원격임대",
@@ -218,7 +218,7 @@ export const GAMES = [
 
   // ───────────────────────── L3 ─────────────────────────
   {
-    file: "aion2", name: "아이온2", img: "aion2.webp", accent: "#60a5fa", layout: "L3", updated: "2026-10-10",
+    file: "aion2", name: "아이온2", card: "PC 수동 플레이 · 고사양 대체", img: "aion2.webp", accent: "#60a5fa", layout: "L3", updated: "2026-10-10",
     title: "아이온2 원격 임대 | 아이온2 원격PC 플레이 | 나노원격임대",
     description: "아이온2 원격PC 임대. PC는 자동전투가 없는 수동 액션 MMORPG — 고사양 PC가 없어도 원격PC로 아이온2 PC 버전을 플레이하세요. 모바일 어시스트 모드와 차이 안내.",
     keywords: "아이온2 원격PC, 아이온2 원격임대, 아이온2 PC임대, 아이온2 사양, 아이온2 권장사양, 아이온2 저사양, 아이온2 어시스트 모드, 아이온2 자동사냥, 원격PC 임대, 나노원격임대",
@@ -246,7 +246,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "lordnine", name: "로드나인", img: "lordnine.webp", accent: "#e11d48", layout: "L3", updated: "2026-10-10",
+    file: "lordnine", name: "로드나인", card: "STOVE · 신규서버 하칸", img: "lordnine.webp", accent: "#e11d48", layout: "L3", updated: "2026-10-10",
     title: "로드나인 원격 임대 | 로드나인 자동사냥 원격PC | 나노원격임대",
     description: "로드나인 원격PC 임대. 스마일게이트 STOVE PC 버전으로 로드나인을 24시간 자동사냥. 신규서버 하칸도 원격PC로 이어서 성장.",
     keywords: "로드나인 원격PC, 로드나인 원격임대, 로드나인 자동사냥, 로드나인 다계정, 로드나인 PC버전, 로드나인 스토브, 로드나인 하칸, 로드나인 사양, LORDNINE 원격PC, 원격PC 임대, 나노원격임대",
@@ -274,7 +274,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "rf", name: "RF온라인 넥스트", img: "rf.webp", accent: "#f43f5e", layout: "L3", updated: "2026-10-10",
+    file: "rf", name: "RF온라인 넥스트", card: "노바 서버 · 종족 전쟁", img: "rf.webp", accent: "#f43f5e", layout: "L3", updated: "2026-10-10",
     title: "RF온라인 넥스트 원격 임대 | RF온라인 자동사냥 원격PC | 나노원격임대",
     description: "RF온라인 넥스트 원격PC 임대. 넷마블 SF MMORPG를 원격PC에서 24시간 자동사냥. 슈퍼 부스트 서버 '노바'도 원격PC로.",
     keywords: "RF온라인 넥스트 원격PC, RF온라인 원격임대, RF온라인 넥스트 자동사냥, RF온라인 다계정, RF온라인 넥스트 PC버전, RF온라인 넥스트 사양, RF 노바 서버, 원격PC 임대, 나노원격임대",
@@ -302,7 +302,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "wind", name: "바람의나라", img: "wind.jfif", accent: "#4ade80", layout: "L3", updated: "2026-10-10",
+    file: "wind", name: "바람의나라", card: "자동사냥 하루 4시간 · 접속 유지", img: "wind.jfif", accent: "#4ade80", layout: "L3", updated: "2026-10-10",
     title: "바람의나라 원격 임대 | 바람의나라 원격PC 접속 유지 | 나노원격임대",
     description: "바람의나라 원격PC 임대. 1996년부터 이어진 넥슨 바람의나라를 원격PC로 언제든 접속. 공식 자동사냥(600레벨·하루 4시간) 조건까지 정확히 안내.",
     keywords: "바람의나라 원격PC, 바람의나라 원격임대, 바람의나라 자동사냥, 바람의나라 PC임대, 바람의나라 접속유지, 바람의나라 사양, 원격PC 임대, 나노원격임대",
@@ -332,7 +332,7 @@ export const GAMES = [
 
   // ───────────────────────── L4 ─────────────────────────
   {
-    file: "dk", name: "DK모바일 리본", img: "dk.webp", accent: "#ef4444", layout: "L4", updated: "2026-10-10",
+    file: "dk", name: "DK모바일 리본", card: "앱플레이어 다계정", img: "dk.webp", accent: "#ef4444", layout: "L4", updated: "2026-10-10",
     title: "DK모바일 리본 원격 임대 | DK모바일 리본 앱플레이어 원격PC | 나노원격임대",
     description: "DK모바일 리본 원격PC 임대. 2026년 10월 1일 그랜드 오픈한 DK모바일 리본을 앱플레이어로 24시간 자동사냥, 다계정까지.",
     keywords: "DK모바일 리본 원격PC, DK모바일 리본 원격임대, DK모바일 리본 자동사냥, DK모바일 리본 다계정, DK모바일 리본 앱플레이어, DK모바일 리본 PC, DK모바일 리본 사양, 원격PC 임대, 나노원격임대",
@@ -360,7 +360,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "jo", name: "조선협객전 클래식", img: "jo.webp", accent: "#10b981", layout: "L4", updated: "2026-10-10",
+    file: "jo", name: "조선협객전 클래식", card: "사냥·파밍 중심 성장", img: "jo.webp", accent: "#10b981", layout: "L4", updated: "2026-10-10",
     title: "조선협객전 클래식 원격 임대 | 조선협객전 원격PC | 나노원격임대",
     description: "조선협객전 클래식 원격PC 임대. 스마트나우 사냥·파밍 중심 MMORPG를 원격PC에서 상시 접속. 둔갑술·신수·마패 파밍 시간을 늘리세요.",
     keywords: "조선협객전 클래식 원격PC, 조선협객전 원격임대, 조선협객전 클래식 PC, 조선협객전 클래식 다계정, 조선협객전 클래식 사냥, 조선협객전 사양, 원격PC 임대, 나노원격임대",
@@ -389,7 +389,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "odin", name: "오딘: 발할라 라이징", img: "odin.webp", accent: "#38bdf8", layout: "L4", updated: "2026-10-10",
+    file: "odin", name: "오딘: 발할라 라이징", card: "오픈월드 PC 버전", img: "odin.webp", accent: "#38bdf8", layout: "L4", updated: "2026-10-10",
     title: "오딘 발할라 라이징 원격 임대 | 오딘 자동사냥 원격PC | 나노원격임대",
     description: "오딘: 발할라 라이징 원격PC 임대. 카카오게임즈 오딘 PC 버전을 원격PC에서 24시간 자동사냥. 북유럽 오픈월드를 어디서든 이어서.",
     keywords: "오딘 원격PC, 오딘 원격임대, 오딘 발할라라이징 원격임대, 오딘 자동사냥, 오딘 다계정, 오딘 PC버전, 오딘 사양, 원격PC 임대, 나노원격임대",
@@ -417,7 +417,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "zeus", name: "제우스: 오만의 신", img: "zeus.webp", accent: "#eab308", layout: "L4", updated: "2026-10-10",
+    file: "zeus", name: "제우스: 오만의 신", card: "UE5 · Windows 11", img: "zeus.webp", accent: "#eab308", layout: "L4", updated: "2026-10-10",
     title: "제우스 오만의 신 원격 임대 | 제우스 원격PC | 나노원격임대",
     description: "제우스: 오만의 신 원격PC 임대. 컴투스 언리얼 엔진5 MMORPG, 공식 권장 RAM 32GB·RTX 3060. 고사양 부담 없이 원격PC로 이용하세요.",
     keywords: "제우스 오만의 신 원격PC, 제우스 원격임대, 제우스 오만의 신 PC버전, 제우스 오만의 신 사양, 제우스 권장사양, 제우스 다계정, 원격PC 임대, 나노원격임대",
@@ -448,7 +448,7 @@ export const GAMES = [
 
   // ───────────────────────── L5 ─────────────────────────
   {
-    file: "LC", name: "리니지 클래식", img: "LC.webp", accent: "#eab308", layout: "L5", updated: "2026-10-10",
+    file: "LC", name: "리니지 클래식", card: "PC 전용 · 어디서나 접속", img: "LC.webp", accent: "#eab308", layout: "L5", updated: "2026-10-10",
     title: "리니지 클래식 원격 임대 | 리니지 클래식 원격PC 24시간 접속 | 나노원격임대",
     description: "리니지 클래식 원격PC 임대. PC 전용 리니지 클래식을 스마트폰·노트북 어디서든 원격으로 접속해 플레이하고, 권장사양(SSD 필수) 이상의 PC로 다계정까지 안정적으로 운영하세요.",
     keywords: "리니지 클래식 원격PC, 리니지 클래식 원격임대, 리니지 클래식 PC임대, 리니지 클래식 다계정, 리니지 클래식 ATS, 리니지 클래식 모바일 접속, 원격PC 임대, 리니지 클래식 저사양, 나노원격임대, 리니지 클래식 사양, 리니지 클래식 권장사양",
@@ -476,7 +476,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "eclipse", name: "이클립스: 더 어웨이크닝", img: "ec.webp", accent: "#22d3ee", layout: "L5", updated: "2026-10-10",
+    file: "eclipse", name: "이클립스: 더 어웨이크닝", card: "자동 성장 · AI 모드", img: "ec.webp", accent: "#22d3ee", layout: "L5", updated: "2026-10-10",
     title: "이클립스 더 어웨이크닝 원격 임대 | 이클립스 자동성장 원격PC | 나노원격임대",
     description: "이클립스: 더 어웨이크닝 원격PC 임대. 엔픽셀·스마일게이트 언리얼 엔진5 MMORPG의 자동 퀘스트·자동사냥과 AI 모드를 원격PC에서 상시 실행.",
     keywords: "이클립스 원격PC, 이클립스 더 어웨이크닝 원격임대, 이클립스 자동사냥, 이클립스 AI 모드, 이클립스 다클라, 이클립스 PC버전, 이클립스 스토브, 원격PC 임대, 나노원격임대",
@@ -504,7 +504,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "maple", name: "메이플스토리", img: "maple.webp", accent: "#fb923c", layout: "L5", updated: "2026-10-10",
+    file: "maple", name: "메이플스토리", card: "맥·저사양 기기에서 플레이", img: "maple.webp", accent: "#fb923c", layout: "L5", updated: "2026-10-10",
     title: "메이플스토리 원격 임대 | 메이플스토리 원격PC 플레이 | 나노원격임대",
     description: "메이플스토리 원격PC 임대. 저사양 노트북·맥·태블릿에서도 원격PC로 메이플스토리 PC 버전을 플레이. 자동사냥·멀티클라 정책까지 정확히 안내.",
     keywords: "메이플스토리 원격PC, 메이플스토리 원격임대, 메이플 원격 플레이, 메이플스토리 맥북, 메이플스토리 저사양, 메이플스토리 PC임대, 메이플스토리 사양, 원격PC 임대, 나노원격임대",
@@ -532,7 +532,7 @@ export const GAMES = [
     ],
   },
   {
-    file: "rohan2", name: "로한2", img: "rohan2.webp", accent: "#34d399", layout: "L5", updated: "2026-10-10",
+    file: "rohan2", name: "로한2", card: "DirectX 12 · 50GB 대신", img: "rohan2.webp", accent: "#34d399", layout: "L5", updated: "2026-10-10",
     title: "로한2 원격 임대 | 로한2 자동사냥 원격PC | 나노원격임대",
     description: "로한2 원격PC 임대. 플레이위드 로한2를 원격PC에서 24시간 자동사냥. DirectX 12·50GB 요구 사양을 원격PC가 대신.",
     keywords: "로한2 원격PC, 로한2 원격임대, 로한2 자동사냥, 로한2 다계정, 로한2 PC버전, 로한2 사양, 로한2 권장사양, 원격PC 임대, 나노원격임대",

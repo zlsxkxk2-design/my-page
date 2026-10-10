@@ -2,7 +2,7 @@
 // 사용법: node tools/game-pages/build.mjs            (전체 생성)
 //         node tools/game-pages/build.mjs dk zeus    (특정 페이지만)
 // 페이지 내용은 data.mjs, 레이아웃(L1~L5)은 아래 LAYOUTS 참고.
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { GAMES, OPTIONS } from "./data.mjs";
@@ -279,7 +279,27 @@ ${items.map((g) => `
 `;
 }
 
+// ---------- 메인 페이지 "지원 게임" 섹션 — index.html의 GAMES:START~END 사이를 교체 ----------
+function updateIndexGames() {
+  const file = join(ROOT, "index.html");
+  const html = readFileSync(file, "utf8");
+  const re = /(<!-- GAMES:START[^>]*-->)[\s\S]*?(<!-- GAMES:END -->)/;
+  if (!re.test(html)) return console.log("index.html: GAMES 마커 없음 (지원 게임 섹션 생략)");
+  const cards = GAMES.map((g) => `
+          <a class="game-card" href="game/game/${g.file}.html" style="--gc:${g.accent}">
+            <span class="game-card-name">${g.name}</span>
+            <span class="game-card-desc">${g.card}</span>
+          </a>`).join("");
+  writeFileSync(file, html.replace(re, `$1
+        <div class="games-grid">${cards}
+        </div>
+        $2`));
+  console.log("index.html (지원 게임 " + GAMES.length + "개)");
+}
+
 const only = process.argv.slice(2);
+for (const g of GAMES) if (!g.card) throw new Error(`${g.file}: card(지원 게임 카드 문구) 필요`);
+updateIndexGames();
 for (const g of GAMES) if (!/^\d{4}-\d{2}-\d{2}$/.test(g.updated || "")) throw new Error(`${g.file}: updated(YYYY-MM-DD) 필요`);
 writeFileSync(join(ROOT, "rss.xml"), renderRss());
 console.log("rss.xml");
