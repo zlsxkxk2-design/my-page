@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>템빨: 오버기어드 원격 임대 | 템빨: 오버기어드 자동사냥 원격PC | 나노원격임대</title>
-  <meta name="description" content="템빨: 오버기어드 원격PC 임대 서비스. 템빨: 오버기어드 24시간 자동사냥, 다계정 멀티 운영, 저사양 PC 없이도 템빨: 오버기어드 무한사냥 가능.">
-  <meta name="keywords" content="템빨 원격PC, 템빨 원격임대, 템빨 자동사냥, 템빨 다계정, 템빨 무한사냥, 템빨 PC임대, 오버기어드 원격PC, 오버기어드 원격임대, 오버기어드 자동사냥, 원격PC 임대, 나노원격임대, 템빨 사양, 템빨 권장사양, 템빨 사전등록, Overgeared 원격PC">
-  <meta property="og:title" content="템빨: 오버기어드 원격 임대 | 템빨: 오버기어드 자동사냥 원격PC">
-  <meta property="og:description" content="템빨: 오버기어드 원격PC 임대 서비스. 템빨: 오버기어드 24시간 자동사냥, 다계정 멀티 운영, 저사양 PC 없이도 템빨: 오버기어드 무한사냥 가능.">
+  <title>템빨 오버기어드 원격 임대 | 템빨 원격PC | 나노원격임대</title>
+  <meta name="description" content="템빨: 오버기어드 원격PC 임대. 넥슨·GRAYGAMES 신작 크로스플랫폼 MMORPG를 원격PC로. 공식 사양 공개 시 바로 업데이트.">
+  <meta name="keywords" content="템빨 원격PC, 템빨 원격임대, 템빨 오버기어드, 오버기어드 원격PC, 템빨 PC버전, 템빨 사양, 템빨 사전등록, Overgeared 원격PC, 원격PC 임대, 나노원격임대">
+  <meta property="og:title" content="템빨 오버기어드 원격 임대 | 템빨 원격PC">
+  <meta property="og:description" content="템빨: 오버기어드 원격PC 임대. 넥슨·GRAYGAMES 신작 크로스플랫폼 MMORPG를 원격PC로. 공식 사양 공개 시 바로 업데이트.">
   <meta property="og:image" content="https://원격임대.com/game/gimg/overgeared.jpg">
   <meta property="og:url" content="https://원격임대.com/game/game/overgeared.html">
   <link rel="canonical" href="https://원격임대.com/game/game/overgeared.html">
@@ -17,270 +17,82 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"템빨: 오버기어드는 언제 출시되나요?","acceptedAnswer":{"@type":"Answer","text":"넥슨은 2026년 연내 출시를 예고했고, 2026년 10월 1일부터 사전등록을 받고 있습니다. 정확한 출시일은 공식 홈페이지 공지를 확인해주세요."}},{"@type":"Question","name":"원격PC에서 어떻게 플레이하게 되나요?","acceptedAnswer":{"@type":"Answer","text":"PC·모바일 크로스플랫폼으로 나올 예정이라 PC 클라이언트를 원격PC에 설치해 이용하는 방식이 될 예정입니다. 출시 후 실행 방식이 확정되면 안내드립니다."}},{"@type":"Question","name":"사양이 높으면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"공식 사양이 높게 나오면 외장 그래픽카드 옵션(라이젠 2600)을 안내드립니다."}}]}</script>
   <style>
-    :root {
-      --bg:       #0a0a12;
-      --card:     #13131f;
-      --border:   rgba(255,255,255,0.08);
-      --text:     #f0f0ff;
-      --muted:    #8888aa;
-      --accent:   #c084fc;
-      --gold:     #f59e0b;
-      --kakao:    #ffeb00;
---radius:   16px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Noto Sans KR', sans-serif;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* 메인으로 버튼 */
-    .top-bar {
-      width: 100%;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-    }
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--border);
-      padding: 8px 14px;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-    .back-link:hover { background: rgba(255,255,255,0.16); }
-    .site-name {
-      font-size: 0.9rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #7c3aed, #0088cc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .home-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #fff;
-      text-decoration: none;
-      background: linear-gradient(135deg, #7c3aed, #0088cc);
-      padding: 18px 28px;
-      border-radius: 14px;
-      box-shadow: 0 6px 24px rgba(124,58,237,0.45);
-      transition: opacity 0.2s, transform 0.15s, box-shadow 0.15s;
-      margin-bottom: 8px;
-    }
-    .home-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(124,58,237,0.5); }
-    .home-btn:active { transform: scale(0.97); opacity: 1; box-shadow: 0 2px 10px rgba(124,58,237,0.3); }
-
-    /* 본문 래퍼 */
-    .wrap {
-      width: 100%;
-      max-width: 640px;
-      padding: 48px 24px 64px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    /* 이미지 */
-    .game-image {
-      width: 100%;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .game-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* 게임 소개 */
-    .game-title {
-      font-size: 1.6rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-    .game-title span {
-      background: linear-gradient(135deg, #f59e0b, #ef4444);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .game-desc {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-top: 10px;
-    }
-
-    /* 구분선 */
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    /* 원격 서비스 설명 */
-    .service-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .service-card h2 {
-      font-size: 1.05rem;
-      font-weight: 800;
-    }
-    .service-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .service-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .service-list li .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-      margin-top: 7px;
-    }
-    .service-list li strong { color: var(--text); }
-
-    /* CTA 버튼 영역 */
-    .cta {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .cta-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-align: center;
-    }
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px;
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 700;
-      font-family: inherit;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-kakao {
-      background: var(--kakao);
-      color: #3a1d1d;
-      box-shadow: 0 4px 20px rgba(255,235,0,0.2);
-    }
-.btn-main {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
-    }
-    .btn-main:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
-
-    /* 권장사양 */
-    .spec-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .spec-card h2 { font-size: 1.05rem; font-weight: 800; }
-    .spec-note { font-size: 0.78rem; color: var(--muted); line-height: 1.6; margin-top: -8px; }
-    .spec-table { display: flex; flex-direction: column; gap: 10px; }
-    .spec-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.88rem;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .spec-row:last-child { border-bottom: none; }
-    .spec-label { color: var(--muted); flex-shrink: 0; }
-    .spec-value { color: var(--text); font-weight: 600; text-align: right; }
-
-    /* FAQ */
-    .faq-section { display: flex; flex-direction: column; gap: 12px; }
-    .faq-section h2 { font-size: 1.05rem; font-weight: 800; margin-bottom: 4px; }
-    details {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    details[open] { border-color: rgba(192,132,252,0.3); }
-    summary {
-      padding: 16px 20px;
-      font-size: 0.92rem;
-      font-weight: 700;
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-    summary::-webkit-details-marker { display: none; }
-    summary::after {
-      content: '+';
-      font-size: 1.2rem;
-      color: var(--accent);
-      flex-shrink: 0;
-      transition: transform 0.2s;
-    }
-    details[open] summary::after { content: '−'; }
-    .faq-body {
-      padding: 0 20px 16px;
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
+    :root{--bg:#0a0a12;--card:#13131f;--card2:#181828;--border:rgba(255,255,255,0.08);--text:#f0f0ff;--muted:#9a9ab8;--kakao:#ffeb00;--radius:16px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100svh;display:flex;flex-direction:column;align-items:center;}
+    a{color:inherit;}
+    .top-bar{width:100%;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+    .back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:700;text-decoration:none;background:rgba(255,255,255,0.08);border:1px solid var(--border);padding:8px 14px;border-radius:8px;transition:background 0.2s;}
+    .back-link:hover{background:rgba(255,255,255,0.16);}
+    .site-name{font-size:0.9rem;font-weight:800;background:linear-gradient(135deg,#7c3aed,#0088cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .wrap{width:100%;max-width:680px;padding:44px 24px 64px;display:flex;flex-direction:column;gap:32px;}
+    .game-image{width:100%;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
+    .game-image img{width:100%;height:auto;display:block;}
+    .eyebrow{font-size:0.78rem;font-weight:800;letter-spacing:0.08em;color:var(--accent);text-transform:uppercase;}
+    h1{font-size:1.65rem;font-weight:900;letter-spacing:-0.02em;line-height:1.35;}
+    h1 em{font-style:normal;color:var(--accent);}
+    h2{font-size:1.1rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+    h2::before{content:'';width:4px;height:1.1em;border-radius:2px;background:var(--accent);}
+    .lead{font-size:0.96rem;color:var(--muted);line-height:1.85;margin-top:12px;}
+    .lead strong{color:var(--text);}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+    .chip{font-size:0.78rem;font-weight:700;padding:6px 12px;border-radius:999px;border:1px solid var(--accent-dim);color:var(--accent);background:var(--accent-bg);}
+    .home-btn{display:flex;align-items:center;justify-content:center;gap:10px;font-size:1.05rem;font-weight:800;color:#fff;text-decoration:none;background:linear-gradient(135deg,#7c3aed,#0088cc);padding:17px 28px;border-radius:14px;box-shadow:0 6px 24px rgba(124,58,237,0.4);transition:opacity 0.2s,transform 0.15s;}
+    .home-btn:hover{opacity:0.92;transform:translateY(-2px);}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 22px;}
+    .card.accent{border-color:var(--accent-dim);background:linear-gradient(160deg,var(--accent-bg),var(--card) 55%);}
+    .points{list-style:none;display:flex;flex-direction:column;gap:14px;}
+    .points li{display:flex;gap:12px;font-size:0.92rem;color:var(--muted);line-height:1.7;}
+    .points li::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:9px;}
+    .points strong{color:var(--text);}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid .cell{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 16px;}
+    .grid .cell b{display:block;font-size:0.95rem;margin-bottom:6px;color:var(--accent);}
+    .grid .cell p{font-size:0.85rem;color:var(--muted);line-height:1.65;}
+    .steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;}
+    .steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;font-size:0.92rem;color:var(--muted);line-height:1.7;}
+    .steps li::before{content:counter(s);flex-shrink:0;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.9rem;color:#0a0a12;background:var(--accent);}
+    .steps strong{color:var(--text);}
+    .checks{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .checks li{font-size:0.92rem;color:var(--muted);line-height:1.6;padding-left:28px;position:relative;}
+    .checks li::before{content:'✓';position:absolute;left:0;top:0;width:20px;height:20px;border-radius:6px;background:var(--accent-bg);color:var(--accent);font-weight:900;font-size:0.8rem;display:flex;align-items:center;justify-content:center;}
+    .notice{border-left:4px solid var(--accent);background:var(--card2);border-radius:0 12px 12px 0;padding:18px 18px;font-size:0.9rem;color:var(--muted);line-height:1.75;}
+    .notice b{color:var(--text);display:block;margin-bottom:6px;}
+    table{width:100%;border-collapse:collapse;font-size:0.86rem;}
+    th,td{padding:11px 8px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;line-height:1.5;}
+    th{color:var(--muted);font-weight:700;white-space:nowrap;}
+    thead th{color:var(--accent);font-size:0.8rem;}
+    tr:last-child th,tr:last-child td{border-bottom:none;}
+    td{font-weight:600;}
+    .src{font-size:0.76rem;color:var(--muted);margin-top:12px;line-height:1.6;}
+    .opts{display:flex;flex-direction:column;gap:10px;}
+    .opt{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+    .opt b{font-size:0.95rem;}
+    .opt span{font-size:0.8rem;color:var(--muted);}
+    .opt i{font-style:normal;font-size:0.75rem;font-weight:800;color:var(--accent);white-space:nowrap;}
+    .rec-text{font-size:0.88rem;color:var(--muted);line-height:1.75;margin-top:14px;}
+    details{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+    details+details{margin-top:10px;}
+    details[open]{border-color:var(--accent-dim);}
+    summary{padding:16px 20px;font-size:0.92rem;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+    summary::-webkit-details-marker{display:none;}
+    summary::after{content:'+';font-size:1.2rem;color:var(--accent);flex-shrink:0;}
+    details[open] summary::after{content:'−';}
+    .faq-body{padding:0 20px 16px;font-size:0.88rem;color:var(--muted);line-height:1.8;}
+    .cta{display:flex;flex-direction:column;gap:12px;}
+    .cta-label{font-size:0.8rem;color:var(--muted);text-align:center;}
+    .btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:50px;font-size:1rem;font-weight:700;text-decoration:none;transition:transform 0.2s;}
+    .btn:hover{transform:translateY(-2px);}
+    .btn-kakao{background:var(--kakao);color:#3a1d1d;box-shadow:0 4px 20px rgba(255,235,0,0.2);}
+    .btn-main{color:var(--muted);border:1px solid var(--border);font-size:0.9rem;}
+    .btn-main:hover{color:var(--text);}
+    .fact-head{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+    @media (max-width:480px){.grid{grid-template-columns:1fr;}h1{font-size:1.4rem;}th{white-space:normal;}}
+    :root{--accent:#c084fc;--accent-dim:rgba(192,132,252,0.35);--accent-bg:rgba(192,132,252,0.1);}
   </style>
 </head>
 <body>
@@ -293,118 +105,62 @@
     <span class="site-name">나노원격임대</span>
   </div>
 
-  <div class="wrap">
+  <main class="wrap">
 
-    <!-- 템빨: 오버기어드 이미지 -->
-    <div class="game-image">
-      <img src="../gimg/overgeared.jpg" alt="템빨: 오버기어드" loading="eager">
-    </div>
-
-    <!-- 게임 소개 -->
     <div>
-      <a href="../../index.html#options" class="home-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12L12 3l9 9"/><path d="M9 21V12h6v9"/></svg>
-        실시간 임대 컴퓨터 확인
-      </a>
-      <h1 class="game-title"><span>템빨: 오버기어드</span> 원격 임대</h1>
-      <p class="game-desc">
-        누적 13억 뷰 웹소설·웹툰 IP 기반, 넥슨의 신작 MMORPG 템빨: 오버기어드(GRAYGAMES 개발, 연내 PC·모바일 크로스플랫폼 출시 예정)를 PC 없이도 24시간 돌릴 수 있습니다.<br>
-        나노원격임대의 고성능 PC를 원격으로 빌려 자동사냥, 다계정 운영을 안정적으로 운영하세요. 현재 사전등록 진행 중입니다.
-      </p>
+      <p class="eyebrow">넥슨 · GRAYGAMES 개발 · 사전등록 중</p>
+      <h1 style="margin-top:8px"><em>템빨: 오버기어드</em> 원격 임대</h1>
+      <p class="lead">누적 13억 뷰 웹소설·웹툰 「템빨」을 원작으로 한 넥슨의 신작 MMORPG입니다. GRAYGAMES가 개발하고, 2026년 안에 PC·모바일 크로스플랫폼으로 출시될 예정입니다.<br>원작처럼 '아이템이 곧 실력'인 게임이라 파밍 시간이 길어질수록 원격PC의 가치가 커집니다.</p>
+      <div class="chips"><span class="chip">웹소설·웹툰 원작</span><span class="chip">PC·모바일 크로스플랫폼</span><span class="chip">2026년 출시 예정</span></div>
     </div>
 
-    <hr>
-
-    <!-- 원격 서비스 설명 -->
-    <div class="service-card">
-      <h2>나노원격임대 서비스 안내</h2>
-      <ul class="service-list">
-        <li>
-          <span class="dot"></span>
-          <span><strong>24시간 무중단 운영</strong> — PC는 항상 켜져 있어 언제든 원격 접속 가능</span>
-        </li>
-        <li>
-          <span class="dot"></span>
-          <span><strong>다계정 멀티 운영</strong> — PC 클라이언트·앱플레이어 최적화 환경에서 여러 계정 동시 운영</span>
-        </li>
-        <li>
-          <span class="dot"></span>
-          <span><strong>3개월 결제 시 할인 혜택</strong> — 장기 이용 고객 할인 적용</span>
-        </li>
-        <li>
-          <span class="dot"></span>
-          <span>저사양 · 중사양 · 고사양 3가지 플랜 — 용도에 맞게 선택 가능</span>
-        </li>
-      </ul>
+    <div class="game-image">
+      <img src="../gimg/overgeared.jpg" alt="템빨: 오버기어드 원격PC 임대 - 나노원격임대" loading="eager">
     </div>
 
-    <!-- 권장 사양 -->
-    <div class="spec-card">
+    <section class="card">
+      <h2>템빨: 오버기어드 한눈에 보기</h2>
+      <table><tbody><tr><th>서비스</th><td>넥슨</td></tr><tr><th>개발</th><td>GRAYGAMES</td></tr><tr><th>플랫폼</th><td>PC · 모바일 크로스플랫폼</td></tr><tr><th>출시</th><td>2026년 연내 예정 (사전등록 진행 중)</td></tr><tr><th>원작</th><td>웹소설·웹툰 「템빨」</td></tr></tbody></table>
+    </section>
+
+    <section class="card accent">
+      <h2>이런 분께 추천해요</h2>
+      <ul class="checks"><li>원작 팬이라 출시 첫날부터 달리고 싶은 분</li><li>크로스플랫폼으로 PC와 휴대폰을 오가며 하고 싶은 분</li><li>출시 후 사양을 보고 옵션을 정하고 싶은 분</li></ul>
+    </section>
+
+    <section class="card">
       <h2>템빨: 오버기어드 PC 사양</h2>
-      <p class="spec-note">현재 사전등록 단계로 넥슨 공식 PC 사양은 아직 공개되지 않았습니다. 공식 사양 공개 시 업데이트됩니다.</p>
-      <div class="spec-table">
-        <div class="spec-row">
-          <span class="spec-label">플랫폼</span>
-          <span class="spec-value">PC · 모바일 크로스플랫폼</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">출시</span>
-          <span class="spec-value">2026년 연내 출시 예정</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">공식 최소/권장 사양</span>
-          <span class="spec-value">출시 전 미공개</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">운영체제</span>
-          <span class="spec-value">Windows 10 64bit 이상 (원격PC 기본 제공)</span>
-        </div>
-      </div>
-    </div>
+      <table><tbody><tr><th>공식 최소/권장 사양</th><td>출시 전 미공개</td></tr><tr><th>플랫폼</th><td>PC · 모바일</td></tr><tr><th>운영체제</th><td>Windows 10 64bit 이상 (원격PC 기본)</td></tr></tbody></table>
+      <p class="src">넥슨 공식 사양이 공개되면 이 페이지에 바로 반영합니다.</p>
+    </section>
 
-    <!-- FAQ -->
-    <div class="faq-section">
+    <section class="card accent">
+      <h2>템빨: 오버기어드 추천 임대 옵션</h2>
+      <div class="opts"><div class="opt"><div><b>라이젠 5700G</b><br><span>8코어 16쓰레드 · RAM 32GB · 내장 Vega 8</span></div><i>BEST · 다중</i></div><div class="opt"><div><b>라이젠 2600</b><br><span>6코어 12쓰레드 · RAM 24GB · 외장 그래픽카드</span></div><i>단독 고사양</i></div></div>
+      <p class="rec-text">공식 사양이 나오기 전이라 확정 추천은 어렵습니다. 사양이 공개되면 그래픽 기준에 맞춰 내장 그래픽(5700G)과 외장 그래픽(2600) 중 맞는 옵션을 안내드립니다.</p>
+    </section>
+
+    <a href="../../index.html#options" class="home-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12L12 3l9 9"/><path d="M9 21V12h6v9"/></svg>
+      실시간 임대 컴퓨터 확인
+    </a>
+
+    <section>
       <h2>템빨: 오버기어드 원격 임대 자주 묻는 질문</h2>
+      <details><summary>템빨: 오버기어드는 언제 출시되나요?</summary><div class="faq-body">넥슨은 2026년 연내 출시를 예고했고, 2026년 10월 1일부터 사전등록을 받고 있습니다. 정확한 출시일은 공식 홈페이지 공지를 확인해주세요.</div></details>
+      <details><summary>원격PC에서 어떻게 플레이하게 되나요?</summary><div class="faq-body">PC·모바일 크로스플랫폼으로 나올 예정이라 PC 클라이언트를 원격PC에 설치해 이용하는 방식이 될 예정입니다. 출시 후 실행 방식이 확정되면 안내드립니다.</div></details>
+      <details><summary>사양이 높으면 어떻게 하나요?</summary><div class="faq-body">공식 사양이 높게 나오면 외장 그래픽카드 옵션(라이젠 2600)을 안내드립니다.</div></details>
+    </section>
 
-      <details>
-        <summary>템빨: 오버기어드를 원격PC에서 어떻게 플레이하나요?</summary>
-        <div class="faq-body">템빨: 오버기어드는 PC·모바일 크로스플랫폼으로 출시될 예정입니다. 원격 접속 후 넥슨 PC 클라이언트로 실행하거나, 앱플레이어(LDPlayer 등)로 모바일 버전을 구동해 플레이하실 수 있습니다.</div>
-      </details>
-
-      <details>
-        <summary>템빨: 오버기어드 자동사냥이 24시간 가능한가요?</summary>
-        <div class="faq-body">네, 가능합니다. 원격PC는 24시간 켜져 있어 자동사냥을 중단 없이 운영할 수 있습니다. 접속을 끊어도 PC는 계속 작동합니다.</div>
-      </details>
-
-      <details>
-        <summary>템빨: 오버기어드 다계정 멀티 운영이 가능한가요?</summary>
-        <div class="faq-body">네, 가능합니다. 사양에 따라 동시 운영 가능한 계정 수가 다릅니다. 2~3계정은 중사양, 4계정 이상은 고사양 플랜을 권장드리며, 공식 사양 공개 후 권장 플랜을 다시 안내드립니다.</div>
-      </details>
-
-      <details>
-        <summary>템빨: 오버기어드 원격PC 임대 비용은 얼마인가요?</summary>
-        <div class="faq-body">저사양·중사양·고사양 3가지 플랜이 있으며, 3개월 결제 시 할인 혜택이 적용됩니다. 정확한 금액은 카카오톡으로 문의해주세요.</div>
-      </details>
-
-      <details>
-        <summary>원격 접속은 어떤 프로그램을 사용하나요?</summary>
-        <div class="faq-body">AnyDesk 또는 Chrome 원격 데스크톱을 사용합니다. 스마트폰, 태블릿, PC 어디서든 접속 가능합니다.</div>
-      </details>
-    </div>
-
-    <!-- CTA -->
     <div class="cta">
-      <p class="cta-label">지금 바로 문의하거나, 자세한 내용을 확인하세요</p>
-      <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" class="btn btn-kakao">
+      <p class="cta-label">궁금한 점은 카카오톡으로 편하게 물어보세요</p>
+      <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" rel="noopener" class="btn btn-kakao">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 11c0 2.937 1.635 5.5 4.11 7.1l-.97 3.57 3.94-2.06C10.3 19.87 11.13 20 12 20c5.523 0 10-3.477 10-8s-4.477-9-10-9z"/></svg>
         카카오톡 문의하기
       </a>
-      <a href="../../index.html" class="btn btn-main">
-        자세한 내용 보기 → 나노 홈페이지
-      </a>
+      <a href="../../index.html" class="btn btn-main">자세한 내용 보기 → 나노 홈페이지</a>
     </div>
-
-  </div>
+  </main>
 
 </body>
 </html>

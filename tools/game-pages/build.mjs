@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>조선협객전 클래식 원격 임대 | 조선협객전 원격PC | 나노원격임대</title>
-  <meta name="description" content="조선협객전 클래식 원격PC 임대. 스마트나우 사냥·파밍 중심 MMORPG를 원격PC에서 상시 접속. 둔갑술·신수·마패 파밍 시간을 늘리세요.">
-  <meta name="keywords" content="조선협객전 클래식 원격PC, 조선협객전 원격임대, 조선협객전 클래식 PC, 조선협객전 클래식 다계정, 조선협객전 클래식 사냥, 조선협객전 사양, 원격PC 임대, 나노원격임대">
-  <meta property="og:title" content="조선협객전 클래식 원격 임대 | 조선협객전 원격PC">
-  <meta property="og:description" content="조선협객전 클래식 원격PC 임대. 스마트나우 사냥·파밍 중심 MMORPG를 원격PC에서 상시 접속. 둔갑술·신수·마패 파밍 시간을 늘리세요.">
-  <meta property="og:image" content="https://원격임대.com/game/gimg/jo.png">
-  <meta property="og:url" content="https://원격임대.com/game/game/jo.html">
-  <link rel="canonical" href="https://원격임대.com/game/game/jo.html">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
-  <meta property="og:site_name" content="나노원격임대">
-  <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"조선협객전 클래식은 PC로도 할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. PC 클라이언트와 Android·iOS를 함께 지원하는 멀티 플랫폼 게임입니다. 원격PC에는 공식 PC 클라이언트를 설치해 이용합니다."}},{"@type":"Question","name":"조선협객전M과 같은 게임인가요?","acceptedAnswer":{"@type":"Answer","text":"2021년 출시된 조선협객전M을 기반으로 아트와 시스템 전반을 리뉴얼한 후속작입니다."}},{"@type":"Question","name":"어떤 옵션이 맞을지 모르겠어요.","acceptedAnswer":{"@type":"Answer","text":"운영할 계정 수와 그래픽 품질을 알려주시면 카카오톡으로 맞는 옵션을 안내드립니다."}}]}</script>
-  <style>
+// 게임 서브페이지 생성기
+// 사용법: node tools/game-pages/build.mjs            (전체 생성)
+//         node tools/game-pages/build.mjs dk zeus    (특정 페이지만)
+// 페이지 내용은 data.mjs, 레이아웃(L1~L5)은 아래 LAYOUTS 참고.
+import { writeFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+import { GAMES, OPTIONS } from "./data.mjs";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const SITE = "https://원격임대.com";
+const KAKAO = "https://open.kakao.com/o/gdQUrDrh";
+
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+const CSS = `
     :root{--bg:#0a0a12;--card:#13131f;--card2:#181828;--border:rgba(255,255,255,0.08);--text:#f0f0ff;--muted:#9a9ab8;--kakao:#ffeb00;--radius:16px;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
@@ -91,8 +85,149 @@
     .btn-main{color:var(--muted);border:1px solid var(--border);font-size:0.9rem;}
     .btn-main:hover{color:var(--text);}
     .fact-head{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
-    @media (max-width:480px){.grid{grid-template-columns:1fr;}h1{font-size:1.4rem;}th{white-space:normal;}}
-    :root{--accent:#10b981;--accent-dim:rgba(16,185,129,0.35);--accent-bg:rgba(16,185,129,0.1);}
+    @media (max-width:480px){.grid{grid-template-columns:1fr;}h1{font-size:1.4rem;}th{white-space:normal;}}`;
+
+const hexToRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)).join(",");
+
+// ---------- 섹션 컴포넌트 ----------
+const S = {
+  image: (g) => `
+    <div class="game-image">
+      <img src="../gimg/${g.img}" alt="${esc(g.name)} 원격PC 임대 - 나노원격임대" loading="eager">
+    </div>`,
+  head: (g) => `
+    <div>
+      <p class="eyebrow">${esc(g.eyebrow)}</p>
+      <h1 style="margin-top:8px">${g.h1}</h1>
+      <p class="lead">${g.lead}</p>
+      ${g.chips ? `<div class="chips">${g.chips.map((c) => `<span class="chip">${esc(c)}</span>`).join("")}</div>` : ""}
+    </div>`,
+  homeBtn: () => `
+    <a href="../../index.html#options" class="home-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12L12 3l9 9"/><path d="M9 21V12h6v9"/></svg>
+      실시간 임대 컴퓨터 확인
+    </a>`,
+  facts: (g) => `
+    <section class="card">
+      <h2>${esc(g.name)} 한눈에 보기</h2>
+      <table><tbody>${g.facts.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${v}</td></tr>`).join("")}</tbody></table>
+    </section>`,
+  factHead: (g) => `
+    <section class="card accent">
+      <div class="fact-head">
+        <p class="eyebrow">${esc(g.eyebrow)}</p>
+        <h1>${g.h1}</h1>
+      </div>
+      <table><tbody>${g.facts.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${v}</td></tr>`).join("")}</tbody></table>
+      <p class="lead">${g.lead}</p>
+    </section>`,
+  points: (g) => `
+    <section class="card">
+      <h2>${esc(g.pointsTitle)}</h2>
+      <ul class="points">${g.points.map(([t, d]) => `<li><span><strong>${t}</strong> — ${d}</span></li>`).join("")}</ul>
+    </section>`,
+  grid: (g) => `
+    <section>
+      <h2>${esc(g.pointsTitle)}</h2>
+      <div class="grid">${g.points.map(([t, d]) => `<div class="cell"><b>${t}</b><p>${d}</p></div>`).join("")}</div>
+    </section>`,
+  steps: (g) => `
+    <section class="card">
+      <h2>${esc(g.stepsTitle)}</h2>
+      <ol class="steps">${g.steps.map(([t, d]) => `<li><span><strong>${t}</strong><br>${d}</span></li>`).join("")}</ol>
+    </section>`,
+  checks: (g) => `
+    <section class="card accent">
+      <h2>이런 분께 추천해요</h2>
+      <ul class="checks">${g.checks.map((c) => `<li>${c}</li>`).join("")}</ul>
+    </section>`,
+  compare: (g) => `
+    <section class="card">
+      <h2>집 PC로 돌릴 때 vs 원격PC</h2>
+      <table><thead><tr><th></th><th>집 PC</th><th>나노 원격PC</th></tr></thead><tbody>
+        ${g.compare.map(([k, a, b]) => `<tr><th>${esc(k)}</th><td style="color:var(--muted);font-weight:500">${a}</td><td>${b}</td></tr>`).join("")}
+      </tbody></table>
+    </section>`,
+  notice: (g) => `
+    <div class="notice"><b>${g.notice[0]}</b>${g.notice[1]}</div>`,
+  spec: (g) => {
+    const sp = g.spec;
+    const body = sp.cols
+      ? `<table><thead><tr><th>항목</th>${sp.cols.map((c) => `<th>${c}</th>`).join("")}</tr></thead><tbody>${sp.rows.map(([k, ...v]) => `<tr><th>${esc(k)}</th>${v.map((x) => `<td>${x}</td>`).join("")}</tr>`).join("")}</tbody></table>`
+      : `<table><tbody>${sp.rows.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${v}</td></tr>`).join("")}</tbody></table>`;
+    return `
+    <section class="card">
+      <h2>${esc(sp.title)}</h2>
+      ${body}
+      ${sp.note ? `<p class="src">${sp.note}</p>` : ""}
+    </section>`;
+  },
+  recommend: (g) => `
+    <section class="card accent">
+      <h2>${esc(g.name)} 추천 임대 옵션</h2>
+      <div class="opts">${g.recommend.ids.map((id) => {
+        const o = OPTIONS[id];
+        return `<div class="opt"><div><b>${o.name}</b><br><span>${o.spec}</span></div><i>${o.tag}</i></div>`;
+      }).join("")}</div>
+      <p class="rec-text">${g.recommend.text}</p>
+    </section>`,
+  faq: (g) => `
+    <section>
+      <h2>${esc(g.name)} 원격 임대 자주 묻는 질문</h2>
+      ${g.faq.map(([q, a]) => `<details><summary>${q}</summary><div class="faq-body">${a}</div></details>`).join("\n      ")}
+    </section>`,
+  cta: (g) => `
+    <div class="cta">
+      <p class="cta-label">${esc(g.ctaLabel || "궁금한 점은 카카오톡으로 편하게 물어보세요")}</p>
+      <a href="${KAKAO}" target="_blank" rel="noopener" class="btn btn-kakao">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 11c0 2.937 1.635 5.5 4.11 7.1l-.97 3.57 3.94-2.06C10.3 19.87 11.13 20 12 20c5.523 0 10-3.477 10-8s-4.477-9-10-9z"/></svg>
+        카카오톡 문의하기
+      </a>
+      <a href="../../index.html" class="btn btn-main">자세한 내용 보기 → 나노 홈페이지</a>
+    </div>`,
+};
+
+// ---------- 레이아웃 (페이지마다 다른 구성) ----------
+const LAYOUTS = {
+  L1: ["image", "head", "homeBtn", "points", "recommend", "spec", "faq", "cta"],
+  L2: ["head", "image", "facts", "checks", "spec", "recommend", "homeBtn", "faq", "cta"],
+  L3: ["image", "head", "steps", "facts", "spec", "notice", "homeBtn", "faq", "cta"],
+  L4: ["head", "homeBtn", "image", "compare", "grid", "recommend", "spec", "faq", "cta"],
+  L5: ["factHead", "image", "notice", "points", "spec", "recommend", "homeBtn", "faq", "cta"],
+};
+
+function render(g) {
+  const url = `${SITE}/game/game/${g.file}.html`;
+  const ogImg = `${SITE}/game/gimg/${g.img}`;
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: g.faq.map(([q, a]) => ({ "@type": "Question", name: q.replace(/<[^>]+>/g, ""), acceptedAnswer: { "@type": "Answer", text: a.replace(/<[^>]+>/g, "") } })),
+  };
+  const body = LAYOUTS[g.layout].map((k) => S[k](g)).join("\n");
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${esc(g.title)}</title>
+  <meta name="description" content="${esc(g.description)}">
+  <meta name="keywords" content="${esc(g.keywords)}">
+  <meta property="og:title" content="${esc(g.title.replace(/ \| 나노원격임대$/, ""))}">
+  <meta property="og:description" content="${esc(g.description)}">
+  <meta property="og:image" content="${ogImg}">
+  <meta property="og:url" content="${url}">
+  <link rel="canonical" href="${url}">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+  <meta property="og:site_name" content="나노원격임대">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script type="application/ld+json">${JSON.stringify(faqLd)}</script>
+  <style>${CSS}
+    :root{--accent:${g.accent};--accent-dim:rgba(${hexToRgb(g.accent)},0.35);--accent-bg:rgba(${hexToRgb(g.accent)},0.1);}
   </style>
 </head>
 <body>
@@ -106,63 +241,18 @@
   </div>
 
   <main class="wrap">
-
-    <div>
-      <p class="eyebrow">스마트나우 · 2026.02.25 출시</p>
-      <h1 style="margin-top:8px"><em>조선협객전 클래식</em> 원격 임대</h1>
-      <p class="lead">2021년 조선협객전M을 기반으로 아트와 시스템을 새로 만든 조선협객전 클래식은 2026년 2월 25일 PC·모바일로 출시됐습니다.<br>유료 뽑기 대신 <strong>필드 사냥·파밍으로 둔갑술, 신수, 마패</strong>를 얻는 구조라, 사냥 시간이 곧 경쟁력입니다.</p>
-      <div class="chips"><span class="chip">사냥·파밍 중심</span><span class="chip">PC·모바일</span><span class="chip">뽑기 BM 배제</span></div>
-    </div>
-
-    <a href="../../index.html#options" class="home-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12L12 3l9 9"/><path d="M9 21V12h6v9"/></svg>
-      실시간 임대 컴퓨터 확인
-    </a>
-
-    <div class="game-image">
-      <img src="../gimg/jo.png" alt="조선협객전 클래식 원격PC 임대 - 나노원격임대" loading="eager">
-    </div>
-
-    <section class="card">
-      <h2>집 PC로 돌릴 때 vs 원격PC</h2>
-      <table><thead><tr><th></th><th>집 PC</th><th>나노 원격PC</th></tr></thead><tbody>
-        <tr><th>사냥 시간</th><td style="color:var(--muted);font-weight:500">PC 켜 둔 시간만</td><td>원격PC로 상시 접속</td></tr><tr><th>확인</th><td style="color:var(--muted);font-weight:500">집에서만</td><td>어디서든 원격 앱</td></tr><tr><th>기기 부담</th><td style="color:var(--muted);font-weight:500">발열·소음</td><td>없음</td></tr>
-      </tbody></table>
-    </section>
-
-    <section>
-      <h2>조선협객전 클래식 원격PC 포인트</h2>
-      <div class="grid"><div class="cell"><b>파밍이 곧 성장</b><p>핵심 콘텐츠를 필드에서 얻는 구조라 접속 유지 시간이 중요합니다.</p></div><div class="cell"><b>PC 클라이언트 지원</b><p>공식 PC 클라이언트로 원격PC에서 실행합니다.</p></div><div class="cell"><b>임진왜란 배경</b><p>조선 시대 협객 세계관을 원격으로 어디서든 이어가세요.</p></div><div class="cell"><b>가벼운 운영</b><p>사양이 공개되지 않아, 이용 전 원하는 운영 방식을 알려주시면 옵션을 맞춰 드립니다.</p></div></div>
-    </section>
-
-    <section class="card accent">
-      <h2>조선협객전 클래식 추천 임대 옵션</h2>
-      <div class="opts"><div class="opt"><div><b>라이젠 5700G</b><br><span>8코어 16쓰레드 · RAM 32GB · 내장 Vega 8</span></div><i>BEST · 다중</i></div><div class="opt"><div><b>라이젠 2600</b><br><span>6코어 12쓰레드 · RAM 24GB · 외장 그래픽카드</span></div><i>단독 고사양</i></div></div>
-      <p class="rec-text">공식 PC 상세 사양이 공개되지 않아 확정 추천 대신 상담을 권합니다. 다계정은 RAM 32GB인 5700G, 고화질 1계정은 외장 그래픽 2600을 기준으로 안내드립니다.</p>
-    </section>
-
-    <section class="card">
-      <h2>조선협객전 클래식 PC 정보</h2>
-      <table><tbody><tr><th>플랫폼</th><td>PC 클라이언트 · Android · iOS</td></tr><tr><th>공식 PC 상세 사양</th><td>공식 홈페이지 미공개</td></tr><tr><th>운영체제</th><td>Windows 10 64bit 이상 (원격PC 기본)</td></tr></tbody></table>
-      <p class="src">공식 사양이 공개되면 이 페이지에 반영합니다.</p>
-    </section>
-
-    <section>
-      <h2>조선협객전 클래식 원격 임대 자주 묻는 질문</h2>
-      <details><summary>조선협객전 클래식은 PC로도 할 수 있나요?</summary><div class="faq-body">네. PC 클라이언트와 Android·iOS를 함께 지원하는 멀티 플랫폼 게임입니다. 원격PC에는 공식 PC 클라이언트를 설치해 이용합니다.</div></details>
-      <details><summary>조선협객전M과 같은 게임인가요?</summary><div class="faq-body">2021년 출시된 조선협객전M을 기반으로 아트와 시스템 전반을 리뉴얼한 후속작입니다.</div></details>
-      <details><summary>어떤 옵션이 맞을지 모르겠어요.</summary><div class="faq-body">운영할 계정 수와 그래픽 품질을 알려주시면 카카오톡으로 맞는 옵션을 안내드립니다.</div></details>
-    </section>
-
-    <div class="cta">
-      <p class="cta-label">궁금한 점은 카카오톡으로 편하게 물어보세요</p>
-      <a href="https://open.kakao.com/o/gdQUrDrh" target="_blank" rel="noopener" class="btn btn-kakao">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 11c0 2.937 1.635 5.5 4.11 7.1l-.97 3.57 3.94-2.06C10.3 19.87 11.13 20 12 20c5.523 0 10-3.477 10-8s-4.477-9-10-9z"/></svg>
-        카카오톡 문의하기
-      </a>
-      <a href="../../index.html" class="btn btn-main">자세한 내용 보기 → 나노 홈페이지</a>
-    </div>
+${body}
   </main>
 
 </body>
 </html>
+`;
+}
+
+const only = process.argv.slice(2);
+for (const g of GAMES) {
+  if (only.length && !only.includes(g.file)) continue;
+  for (const k of LAYOUTS[g.layout]) if (!S[k]) throw new Error(`${g.file}: unknown section ${k}`);
+  writeFileSync(join(ROOT, "game", "game", `${g.file}.html`), render(g));
+  console.log(`${g.file}.html  (${g.layout})`);
+}
