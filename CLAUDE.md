@@ -84,8 +84,9 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 9. **구글 색인 신청용 주소 (항상 맨 마지막)** — 완료 보고의 **가장 마지막 줄**에 사용자가 구글 서치콘솔에 바로 붙여넣을 수 있도록 아래 형식으로 주소를 적는다 (출처 목록보다도 뒤):
    ```
    📌 구글 색인 신청 주소
-   https://원격임대.com/game/game/<파일명>.html
+   https://xn--i89a73jyusvua.com/game/game/<파일명>.html
    ```
+   (서치콘솔은 한글 도메인 입력 시 오류가 나므로 **반드시 퓨니코드 주소**로 안내)
 
 ---
 
