@@ -77,7 +77,7 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 2. **이미지 적용** — 사용자가 `game/gimg/`에 넣은 이미지 파일명을 확인 후 자동 연결. 이미지가 없으면 배너 이미지를 복사해 사용
 3. **HTML 생성 (생성기 사용)** — `tools/game-pages/data.mjs`의 `GAMES` 배열에 게임 데이터(`updated: "오늘 날짜"` 포함)를 추가하고 `node tools/game-pages/build.mjs <파일명>`으로 생성. 빌드 시 `rss.xml`도 자동 재생성되므로 커밋에 `rss.xml` 포함. 기존 페이지 내용을 고칠 때도 `updated`를 오늘 날짜로 갱신. HTML을 직접 복사해 만들지 않는다. 아래 **게임 페이지 개성 규칙**을 따른다
 4. **sitemap.xml 업데이트** — 새 페이지 URL을 `sitemap.xml`에 자동 추가. `<loc>` 도메인은 반드시 퓨니코드 `https://xn--i89a73jyusvua.com/...` 로 작성 (한글 도메인 직접 기입 금지), lastmod는 오늘 날짜
-4-1. **메인 "지원 게임" 섹션** — `index.html`의 `<!-- GAMES:START -->`~`<!-- GAMES:END -->` 카드 목록은 빌드 시 `data.mjs`의 `card` 문구로 자동 갱신 (직접 수정 금지, 게임 추가 시 `card` 필드 필수). 섹션을 빼려면 index.html의 '지원 게임 섹션 시작~끝' 주석 블록과 style.css의 '지원 게임' 블록을 삭제
+4-1. **메인 "게임별 추천 사양" 섹션** — `index.html`의 `<!-- GAMES:START -->`~`<!-- GAMES:END -->` 카드 목록은 빌드 시 자동 갱신 (게임명 + `recommend.ids`의 추천 CPU명, 직접 수정 금지). 섹션을 빼려면 index.html의 '게임별 추천 사양 섹션 시작~끝' 주석 블록과 style.css의 '게임별 추천 사양' 블록을 삭제
 5. **nav 드랍다운 업데이트** — `index.html`의 `.nav-dropdown-menu` 안에 `<li role="menuitem"><a href="game/game/<파일명>.html">게임명</a></li>` 항목 추가
 6. **업로드** — 사용자가 "업로드해줘"라고 하면 즉시 git add → commit → push
 7. **네이버 색인 요청** — push 후 운영 도메인에 새 페이지가 뜨는지(200) 확인하고 `powershell -NoProfile -ExecutionPolicy Bypass -File tools/indexnow.ps1 game/game/<파일명>.html` 실행 (IndexNow, 키 파일 `acf4f169846da306f06e75b21cbabdd6.txt`는 루트에 있으므로 삭제 금지). 페이지 내용 수정 시에도 동일하게 실행. 사용자에게 묻지 않고 매번 자동 실행하며, 완료 보고에 네이버 응답 코드를 함께 안내. (구글 서치콘솔은 사용자가 수동 처리 — 자동화하지 않음)

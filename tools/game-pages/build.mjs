@@ -191,7 +191,7 @@ const S = {
 const LAYOUTS = {
   L1: ["image", "head", "homeBtn", "points", "recommend", "spec", "faq", "cta"],
   L2: ["head", "image", "facts", "checks", "spec", "recommend", "homeBtn", "faq", "cta"],
-  L3: ["image", "head", "steps", "facts", "spec", "notice", "homeBtn", "faq", "cta"],
+  L3: ["image", "head", "steps", "facts", "spec", "notice", "recommend", "homeBtn", "faq", "cta"],
   L4: ["head", "homeBtn", "image", "compare", "grid", "recommend", "spec", "faq", "cta"],
   L5: ["factHead", "image", "notice", "points", "spec", "recommend", "homeBtn", "faq", "cta"],
 };
@@ -279,26 +279,25 @@ ${items.map((g) => `
 `;
 }
 
-// ---------- 메인 페이지 "지원 게임" 섹션 — index.html의 GAMES:START~END 사이를 교체 ----------
+// ---------- 메인 페이지 "게임별 추천 사양" 섹션 — index.html의 GAMES:START~END 사이를 교체 ----------
 function updateIndexGames() {
   const file = join(ROOT, "index.html");
   const html = readFileSync(file, "utf8");
   const re = /(<!-- GAMES:START[^>]*-->)[\s\S]*?(<!-- GAMES:END -->)/;
-  if (!re.test(html)) return console.log("index.html: GAMES 마커 없음 (지원 게임 섹션 생략)");
+  if (!re.test(html)) return console.log("index.html: GAMES 마커 없음 (추천 사양 섹션 생략)");
   const cards = GAMES.map((g) => `
           <a class="game-card" href="game/game/${g.file}.html" style="--gc:${g.accent}">
             <span class="game-card-name">${g.name}</span>
-            <span class="game-card-desc">${g.card}</span>
+            <span class="game-card-desc">${g.recommend.ids.map((id) => `<b>${OPTIONS[id].name}</b>`).join(" · ")}</span>
           </a>`).join("");
   writeFileSync(file, html.replace(re, `$1
         <div class="games-grid">${cards}
         </div>
         $2`));
-  console.log("index.html (지원 게임 " + GAMES.length + "개)");
+  console.log("index.html (게임별 추천 사양 " + GAMES.length + "개)");
 }
 
 const only = process.argv.slice(2);
-for (const g of GAMES) if (!g.card) throw new Error(`${g.file}: card(지원 게임 카드 문구) 필요`);
 updateIndexGames();
 for (const g of GAMES) if (!/^\d{4}-\d{2}-\d{2}$/.test(g.updated || "")) throw new Error(`${g.file}: updated(YYYY-MM-DD) 필요`);
 writeFileSync(join(ROOT, "rss.xml"), renderRss());
