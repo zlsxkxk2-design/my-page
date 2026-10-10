@@ -2,18 +2,170 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>나노 원격 임대</title>
-    <link>https://원격임대.com/</link>
-    <atom:link href="https://원격임대.com/rss.xml" rel="self" type="application/rss+xml"/>
-    <description>24시간 원격PC 임대. 리니지M·앱플레이어 최적화.</description>
+    <link>https://xn--i89a73jyusvua.com/</link>
+    <atom:link href="https://xn--i89a73jyusvua.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>24시간 게임 원격PC 임대 — 게임별 원격PC 이용 안내</description>
     <language>ko</language>
-    <lastBuildDate>Mon, 14 Apr 2026 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 10 Oct 2026 00:00:00 +0000</lastBuildDate>
 
     <item>
-      <title>나노 원격임대 서비스 안내</title>
-      <link>https://원격임대.com/</link>
-      <description><![CDATA[24시간 무중단 원격PC 임대 서비스. 리니지M·앱플레이어 최적화. 3개월 결제 시 할인 혜택.]]></description>
-      <pubDate>Mon, 14 Apr 2026 00:00:00 +0900</pubDate>
-      <guid isPermaLink="true">https://원격임대.com/</guid>
+      <title>리니지M 원격 임대 | 리니지M 퍼플 다계정 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/lineagem.html</link>
+      <description><![CDATA[리니지M 원격PC 임대. 퍼플(PURPLE) 멀티 로그인·앱플레이어로 리니지M 다계정을 24시간 자동사냥. 휴대폰 배터리·발열 걱정 없이 원격PC로 운영하세요.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/lineagem.html</guid>
+    </item>
+
+    <item>
+      <title>도깨비의세계 원격 임대 | 도깨비의세계 PC 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/dokkaebi.html</link>
+      <description><![CDATA[도깨비의세계 원격PC 임대. 구글 플레이 게임즈 PC 버전으로 접속 중 자동사냥을 이어가고, 휴대폰은 원격 앱으로 확인하세요. 오프라인 사냥 8시간 이후에도 접속 유지 가능.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/dokkaebi.html</guid>
+    </item>
+
+    <item>
+      <title>나이트크로우 원격 임대 | 나이트크로우 자동사냥 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/night.html</link>
+      <description><![CDATA[나이트크로우 원격PC 임대. 언리얼 엔진5 기반 나이트크로우를 외장 그래픽 원격PC로 24시간 자동사냥. 스마트폰으로 접속해 거래소·상태 확인까지.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/night.html</guid>
+    </item>
+
+    <item>
+      <title>솔: 인챈트 원격 임대 | SOL: enchant 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/sol.html</link>
+      <description><![CDATA[SOL: enchant(솔 인챈트) 원격PC 임대. 24시간 무접속 플레이로는 안 되는 접속형 콘텐츠·다계정을 원격PC로. GPG 넷마블 런처 기반 PC 버전 이용.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/sol.html</guid>
+    </item>
+
+    <item>
+      <title>아스달 연대기 원격 임대 | 아스달 연대기 자동사냥 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/asdal.html</link>
+      <description><![CDATA[아스달 연대기: 세 개의 세력 원격PC 임대. 넷마블 PC 버전을 원격PC에서 24시간 자동사냥, 세력전 시간엔 휴대폰으로 바로 접속.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/asdal.html</guid>
+    </item>
+
+    <item>
+      <title>거상 원격 임대 | 천하제일상 거상 3클라 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/gs.html</link>
+      <description><![CDATA[천하제일상 거상 원격PC 임대. PC 1대 최대 3클라이언트 공식 허용 범위에서 다클라를 24시간 접속 유지. 저사양 게임이라 경제적인 옵션으로 충분.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/gs.html</guid>
+    </item>
+
+    <item>
+      <title>템빨 오버기어드 원격 임대 | 템빨 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/overgeared.html</link>
+      <description><![CDATA[템빨: 오버기어드 원격PC 임대. 넥슨·GRAYGAMES 신작 크로스플랫폼 MMORPG를 원격PC로. 공식 사양 공개 시 바로 업데이트.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/overgeared.html</guid>
+    </item>
+
+    <item>
+      <title>뱀피르 원격 임대 | 뱀피르 자동사냥 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/vam.html</link>
+      <description><![CDATA[뱀피르 원격PC 임대. 넷마블 성인 MMORPG 뱀피르를 넷마블 런처 PC 버전으로 24시간. 넷마블 커넥트 대신 PC 자체를 빌려 집 PC는 끄세요.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/vam.html</guid>
+    </item>
+
+    <item>
+      <title>아이온2 원격 임대 | 아이온2 원격PC 플레이</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/aion2.html</link>
+      <description><![CDATA[아이온2 원격PC 임대. PC는 자동전투가 없는 수동 액션 MMORPG — 고사양 PC가 없어도 원격PC로 아이온2 PC 버전을 플레이하세요. 모바일 어시스트 모드와 차이 안내.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/aion2.html</guid>
+    </item>
+
+    <item>
+      <title>로드나인 원격 임대 | 로드나인 자동사냥 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/lordnine.html</link>
+      <description><![CDATA[로드나인 원격PC 임대. 스마일게이트 STOVE PC 버전으로 로드나인을 24시간 자동사냥. 신규서버 하칸도 원격PC로 이어서 성장.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/lordnine.html</guid>
+    </item>
+
+    <item>
+      <title>RF온라인 넥스트 원격 임대 | RF온라인 자동사냥 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/rf.html</link>
+      <description><![CDATA[RF온라인 넥스트 원격PC 임대. 넷마블 SF MMORPG를 원격PC에서 24시간 자동사냥. 슈퍼 부스트 서버 '노바'도 원격PC로.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/rf.html</guid>
+    </item>
+
+    <item>
+      <title>바람의나라 원격 임대 | 바람의나라 원격PC 접속 유지</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/wind.html</link>
+      <description><![CDATA[바람의나라 원격PC 임대. 1996년부터 이어진 넥슨 바람의나라를 원격PC로 언제든 접속. 공식 자동사냥(600레벨·하루 4시간) 조건까지 정확히 안내.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/wind.html</guid>
+    </item>
+
+    <item>
+      <title>DK모바일 리본 원격 임대 | DK모바일 리본 앱플레이어 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/dk.html</link>
+      <description><![CDATA[DK모바일 리본 원격PC 임대. 2026년 10월 1일 그랜드 오픈한 DK모바일 리본을 앱플레이어로 24시간 자동사냥, 다계정까지.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/dk.html</guid>
+    </item>
+
+    <item>
+      <title>조선협객전 클래식 원격 임대 | 조선협객전 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/jo.html</link>
+      <description><![CDATA[조선협객전 클래식 원격PC 임대. 스마트나우 사냥·파밍 중심 MMORPG를 원격PC에서 상시 접속. 둔갑술·신수·마패 파밍 시간을 늘리세요.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/jo.html</guid>
+    </item>
+
+    <item>
+      <title>오딘 발할라 라이징 원격 임대 | 오딘 자동사냥 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/odin.html</link>
+      <description><![CDATA[오딘: 발할라 라이징 원격PC 임대. 카카오게임즈 오딘 PC 버전을 원격PC에서 24시간 자동사냥. 북유럽 오픈월드를 어디서든 이어서.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/odin.html</guid>
+    </item>
+
+    <item>
+      <title>제우스 오만의 신 원격 임대 | 제우스 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/zeus.html</link>
+      <description><![CDATA[제우스: 오만의 신 원격PC 임대. 컴투스 언리얼 엔진5 MMORPG, 공식 권장 RAM 32GB·RTX 3060. 고사양 부담 없이 원격PC로 이용하세요.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/zeus.html</guid>
+    </item>
+
+    <item>
+      <title>리니지 클래식 원격 임대 | 리니지 클래식 원격PC 24시간 접속</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/LC.html</link>
+      <description><![CDATA[리니지 클래식 원격PC 임대. PC 전용 리니지 클래식을 스마트폰·노트북 어디서든 원격으로 접속해 플레이하고, 권장사양(SSD 필수) 이상의 PC로 다계정까지 안정적으로 운영하세요.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/LC.html</guid>
+    </item>
+
+    <item>
+      <title>이클립스 더 어웨이크닝 원격 임대 | 이클립스 자동성장 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/eclipse.html</link>
+      <description><![CDATA[이클립스: 더 어웨이크닝 원격PC 임대. 엔픽셀·스마일게이트 언리얼 엔진5 MMORPG의 자동 퀘스트·자동사냥과 AI 모드를 원격PC에서 상시 실행.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/eclipse.html</guid>
+    </item>
+
+    <item>
+      <title>메이플스토리 원격 임대 | 메이플스토리 원격PC 플레이</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/maple.html</link>
+      <description><![CDATA[메이플스토리 원격PC 임대. 저사양 노트북·맥·태블릿에서도 원격PC로 메이플스토리 PC 버전을 플레이. 자동사냥·멀티클라 정책까지 정확히 안내.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/maple.html</guid>
+    </item>
+
+    <item>
+      <title>로한2 원격 임대 | 로한2 자동사냥 원격PC</title>
+      <link>https://xn--i89a73jyusvua.com/game/game/rohan2.html</link>
+      <description><![CDATA[로한2 원격PC 임대. 플레이위드 로한2를 원격PC에서 24시간 자동사냥. DirectX 12·50GB 요구 사양을 원격PC가 대신.]]></description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://xn--i89a73jyusvua.com/game/game/rohan2.html</guid>
     </item>
 
   </channel>

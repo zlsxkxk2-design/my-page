@@ -75,7 +75,7 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 0. **keywords 메타태그** — "게임명 원격PC, 게임명 원격임대, 게임명 PC임대, 원격PC 임대, 나노원격임대" + 그 게임에 실제로 해당하는 키워드(다계정·자동사냥·PC버전 등)만 작성. 게임에 없는 기능(예: 자동사냥 없는 게임의 "자동사냥/무한사냥")은 넣지 않는다
 1. **공식 정보 조회** — 공식 홈페이지/공식 공지에서 최소·권장 사양, 출시일, 개발·서비스사, PC 실행 방식(런처), **자동사냥·다중 클라이언트 정책**을 웹 검색으로 확인. 확인되지 않은 사양은 임의로 채우지 말고 "공식 미공개"로 표기
 2. **이미지 적용** — 사용자가 `game/gimg/`에 넣은 이미지 파일명을 확인 후 자동 연결. 이미지가 없으면 배너 이미지를 복사해 사용
-3. **HTML 생성 (생성기 사용)** — `tools/game-pages/data.mjs`의 `GAMES` 배열에 게임 데이터를 추가하고 `node tools/game-pages/build.mjs <파일명>`으로 생성. HTML을 직접 복사해 만들지 않는다. 아래 **게임 페이지 개성 규칙**을 따른다
+3. **HTML 생성 (생성기 사용)** — `tools/game-pages/data.mjs`의 `GAMES` 배열에 게임 데이터(`updated: "오늘 날짜"` 포함)를 추가하고 `node tools/game-pages/build.mjs <파일명>`으로 생성. 빌드 시 `rss.xml`도 자동 재생성되므로 커밋에 `rss.xml` 포함. 기존 페이지 내용을 고칠 때도 `updated`를 오늘 날짜로 갱신. HTML을 직접 복사해 만들지 않는다. 아래 **게임 페이지 개성 규칙**을 따른다
 4. **sitemap.xml 업데이트** — 새 페이지 URL을 `sitemap.xml`에 자동 추가. `<loc>` 도메인은 반드시 퓨니코드 `https://xn--i89a73jyusvua.com/...` 로 작성 (한글 도메인 직접 기입 금지), lastmod는 오늘 날짜
 5. **nav 드랍다운 업데이트** — `index.html`의 `.nav-dropdown-menu` 안에 `<li role="menuitem"><a href="game/game/<파일명>.html">게임명</a></li>` 항목 추가
 6. **업로드** — 사용자가 "업로드해줘"라고 하면 즉시 git add → commit → push

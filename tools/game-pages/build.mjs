@@ -249,7 +249,40 @@ ${body}
 `;
 }
 
+// ---------- RSS (rss.xml) — 게임 페이지 목록으로 매번 재생성 ----------
+const PUNY = "https://xn--i89a73jyusvua.com";
+const rfc822 = (d) => new Date(`${d}T09:00:00+09:00`).toUTCString().replace("GMT", "+0000");
+function renderRss() {
+  const items = [...GAMES].sort((a, b) => b.updated.localeCompare(a.updated));
+  const latest = items[0].updated;
+  const xmlEsc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>나노 원격 임대</title>
+    <link>${PUNY}/</link>
+    <atom:link href="${PUNY}/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>24시간 게임 원격PC 임대 — 게임별 원격PC 이용 안내</description>
+    <language>ko</language>
+    <lastBuildDate>${rfc822(latest)}</lastBuildDate>
+${items.map((g) => `
+    <item>
+      <title>${xmlEsc(g.title.replace(/ \| 나노원격임대$/, ""))}</title>
+      <link>${PUNY}/game/game/${g.file}.html</link>
+      <description><![CDATA[${g.description}]]></description>
+      <pubDate>${rfc822(g.updated)}</pubDate>
+      <guid isPermaLink="true">${PUNY}/game/game/${g.file}.html</guid>
+    </item>`).join("\n")}
+
+  </channel>
+</rss>
+`;
+}
+
 const only = process.argv.slice(2);
+for (const g of GAMES) if (!/^\d{4}-\d{2}-\d{2}$/.test(g.updated || "")) throw new Error(`${g.file}: updated(YYYY-MM-DD) 필요`);
+writeFileSync(join(ROOT, "rss.xml"), renderRss());
+console.log("rss.xml");
 for (const g of GAMES) {
   if (only.length && !only.includes(g.file)) continue;
   for (const k of LAYOUTS[g.layout]) if (!S[k]) throw new Error(`${g.file}: unknown section ${k}`);
