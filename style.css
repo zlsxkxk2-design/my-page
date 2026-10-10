@@ -1764,3 +1764,11 @@ html[data-theme="light"] .btn::after { background: rgba(15, 23, 42, 0.06); }
 html[data-theme="light"] .floating-btn { box-shadow: 0 4px 16px rgba(15, 23, 42, 0.18); }
 html[data-theme="light"] .footer { background: #e9eef6; }
 /* ===== 다크/라이트 모드 끝 ===== */
+/* 태블릿·좁은 창: 1024px 이하에서는 햄버거 메뉴 사용 (메뉴 글자 줄바꿈 방지) */
+.nav-links a, .nav-dropdown-btn { white-space: nowrap; }
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-inner { gap: 8px; }
+  .theme-toggle { margin-left: auto; }
+}
