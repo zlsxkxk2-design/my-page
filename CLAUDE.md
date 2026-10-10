@@ -135,6 +135,14 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 
 ---
 
+## 다크/라이트 모드
+
+- 기본은 다크. 우측 상단 `.theme-toggle` 버튼으로 전환, `localStorage('nano-theme')`에 저장되어 메인↔게임 페이지 간 유지
+- 메인: `style.css` 맨 아래 '다크/라이트 모드' 블록에서 `html[data-theme="light"]` 변수·색상 재정의. 새 섹션에 색을 하드코딩하면 라이트용 재정의도 같이 추가할 것
+- 게임 페이지: `build.mjs` CSS에 라이트 변수 포함, 강조색 텍스트는 `--accent-text` 사용 (라이트에서 자동으로 진하게)
+
+---
+
 ## 팝업 로딩 방식
 
 `index.html`의 히어로 영상 로드 완료(`loadedmetadata`) 시점에 `fetch('popup.html')`로 내용을 가져와 `<body>`에 appendChild.  

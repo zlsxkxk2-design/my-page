@@ -288,3 +288,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+// ===== 다크/라이트 모드 토글 =====
+(() => {
+  const btn = document.querySelector(".theme-toggle");
+  if (!btn) return;
+  const root = document.documentElement;
+  const sync = () => {
+    const light = root.getAttribute("data-theme") === "light";
+    btn.setAttribute("aria-label", light ? "다크 모드로 전환" : "라이트 모드로 전환");
+  };
+  sync();
+  btn.addEventListener("click", () => {
+    const light = root.getAttribute("data-theme") !== "light";
+    if (light) root.setAttribute("data-theme", "light");
+    else root.removeAttribute("data-theme");
+    try { localStorage.setItem("nano-theme", light ? "light" : "dark"); } catch (e) {}
+    sync();
+  });
+})();

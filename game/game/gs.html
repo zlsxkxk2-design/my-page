@@ -18,29 +18,37 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <script>try{if(localStorage.getItem('nano-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"거상 3클라를 원격PC 한 대로 돌릴 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 거상은 PC 1대에서 클라이언트를 최대 3개까지 실행하는 것을 공식 허용합니다. 원격PC 한 대로 3클라 운영이 가능합니다. 4클라 이상은 PC가 2대 이상 필요합니다."}},{"@type":"Question","name":"거상 자동사냥도 되나요?","acceptedAnswer":{"@type":"Answer","text":"거상에는 공식 자동사냥 기능이 없고, 외부 자동화 프로그램은 암행어사 등으로 단속되는 제재 대상입니다. 나노원격임대는 접속 유지와 원격 조작 환경을 제공하며 불법 프로그램 사용은 지원하지 않습니다."}},{"@type":"Question","name":"같은 IP에서 여러 명이 접속해도 되나요?","acceptedAnswer":{"@type":"Answer","text":"거상은 과거 동일 IP 접속 클라이언트 수를 제한한 공지가 있었습니다. 원격PC는 고객별로 분리된 PC를 제공하므로, 운영 정책 범위 안에서 이용하시면 됩니다."}}]}</script>
   <style>
-    :root{--bg:#0a0a12;--card:#13131f;--card2:#181828;--border:rgba(255,255,255,0.08);--text:#f0f0ff;--muted:#9a9ab8;--kakao:#ffeb00;--radius:16px;}
+    :root{--bg:#0a0a12;--card:#13131f;--card2:#181828;--border:rgba(255,255,255,0.08);--text:#f0f0ff;--muted:#9a9ab8;--kakao:#ffeb00;--radius:16px;--chip-bg:rgba(255,255,255,0.08);--chip-bg-hover:rgba(255,255,255,0.16);}
+    html[data-theme="light"]{--bg:#f5f7fb;--card:#ffffff;--card2:#f1f5fb;--border:rgba(15,23,42,0.10);--text:#111827;--muted:#4b5563;--chip-bg:rgba(15,23,42,0.06);--chip-bg-hover:rgba(15,23,42,0.12);color-scheme:light;}
+    .top-right{display:flex;align-items:center;gap:12px;}
+    .theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--chip-bg);color:var(--text);cursor:pointer;}
+    .theme-toggle:hover{background:var(--chip-bg-hover);}
+    .theme-toggle .icon-moon{display:none;}
+    html[data-theme="light"] .theme-toggle .icon-sun{display:none;}
+    html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100svh;display:flex;flex-direction:column;align-items:center;}
     a{color:inherit;}
     .top-bar{width:100%;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
-    .back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:700;text-decoration:none;background:rgba(255,255,255,0.08);border:1px solid var(--border);padding:8px 14px;border-radius:8px;transition:background 0.2s;}
-    .back-link:hover{background:rgba(255,255,255,0.16);}
+    .back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:700;text-decoration:none;background:var(--chip-bg);border:1px solid var(--border);padding:8px 14px;border-radius:8px;transition:background 0.2s;}
+    .back-link:hover{background:var(--chip-bg-hover);}
     .site-name{font-size:0.9rem;font-weight:900;background:linear-gradient(135deg,#7c3aed,#0088cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .wrap{width:100%;max-width:680px;padding:44px 24px 64px;display:flex;flex-direction:column;gap:32px;}
     .game-image{width:100%;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
     .game-image img{width:100%;height:auto;display:block;}
-    .eyebrow{font-size:0.78rem;font-weight:900;letter-spacing:0.08em;color:var(--accent);text-transform:uppercase;}
+    .eyebrow{font-size:0.78rem;font-weight:900;letter-spacing:0.08em;color:var(--accent-text);text-transform:uppercase;}
     h1{font-size:1.65rem;font-weight:900;letter-spacing:-0.02em;line-height:1.35;}
-    h1 em{font-style:normal;color:var(--accent);}
+    h1 em{font-style:normal;color:var(--accent-text);}
     h2{font-size:1.1rem;font-weight:900;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
     h2::before{content:'';width:4px;height:1.1em;border-radius:2px;background:var(--accent);}
     .lead{font-size:0.96rem;color:var(--muted);line-height:1.85;margin-top:12px;}
     .lead strong{color:var(--text);}
     .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
-    .chip{font-size:0.78rem;font-weight:700;padding:6px 12px;border-radius:999px;border:1px solid var(--accent-dim);color:var(--accent);background:var(--accent-bg);}
+    .chip{font-size:0.78rem;font-weight:700;padding:6px 12px;border-radius:999px;border:1px solid var(--accent-dim);color:var(--accent-text);background:var(--accent-bg);}
     .home-btn{display:flex;align-items:center;justify-content:center;gap:10px;font-size:1.05rem;font-weight:900;color:#fff;text-decoration:none;background:linear-gradient(135deg,#7c3aed,#0088cc);padding:17px 28px;border-radius:14px;box-shadow:0 6px 24px rgba(124,58,237,0.4);transition:opacity 0.2s,transform 0.15s;}
     .home-btn:hover{opacity:0.92;transform:translateY(-2px);}
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 22px;}
@@ -51,7 +59,7 @@
     .points strong{color:var(--text);}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
     .grid .cell{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 16px;}
-    .grid .cell b{display:block;font-size:0.95rem;margin-bottom:6px;color:var(--accent);}
+    .grid .cell b{display:block;font-size:0.95rem;margin-bottom:6px;color:var(--accent-text);}
     .grid .cell p{font-size:0.85rem;color:var(--muted);line-height:1.65;}
     .steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;}
     .steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;font-size:0.92rem;color:var(--muted);line-height:1.7;}
@@ -59,13 +67,13 @@
     .steps strong{color:var(--text);}
     .checks{list-style:none;display:flex;flex-direction:column;gap:10px;}
     .checks li{font-size:0.92rem;color:var(--muted);line-height:1.6;padding-left:28px;position:relative;}
-    .checks li::before{content:'✓';position:absolute;left:0;top:0;width:20px;height:20px;border-radius:6px;background:var(--accent-bg);color:var(--accent);font-weight:900;font-size:0.8rem;display:flex;align-items:center;justify-content:center;}
+    .checks li::before{content:'✓';position:absolute;left:0;top:0;width:20px;height:20px;border-radius:6px;background:var(--accent-bg);color:var(--accent-text);font-weight:900;font-size:0.8rem;display:flex;align-items:center;justify-content:center;}
     .notice{border-left:4px solid var(--accent);background:var(--card2);border-radius:0 12px 12px 0;padding:18px 18px;font-size:0.9rem;color:var(--muted);line-height:1.75;}
     .notice b{color:var(--text);display:block;margin-bottom:6px;}
     table{width:100%;border-collapse:collapse;font-size:0.86rem;}
     th,td{padding:11px 8px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;line-height:1.5;}
     th{color:var(--muted);font-weight:700;white-space:nowrap;}
-    thead th{color:var(--accent);font-size:0.8rem;}
+    thead th{color:var(--accent-text);font-size:0.8rem;}
     tr:last-child th,tr:last-child td{border-bottom:none;}
     td{font-weight:700;}
     .src{font-size:0.76rem;color:var(--muted);margin-top:12px;line-height:1.6;}
@@ -73,14 +81,14 @@
     .opt{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
     .opt b{font-size:0.95rem;}
     .opt span{font-size:0.8rem;color:var(--muted);}
-    .opt i{font-style:normal;font-size:0.75rem;font-weight:900;color:var(--accent);white-space:nowrap;}
+    .opt i{font-style:normal;font-size:0.75rem;font-weight:900;color:var(--accent-text);white-space:nowrap;}
     .rec-text{font-size:0.88rem;color:var(--muted);line-height:1.75;margin-top:14px;}
     details{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
     details+details{margin-top:10px;}
     details[open]{border-color:var(--accent-dim);}
     summary{padding:16px 20px;font-size:0.92rem;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;}
     summary::-webkit-details-marker{display:none;}
-    summary::after{content:'+';font-size:1.2rem;color:var(--accent);flex-shrink:0;}
+    summary::after{content:'+';font-size:1.2rem;color:var(--accent-text);flex-shrink:0;}
     details[open] summary::after{content:'−';}
     .faq-body{padding:0 20px 16px;font-size:0.88rem;color:var(--muted);line-height:1.8;}
     .cta{display:flex;flex-direction:column;gap:12px;}
@@ -92,7 +100,8 @@
     .btn-main:hover{color:var(--text);}
     .fact-head{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
     @media (max-width:480px){.grid{grid-template-columns:1fr;}h1{font-size:1.4rem;}th{white-space:normal;}}
-    :root{--accent:#facc15;--accent-dim:rgba(250,204,21,0.35);--accent-bg:rgba(250,204,21,0.1);}
+    :root{--accent:#facc15;--accent-text:#facc15;--accent-dim:rgba(250,204,21,0.35);--accent-bg:rgba(250,204,21,0.1);}
+    html[data-theme="light"]{--accent-text:color-mix(in srgb, #facc15 62%, #000);}
   </style>
 </head>
 <body>
@@ -102,7 +111,13 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
       메인으로
     </a>
-    <span class="site-name">나노원격임대</span>
+    <div class="top-right">
+      <span class="site-name">나노원격임대</span>
+      <button class="theme-toggle" type="button" aria-label="라이트/다크 모드 전환" title="라이트/다크 모드 전환">
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
   </div>
 
   <main class="wrap">
@@ -162,5 +177,6 @@
     </div>
   </main>
 
+  <script>document.querySelector(".theme-toggle").addEventListener("click",()=>{const r=document.documentElement,l=r.getAttribute("data-theme")!=="light";l?r.setAttribute("data-theme","light"):r.removeAttribute("data-theme");try{localStorage.setItem("nano-theme",l?"light":"dark")}catch(e){}});</script>
 </body>
 </html>
