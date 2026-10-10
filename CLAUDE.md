@@ -123,7 +123,7 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 - **파일명 변경**: 사용자가 올린 이미지(`banner3.jpg` 등)는 `git mv`로 게임 영문 슬러그 파일명으로 바꾼다 (예: `rf-online-next.jpg`, `dokkaebi-world.jpg`) — 이미지 검색 SEO용
 - 슬라이드 구조 (**해당 게임의 공식 홈페이지**를 웹 검색으로 찾아 새 탭 링크로 연결. 우리 사이트 서브페이지 아님):
   ```html
-  <a href="<공식 홈페이지>" target="_blank" rel="noopener" class="hero-banner-slide"><img src="banner/<슬러그>.jpg" alt="게임명 원격임대 · 원격PC 임대 - 나노원격임대" width="<실제 가로>" height="<실제 세로>"><span class="sr-only">게임명 원격PC 임대 · 게임명 자동사냥 · 게임명 공식 홈페이지</span></a>
+  <a href="<공식 홈페이지>" target="_blank" rel="noopener" class="hero-banner-slide"><img src="banner/<슬러그>.jpg" alt="게임명 원격임대 · 원격PC 임대 - 나노원격임대" width="<실제 가로>" height="<실제 세로>"><span class="sr-only">게임명 원격PC 임대 · 게임명 원격임대 · 게임명 공식 홈페이지</span></a>
   ```
 - 게임명은 **화면에 보이지 않고 검색엔진에만 노출**: `alt` + `.sr-only` 숨김 텍스트(style.css에 정의). 이미지 위에 글자를 표시하지 말 것
 - width/height는 실제 이미지 픽셀 크기로 기입
