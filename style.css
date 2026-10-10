@@ -1688,11 +1688,12 @@ ul { list-style: none; }
 .game-card:hover { transform: translateY(-3px); border-color: var(--gc, var(--accent)); background: var(--bg-card-alt); }
 .game-card-name { font-size: 0.98rem; font-weight: 700; color: var(--text-primary); }
 .game-card-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
-.game-card-desc::before { content: "추천 "; color: var(--text-muted); }
+.game-card-desc { display: flex; gap: 6px; align-items: flex-start; }
+.game-card-desc .lbl { color: var(--text-muted); flex-shrink: 0; }
 .game-card-desc b { font-weight: 700; color: var(--gc, var(--accent)); }
 @media (max-width: 900px) { .games-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 768px) { .games { padding: 64px 16px; } .games-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 768px) { .game-card-desc { display: flex; flex-direction: column; gap: 2px; } .game-card-desc .sep { display: none; } }
+@media (max-width: 768px) { .game-card-desc .cpus { display: flex; flex-direction: column; gap: 2px; } .game-card-desc .sep { display: none; } }
 @media (max-width: 380px) { .game-card { padding: 14px 12px; } .game-card-name { font-size: 0.9rem; } }
 /* ===== 게임별 추천 사양 끝 ===== */
 /* ===== 다크/라이트 모드 ===== */

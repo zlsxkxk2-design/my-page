@@ -304,7 +304,7 @@ function updateIndexGames() {
   const cards = GAMES.map((g) => `
           <a class="game-card" href="game/game/${g.file}.html" style="--gc:${g.accent}">
             <span class="game-card-name">${g.name}</span>
-            <span class="game-card-desc">${g.recommend.ids.map((id) => `<b>${OPTIONS[id].name}</b>`).join(`<span class="sep"> · </span>`)}</span>
+            <span class="game-card-desc"><span class="lbl">추천</span><span class="cpus">${g.recommend.ids.map((id) => `<b>${OPTIONS[id].name}</b>`).join(`<span class="sep"> · </span>`)}</span></span>
           </a>`).join("");
   writeFileSync(file, html.replace(re, `$1
         <div class="games-grid">${cards}
