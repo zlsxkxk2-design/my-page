@@ -211,6 +211,14 @@ function render(g) {
     "@type": "FAQPage",
     mainEntity: g.faq.map(([q, a]) => ({ "@type": "Question", name: q.replace(/<[^>]+>/g, ""), acceptedAnswer: { "@type": "Answer", text: a.replace(/<[^>]+>/g, "") } })),
   };
+  const crumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "원격임대", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: g.kind === "topic" ? g.name : `${g.name} 원격임대`, item: url },
+    ],
+  };
   const body = LAYOUTS[g.layout].map((k) => S[k](g)).join("\n");
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -236,6 +244,7 @@ function render(g) {
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
   <script>try{if(localStorage.getItem('nano-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
   <script type="application/ld+json">${JSON.stringify(faqLd)}</script>
+  <script type="application/ld+json">${JSON.stringify(crumbLd)}</script>
   <style>${CSS}
     :root{--accent:${g.accent};--accent-text:${g.accent};--accent-dim:rgba(${hexToRgb(g.accent)},0.35);--accent-bg:rgba(${hexToRgb(g.accent)},0.1);}
     html[data-theme="light"]{--accent-text:color-mix(in srgb, ${g.accent} 62%, #000);}
