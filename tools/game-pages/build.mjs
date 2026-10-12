@@ -2,7 +2,7 @@
 // 사용법: node tools/game-pages/build.mjs            (전체 생성)
 //         node tools/game-pages/build.mjs dk zeus    (특정 페이지만)
 // 페이지 내용은 data.mjs, 레이아웃(L1~L5)은 아래 LAYOUTS 참고.
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { GAMES, OPTIONS } from "./data.mjs";
@@ -312,9 +312,13 @@ function updateIndexGames() {
   const html = readFileSync(file, "utf8");
   const re = /(<!-- GAMES:START[^>]*-->)[\s\S]*?(<!-- GAMES:END -->)/;
   if (!re.test(html)) return console.log("index.html: GAMES 마커 없음 (추천 사양 섹션 생략)");
+  // 아이콘: game/gimg/icons/<file>.webp (공식 앱 아이콘 64px). 없으면 게임명 첫 글자 배지
+  const icon = (g) => existsSync(join(ROOT, "game/gimg/icons", `${g.file}.webp`))
+    ? `<img class="game-card-icon" src="game/gimg/icons/${g.file}.webp" alt="${g.name} 아이콘" width="28" height="28" loading="lazy">`
+    : `<span class="game-card-icon is-letter" aria-hidden="true">${[...g.name][0]}</span>`;
   const cards = GAMES.filter((g) => g.kind !== "topic").map((g) => `
           <a class="game-card" href="game/game/${g.file}.html" style="--gc:${g.accent}">
-            <span class="game-card-name">${g.name}</span>
+            <span class="game-card-name">${icon(g)}${g.name}</span>
             <span class="game-card-desc"><span class="lbl">추천</span><span class="cpus">${g.recommend.ids.map((id) => `<b>${OPTIONS[id].name}</b>`).join(`<span class="sep"> · </span>`)}</span></span>
           </a>`).join("");
   writeFileSync(file, html.replace(re, `$1
