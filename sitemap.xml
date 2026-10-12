@@ -192,4 +192,12 @@
     <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/rohan2-remote-pc.webp</image:loc></image:image>
   </url>
 
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/sa.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/sudden-attack-remote-pc.webp</image:loc></image:image>
+  </url>
+
 </urlset>
