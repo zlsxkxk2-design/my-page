@@ -1960,3 +1960,12 @@ html[data-theme="light"] .rank-ticker-panel-list li > a:hover .rank-ticker-name 
 html[data-theme="light"] .rank-ticker { border-color: rgba(8, 145, 178, 0.35); box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06); }
 html[data-theme="light"] .rank-ticker-no { color: #0891b2; }
 html[data-theme="light"] .rank-ticker-list li > a:hover .rank-ticker-name { color: #0891b2; }
+/* PC: 순위를 롤링 없이 1~10위 전체를 처음부터 펼쳐서 표시 (모바일은 한 줄 롤링 + 터치로 열기 그대로) */
+@media (min-width: 769px) {
+  .rank-ticker { display: block; height: auto; padding: 0; border: 0; background: none; box-shadow: none; }
+  .rank-ticker > .rank-ticker-label,
+  .rank-ticker > .rank-ticker-list,
+  .rank-ticker > .rank-ticker-time { display: none; }
+  .rank-ticker-panel { position: static; padding-top: 0; opacity: 1; visibility: visible; transform: none; transition: none; }
+  .rank-ticker-panel-inner { box-shadow: 0 0 24px rgba(0, 229, 255, 0.08); }
+}
