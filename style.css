@@ -370,7 +370,7 @@ ul { list-style: none; }
   max-width: 1200px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
+  align-items: start; /* 배너 윗선을 왼쪽 할인 배지 줄에 맞춤 */
   gap: 60px;
 }
 
@@ -482,8 +482,10 @@ ul { list-style: none; }
 ======================================== */
 .hero-right {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column; /* 배너 아래에 실시간 게임순위 등 추가 공간 */
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 16px;
 }
 
 /* 히어로 배너 */
