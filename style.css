@@ -1776,3 +1776,187 @@ html[data-theme="light"] .footer { background: #e9eef6; }
   .nav-inner { gap: 8px; }
   .theme-toggle { margin-left: auto; }
 }
+/* ========================================
+   실시간 게임순위 (배너 아래 한 줄 롤링)
+   내용은 index.html RANKING:START~END (게임순위 프로그램이 자동 갱신), 롤링은 script.js '실시간 게임순위'
+======================================== */
+.rank-ticker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 60px;
+  padding: 0 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  background: var(--bg-card);
+  box-shadow: 0 0 24px rgba(0, 229, 255, 0.08);
+  font-size: 17px;
+  position: relative; /* 아래 전체 순위 패널 기준 */
+  z-index: 5;
+}
+.rank-ticker-label { cursor: pointer; }
+/* 전체 순위 패널이 아래 내용(모바일에선 히어로 왼쪽 글) 위에 보이도록 오른쪽 영역을 위로 */
+.hero-right { z-index: 2; }
+
+/* 마우스를 올리면(모바일은 '실시간 게임 순위' 터치) 1~10위 전체 패널 — script.js 가 목록을 복사해서 만듦 */
+.rank-ticker-panel {
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  right: -1px;
+  padding-top: 8px; /* 줄과 패널 사이 틈 — 마우스가 지나가도 닫히지 않게 투명 영역으로 둠 */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+.rank-ticker:hover .rank-ticker-panel,
+.rank-ticker:focus-within .rank-ticker-panel,
+.rank-ticker.is-open .rank-ticker-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.rank-ticker-panel-inner {
+  padding: 14px 16px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  background: var(--bg-card);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 229, 255, 0.1);
+}
+.rank-ticker-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.rank-ticker-panel-head time { font-size: 12px; font-weight: 400; color: var(--text-secondary); }
+.rank-ticker-panel-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 1~5위 / 6~10위 두 줄 (화면 아래로 잘리지 않게) */
+  grid-auto-flow: column;
+  grid-template-rows: repeat(5, auto);
+  column-gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rank-ticker-panel-list li > a,
+.rank-ticker-panel-list li > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 6px 6px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.rank-ticker-panel-list li > a:hover { background: rgba(0, 229, 255, 0.08); }
+.rank-ticker-panel-list li > a:hover .rank-ticker-name { color: var(--accent); }
+.rank-ticker-panel-list .rank-ticker-no { min-width: 34px; }
+.rank-ticker-panel-list img,
+.rank-ticker-panel-list .rank-ticker-badge { width: 28px; height: 28px; }
+@media (max-width: 560px) {
+  .rank-ticker-panel-list { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+}
+html[data-theme="light"] .rank-ticker-panel-inner { border-color: rgba(8, 145, 178, 0.35); box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15); }
+html[data-theme="light"] .rank-ticker-panel-list li > a:hover { background: rgba(8, 145, 178, 0.08); }
+html[data-theme="light"] .rank-ticker-panel-list li > a:hover .rank-ticker-name { color: #0891b2; }
+.rank-ticker-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.rank-ticker-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--danger);
+  box-shadow: 0 0 0 0 rgba(255, 59, 107, 0.6);
+  animation: rankPulse 1.6s infinite;
+}
+@keyframes rankPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 59, 107, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(255, 59, 107, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 59, 107, 0); }
+}
+.rank-ticker-list {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+.rank-ticker-list li {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.rank-ticker-list li > a,
+.rank-ticker-list li > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.rank-ticker-list li > a:hover .rank-ticker-name { color: var(--accent); text-decoration: underline; }
+.rank-ticker-no { color: var(--accent); font-weight: 800; min-width: 38px; }
+.rank-ticker-list img,
+.rank-ticker-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.rank-ticker-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--gradient);
+}
+.rank-ticker-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 롤링: 줄 전체가 위로 올라감 (script.js 가 transform 지정) */
+.rank-ticker-list.is-rolling { overflow: hidden; }
+.rank-ticker-track { transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
+.rank-ticker-time {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .rank-ticker { gap: 8px; height: 52px; padding: 0 12px; font-size: 15px; }
+  .rank-ticker-list, .rank-ticker-list li { height: 52px; }
+  .rank-ticker-list img, .rank-ticker-badge { width: 28px; height: 28px; }
+  .rank-ticker-time { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rank-ticker-track { transition: none; }
+  .rank-ticker-dot { animation: none; }
+}
+html[data-theme="light"] .rank-ticker { border-color: rgba(8, 145, 178, 0.35); box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06); }
+html[data-theme="light"] .rank-ticker-no { color: #0891b2; }
+html[data-theme="light"] .rank-ticker-list li > a:hover .rank-ticker-name { color: #0891b2; }

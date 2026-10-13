@@ -307,3 +307,73 @@ document.addEventListener("DOMContentLoaded", () => {
     sync();
   });
 })();
+/* ===== 게임 순위: 한 줄씩 아래→위로 롤링 (3초마다, 마우스 올리면 멈춤) ===== */
+(function () {
+  const list = document.querySelector(".rank-ticker-list");
+  if (!list) return;
+  const items = Array.from(list.children);
+  if (items.length < 2) return;
+  const ticker = list.closest(".rank-ticker");
+
+  // 마우스를 올리면 보이는 1~10위 전체 패널 (롤링용 목록을 복사)
+  const time = ticker.querySelector(".rank-ticker-time");
+  const panel = document.createElement("div");
+  panel.className = "rank-ticker-panel";
+  panel.innerHTML = '<div class="rank-ticker-panel-inner"><div class="rank-ticker-panel-head"><span>게임 순위 TOP ' +
+    items.length + "</span></div></div>";
+  if (time) panel.querySelector(".rank-ticker-panel-head").appendChild(time.cloneNode(true));
+  const all = document.createElement("ol");
+  all.className = "rank-ticker-panel-list";
+  items.forEach((li) => all.appendChild(li.cloneNode(true)));
+  panel.firstChild.appendChild(all);
+  ticker.appendChild(panel);
+  // 모바일(마우스 없음): '게임 순위' 글자를 누르면 열고 닫기, 바깥을 누르면 닫기
+  const label = ticker.querySelector(".rank-ticker-label");
+  if (label) {
+    label.setAttribute("role", "button");
+    label.setAttribute("tabindex", "0");
+    label.setAttribute("aria-expanded", "false");
+    const toggle = (e) => {
+      e.preventDefault();
+      const open = ticker.classList.toggle("is-open");
+      label.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    label.addEventListener("click", toggle);
+    label.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") toggle(e); });
+  }
+  document.addEventListener("click", (e) => {
+    if (!ticker.contains(e.target)) {
+      ticker.classList.remove("is-open");
+      if (label) label.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  const track = document.createElement("div");
+  track.className = "rank-ticker-track";
+  items.forEach((li) => track.appendChild(li));
+  track.appendChild(items[0].cloneNode(true)); // 마지막 다음에 1위를 다시 붙여 끊김 없이 이어지게
+  list.appendChild(track);
+  list.classList.add("is-rolling");
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let idx = 0;
+  let paused = false;
+  const step = () => {
+    if (paused || document.hidden) return;
+    idx += 1;
+    track.style.transition = "";
+    track.style.transform = `translateY(-${idx * list.clientHeight}px)`;
+    if (idx === items.length) {
+      // 복제한 1위까지 올라가면 진짜 1위 위치로 순간 이동
+      setTimeout(() => {
+        track.style.transition = "none";
+        track.style.transform = "translateY(0)";
+        idx = 0;
+      }, reduce ? 0 : 600);
+    }
+  };
+  ticker.addEventListener("mouseenter", () => { paused = true; });
+  ticker.addEventListener("mouseleave", () => { paused = false; });
+  ticker.addEventListener("focusin", () => { paused = true; });
+  ticker.addEventListener("focusout", () => { paused = false; });
+  setInterval(step, 3000);
+})();
