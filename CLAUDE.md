@@ -30,12 +30,14 @@ GitHub Pages로 배포 중: `https://github.com/zlsxkxk2-design/my-page` (main �
 운영 도메인: `https://원격임대.com/`
 
 ```bash
+git pull --rebase origin main   # 작업 시작 전·push 전에 항상 (서버가 30분마다 '게임 순위 자동 갱신' 커밋을 올림)
 git add <파일명>
 git commit -m "설명"
 git push origin main
 ```
 
 **`git add .` 사용 금지** — 특정 파일명만 지정해서 add할 것.  
+**push 가 거절되면(rejected)** 강제 push(`--force`) 금지 → `git pull --rebase origin main` 후 다시 push (서버의 게임 순위 커밋을 지우지 않게).  
 GitHub Pages는 PHP를 실행하지 않음 → `sitemap.php`는 동작 안 함, 사이트맵은 `sitemap.xml`만 사용.
 
 ---
@@ -152,6 +154,17 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 - **배너 내리기**: 슬라이드·dot 제거와 함께 해당 이미지 파일도 `git rm`으로 `banner/` 폴더에서 삭제
 - 슬라이드 루프/자동재생(5초)은 `script.js`가 자식 개수 기준으로 처리하므로 JS 수정 불필요
 - 반영 후 바로 git add(해당 이미지 + index.html) → commit → push → 메인 페이지 네이버 색인 요청 (`tools/indexnow.ps1 / game/game/<해당 게임>.html` — 루트 `/` 단독 전송은 네이버가 422를 반환하므로 관련 게임 페이지와 함께 전송)
+
+---
+
+## 게임 순위 (배너 아래 한 줄 롤링) — 자동 갱신, 직접 수정 금지
+
+- 위치: `index.html` 히어로 배너(`.hero-banner-wrap`) 바로 아래 `<!-- RANKING:START -->` ~ `<!-- RANKING:END -->`
+- **이 사이 내용은 나노원격 서버(라이트세일)가 30분마다 자동으로 바꾸고 push 한다** (커밋 메시지 `게임 순위 자동 갱신 MM/DD HH:MM`). 손으로 고치지 말고, 배너 작업 등으로 index.html 을 고칠 때도 이 표시 두 줄과 그 사이는 그대로 둔다
+- 순위 계산: 게임 거래소 3곳 인기 게임 TOP10 → 1위 10점~10위 1점 합산 (프로그램: PC `학주플\게임순위\ranking.py`, 서버 `/home/ubuntu/gamerank/`, systemd `gamerank.timer`)
+- 로고: `game/gimg/rank-icons/t_*.webp` (서버가 자동 생성·추가, 원본 카드 아이콘 `game/gimg/icons/` 는 건드리지 않음)
+- 모양/동작: `style.css` 의 '실시간 게임순위' 블록, `script.js` 의 '게임 순위' 블록 (롤링 3초, 마우스 올리면 1~10위 패널) — 이 부분은 수정 가능
+- 게임 페이지(`data.mjs`)가 있는 게임은 순위에서 자동으로 그 페이지에 링크됨
 
 ---
 
