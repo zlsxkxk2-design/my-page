@@ -219,6 +219,19 @@ function render(g) {
       { "@type": "ListItem", position: 2, name: g.kind === "topic" ? g.name : `${g.name} 원격임대`, item: url },
     ],
   };
+  // GEO: AI 검색이 최신성을 판단하도록 수정일 포함 WebPage 정보
+  const pageLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: g.title.replace(/ \| 나노원격임대$/, ""),
+    description: g.description,
+    url,
+    inLanguage: "ko-KR",
+    dateModified: g.updated,
+    primaryImageOfPage: ogImg,
+    isPartOf: { "@type": "WebSite", name: "나노원격임대", url: `${SITE}/` },
+    publisher: { "@type": "Organization", name: "나노원격임대", url: `${SITE}/` },
+  };
   const body = LAYOUTS[g.layout].map((k) => S[k](g)).join("\n");
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -245,6 +258,7 @@ function render(g) {
   <script>try{if(localStorage.getItem('nano-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
   <script type="application/ld+json">${JSON.stringify(faqLd)}</script>
   <script type="application/ld+json">${JSON.stringify(crumbLd)}</script>
+  <script type="application/ld+json">${JSON.stringify(pageLd)}</script>
   <style>${CSS}
     :root{--accent:${g.accent};--accent-text:${g.accent};--accent-dim:rgba(${hexToRgb(g.accent)},0.35);--accent-bg:rgba(${hexToRgb(g.accent)},0.1);}
     html[data-theme="light"]{--accent-text:color-mix(in srgb, ${g.accent} 62%, #000);}
@@ -351,6 +365,43 @@ ${GAMES.map((g) => url(`${PUNY}/game/game/${g.file}.html`, g.updated, "monthly",
 `;
 }
 
+// ---------- llms.txt (GEO: AI 검색·챗봇용 사이트 요약) — 메인 옵션 가격 + 게임 페이지 목록으로 매번 재생성 ----------
+function renderLlms() {
+  const idx = readFileSync(join(ROOT, "index.html"), "utf8");
+  const prices = [...idx.matchAll(/oc-price-tag">([^<]+)</g)].map((m) => m[1].trim());
+  const opts = Object.values(OPTIONS).map((o, i) => `- ${o.name}: ${o.spec} · ${o.tag}${prices[i] ? ` · ${prices[i]}` : ""}`);
+  const line = (g) => `- [${g.name} 원격임대](${SITE}/game/game/${g.file}.html): ${g.description}`;
+  const games = GAMES.filter((g) => g.kind !== "topic").map(line);
+  const topics = GAMES.filter((g) => g.kind === "topic").map(line);
+  return [
+    "# 나노원격임대 (원격임대.com)",
+    "",
+    "> 나노원격임대는 24시간 켜져 있는 게임용 원격PC를 월 단위로 빌려주는 대한민국 원격임대(원격PC 임대) 서비스입니다. 스마트폰·태블릿·노트북에서 AnyDesk·크롬 원격 데스크톱·파섹(Parsec)·리모트T로 접속해, 리니지M·리니지 클래식·아이온2 등 모바일·PC 게임을 휴대폰 배터리·발열·집 PC 전기요금 걱정 없이 운영할 수 있습니다.",
+    "",
+    "## 서비스 요약",
+    "- 서비스: 게임용 원격PC 월 단위 임대 (24시간 365일 가동, 연중무휴 상담)",
+    "- 대상: 앱플레이어·퍼플 등으로 모바일 게임을 PC에서 돌리거나, 다계정·장시간 접속이 필요한 이용자",
+    "- 혜택: 3개월 결제 시 할인",
+    "- 이용 절차: 카카오톡 문의(용도·옵션 상담) → 결제 → 원격 접속 정보 안내 → 접속해서 사용",
+    "- 문의: 카카오톡 오픈채팅 https://open.kakao.com/o/gdQUrDrh",
+    "- 공식 블로그: https://nanoremote.tistory.com/",
+    "- 유의: 게임의 공식 기능(자동사냥 등) 범위 안에서 이용하며, 외부 자동화 프로그램 사용은 지원하지 않습니다",
+    "",
+    "## 임대 옵션 (월 요금)",
+    ...opts,
+    "",
+    "## 게임별 원격임대 안내",
+    ...games,
+    ...(topics.length ? ["", "## 주제별 안내", ...topics] : []),
+    "",
+    "## 주요 페이지",
+    `- [메인 (옵션·가격·FAQ)](${SITE}/)`,
+    `- [사이트맵](${PUNY}/sitemap.xml)`,
+    `- [RSS](${PUNY}/rss.xml)`,
+    "",
+  ].join("\n");
+}
+
 const only = process.argv.slice(2);
 updateIndexGames();
 for (const g of GAMES) if (!/^\d{4}-\d{2}-\d{2}$/.test(g.updated || "")) throw new Error(`${g.file}: updated(YYYY-MM-DD) 필요`);
@@ -358,6 +409,8 @@ writeFileSync(join(ROOT, "rss.xml"), renderRss());
 writeFileSync(join(ROOT, "sitemap.xml"), renderSitemap());
 console.log("sitemap.xml");
 console.log("rss.xml");
+writeFileSync(join(ROOT, "llms.txt"), renderLlms());
+console.log("llms.txt");
 for (const g of GAMES) {
   if (only.length && !only.includes(g.file)) continue;
   for (const k of LAYOUTS[g.layout]) if (!S[k]) throw new Error(`${g.file}: unknown section ${k}`);

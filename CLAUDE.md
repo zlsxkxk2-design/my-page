@@ -164,8 +164,17 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 - 순위 계산: 게임 거래소 3곳 인기 게임 TOP10 → 1위 10점~10위 1점 합산 (프로그램: PC `학주플\게임순위\ranking.py`, 서버 `/home/ubuntu/gamerank/`, systemd `gamerank.timer`)
 - 로고: `game/gimg/rank-icons/t_*.webp` (서버가 자동 생성·추가, 원본 카드 아이콘 `game/gimg/icons/` 는 건드리지 않음)
 - 모양/동작: `style.css` 의 '실시간 게임순위' 블록, `script.js` 의 '게임 순위' 블록 (롤링 3초, 마우스 올리면 1~10위 패널) — 이 부분은 수정 가능
-- 순위 링크는 **게임사 공식 홈페이지(새 탭)** — `학주플게임순위official_sites.json` {게임명: URL}. 목록에 없는 게임은 링크 없음 → 새 게임이 순위에 오르면 공식 주소를 추가하고 서버에도 scp 복사
+- 순위 링크는 **게임사 공식 홈페이지(새 탭)** — `학주플/게임순위/official_sites.json` (서버 `/home/ubuntu/gamerank/official_sites.json`) {게임명: URL}. 목록에 없는 게임은 링크 없음 → 새 게임이 순위에 오르면 공식 주소를 추가하고 서버에도 scp 복사
 - PC(769px 이상)는 1~10위 펼침 표시, 모바일은 한 줄 롤링 + 터치로 열기
+
+---
+
+## GEO (AI 검색 노출) — SEO 요소(제목·메타·주소·본문)는 건드리지 않고 추가만
+
+- `llms.txt` — AI용 사이트 요약. **빌드 시 자동 생성**(옵션 가격은 index.html `.oc-price-tag`, 게임 목록은 data.mjs) → 직접 수정 금지, 커밋에 포함
+- 게임 페이지: 빌드가 `WebPage` JSON-LD(`dateModified` = data.mjs `updated`) 자동 삽입
+- index.html JSON-LD: Organization `sameAs`(블로그·카카오톡), Offer 가격(KRW, 월), `HowTo`(이용 절차). **옵션 가격을 바꾸면 화면 가격과 JSON-LD `price` 두 곳 모두 수정**
+- robots.txt: AI 크롤러(GPTBot·OAI-SearchBot·ChatGPT-User·ClaudeBot·Claude-SearchBot·PerplexityBot·Google-Extended) 명시 허용
 
 ---
 
