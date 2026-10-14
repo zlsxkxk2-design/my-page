@@ -365,6 +365,55 @@ ${GAMES.map((g) => url(`${PUNY}/game/game/${g.file}.html`, g.updated, "monthly",
 `;
 }
 
+// ---------- 메인 "한눈에 비교" 표 (GEO: AI가 인용하기 좋은 표) — index.html의 COMPARE:START~END 사이를 교체 ----------
+function updateIndexCompare() {
+  const file = join(ROOT, "index.html");
+  const html = readFileSync(file, "utf8");
+  const re = /(<!-- COMPARE:START[^>]*-->)[\s\S]*?(<!-- COMPARE:END -->)/;
+  if (!re.test(html)) return console.log("index.html: COMPARE 마커 없음 (비교표 생략)");
+  const prices = [...html.matchAll(/oc-price-tag">([^<]+)</g)].map((m) => m[1].trim());
+  const games = GAMES.filter((g) => g.kind !== "topic");
+  const rows = Object.entries(OPTIONS).map(([id, o], i) => {
+    const fit = games.filter((g) => g.recommend.ids[0] === id).map((g) => `<a href="game/game/${g.file}.html">${g.name}</a>`);
+    return `
+              <tr><th scope="row">${o.name}</th><td>${prices[i] || "-"}</td><td>${o.spec}</td><td>${o.tag}</td><td>${fit.join(", ") || "-"}</td></tr>`;
+  }).join("");
+  const minPrice = prices.map((p) => +p.replace(/[^\d]/g, "")).filter(Boolean).sort((a, b) => a - b)[0];
+  const home = [
+    ["초기 비용", "게임용 PC 구매 비용", minPrice ? `월 ${minPrice.toLocaleString("ko-KR")}원부터 (3개월 결제 시 할인)` : "월 단위 요금"],
+    ["전기요금", "24시간 켜 두면 직접 부담", "임대료에 포함"],
+    ["발열·소음", "집 안에서 발생", "없음 (원격PC는 운영사에 설치)"],
+    ["고장·관리", "직접 수리·부품 교체", "운영사가 관리"],
+    ["외출 중 접속", "원격 프로그램 직접 설정 필요", "휴대폰·노트북으로 바로 접속"],
+    ["대수 늘리기·줄이기", "PC 추가 구매·처분", "문의 후 월 단위로 조절"],
+  ].map(([k, a, b]) => `
+              <tr><th scope="row">${k}</th><td>${a}</td><td>${b}</td></tr>`).join("");
+  writeFileSync(file, html.replace(re, `$1
+        <div class="compare-block fade-in">
+          <h3 class="compare-title">집 PC vs 원격임대</h3>
+          <div class="compare-scroll">
+            <table class="compare-table">
+              <thead><tr><th scope="col">항목</th><th scope="col">집 PC로 24시간 운영</th><th scope="col">나노원격임대</th></tr></thead>
+              <tbody>${home}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="compare-block fade-in">
+          <h3 class="compare-title">원격임대 옵션별 비교</h3>
+          <div class="compare-scroll">
+            <table class="compare-table compare-table--opt">
+              <thead><tr><th scope="col">옵션</th><th scope="col">월 요금</th><th scope="col">사양</th><th scope="col">용도</th><th scope="col">1순위 추천 게임</th></tr></thead>
+              <tbody>${rows}
+              </tbody>
+            </table>
+          </div>
+          <p class="compare-note">추천 게임은 게임별 공식 사양 기준이며, 계정 수·그래픽 설정에 따라 맞는 옵션이 달라질 수 있어 카카오톡으로 상담해 드립니다.</p>
+        </div>
+        $2`));
+  console.log("index.html (비교표)");
+}
+
 // ---------- llms.txt (GEO: AI 검색·챗봇용 사이트 요약) — 메인 옵션 가격 + 게임 페이지 목록으로 매번 재생성 ----------
 function renderLlms() {
   const idx = readFileSync(join(ROOT, "index.html"), "utf8");
@@ -404,6 +453,7 @@ function renderLlms() {
 
 const only = process.argv.slice(2);
 updateIndexGames();
+updateIndexCompare();
 for (const g of GAMES) if (!/^\d{4}-\d{2}-\d{2}$/.test(g.updated || "")) throw new Error(`${g.file}: updated(YYYY-MM-DD) 필요`);
 writeFileSync(join(ROOT, "rss.xml"), renderRss());
 writeFileSync(join(ROOT, "sitemap.xml"), renderSitemap());
