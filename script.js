@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const FORCE_SOLDOUT = [0, 1, 2];
 
   function fetchStock() {
-    fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1")
+    fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1&headers=0") // headers=0: 시트 1~4행을 그대로 4350G·2600·5600GT·5700G 순서로 읽음 (윗칸 오류가 제목 줄로 인식돼 순서가 밀리는 것 방지)
       .then(r => r.text())
       .then(text => {
         const json = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1));
