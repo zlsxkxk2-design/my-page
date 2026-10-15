@@ -155,19 +155,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 4350G(0), 2600(1), 5600GT(2) 강제 품절 처리. 복구하려면 이 배열을 []로 비우면 됨
   const FORCE_SOLDOUT = [0, 1, 2];
+  // 시트 B열 이름으로 옵션을 찾음 (행 순서가 바뀌거나 윗칸에 오류가 있어도 영향 없음). 못 찾으면 1~4행 순서 사용
+  const STOCK_KEYS = ["4350", "2600", "5600", "5700"];
+  const STOCK_CACHE = "nano-stock";
+
+  function showStock(values) {
+    [0, 1, 2, 3].forEach(i => {
+      const el = document.querySelector(`#stock${i + 1} .count`);
+      if (!el) return;
+      if (FORCE_SOLDOUT.includes(i)) return setStock(el, 0);
+      if (typeof values[i] === "number") setStock(el, values[i]);
+    });
+  }
 
   function fetchStock() {
-    fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A&sheet=Sheet1&headers=0") // headers=0: 시트 1~4행을 그대로 4350G·2600·5600GT·5700G 순서로 읽음 (윗칸 오류가 제목 줄로 인식돼 순서가 밀리는 것 방지)
+    fetch("https://docs.google.com/spreadsheets/d/1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc/gviz/tq?tqx=out:json&tq=select%20A,B&sheet=Sheet1&headers=0")
       .then(r => r.text())
       .then(text => {
-        const json = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1));
-        [0,1,2,3].forEach(i => {
-          const el = document.querySelector(`#stock${i+1} .count`);
-          if (el) setStock(el, FORCE_SOLDOUT.includes(i) ? 0 : (json.table.rows[i]?.c[0]?.v ?? 0));
+        const rows = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)).table.rows;
+        const values = STOCK_KEYS.map((key, i) => {
+          const row = rows.find(r => String(r.c[1]?.v ?? "").toLowerCase().includes(key)) || rows[i];
+          const v = Number(row?.c[0]?.v);
+          return Number.isFinite(v) ? v : 0;
         });
+        try { localStorage.setItem(STOCK_CACHE, JSON.stringify(values)); } catch (e) {}
+        showStock(values);
       })
       .catch(() => {
-        document.querySelectorAll(".oc-stock .count").forEach(el => { setStock(el, 0); });
+        // 시트를 못 읽으면(네트워크·구글 일시 차단 등) 마지막으로 읽은 값을 유지 — 판매 중인 옵션이 SOLD OUT 으로 떨어지지 않게
+        let cached = [];
+        try { cached = JSON.parse(localStorage.getItem(STOCK_CACHE)) || []; } catch (e) {}
+        showStock(cached);
       });
   }
   fetchStock();
