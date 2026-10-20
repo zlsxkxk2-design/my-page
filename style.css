@@ -1994,16 +1994,13 @@ html[data-theme="light"] .compare-table a { color: #0891b2; }
 
 /* 옵션 카드 3개월 결제 금액 */
 .oc-price-3m { display: block; margin-top: 2px; font-size: 0.75rem; font-weight: 700; color: var(--tc, var(--accent)); }
-/* 히어로 서비스 요약 박스 (문구 아래) */
-.hero-desc { margin-bottom: 1.2rem; }
+/* 서비스 요약 박스 (한눈에 비교 표 위) */
 .hero-summary {
-  margin-bottom: 1.8rem;
-  padding: 14px 18px;
+  padding: 16px 20px;
   border: 1px solid rgba(0, 229, 255, 0.22);
   border-left: 3px solid var(--accent);
   border-radius: 10px;
   background: rgba(0, 229, 255, 0.04);
-  max-width: 560px;
 }
 .hero-summary-lead { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; word-break: keep-all; }
 .hero-summary-lead strong, .hero-summary-list strong { color: var(--text-primary); }
