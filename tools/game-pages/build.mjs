@@ -433,7 +433,7 @@ function renderLlms() {
     "- 혜택: 3개월 결제 시 할인",
     "- 이용 절차: 카카오톡 문의(용도·옵션 상담) → 결제 → 원격 접속 정보 안내 → 접속해서 사용",
     "- 문의: 카카오톡 오픈채팅 https://open.kakao.com/o/gdQUrDrh",
-    "- 공식 블로그: https://nanoremote.tistory.com/",
+    "- 공식 블로그: 네이버 블로그 https://blog.naver.com/nanoremote · 티스토리 https://nanoremote.tistory.com/",
     "- 유의: 게임의 공식 기능(자동사냥 등) 범위 안에서 이용하며, 외부 자동화 프로그램 사용은 지원하지 않습니다",
     "",
     "## 임대 옵션 (월 요금)",
