@@ -173,7 +173,7 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 
 - `llms.txt` — AI용 사이트 요약. **빌드 시 자동 생성**(옵션 가격은 index.html `.oc-price-tag`, 게임 목록은 data.mjs) → 직접 수정 금지, 커밋에 포함
 - 게임 페이지: 빌드가 `WebPage` JSON-LD(`dateModified` = data.mjs `updated`) 자동 삽입
-- index.html JSON-LD: Organization `sameAs`(블로그·카카오톡), Offer 가격(KRW, 월), `HowTo`(이용 절차). **옵션 가격을 바꾸면 수정할 곳: 옵션 카드 `.oc-price-tag`(월)·`.oc-price-3m`(3개월), JSON-LD `priceSpecification`, FAQ 비용 답변(화면+JSON-LD), '한눈에 비교' 표 위 `.hero-summary` 요약 박스, build.mjs llms '혜택' 줄** (비교표·llms 옵션 목록은 빌드가 카드에서 자동으로 읽음)
+- index.html JSON-LD: Organization `sameAs`(블로그·카카오톡), Offer 가격(KRW, 월), `HowTo`(이용 절차). **옵션 가격을 바꾸면 수정할 곳: 옵션 카드 `.oc-price-tag`(월)·`.oc-price-3m`(3개월), JSON-LD `priceSpecification`, FAQ 비용 답변(화면+JSON-LD), 히어로 제목 아래 `.hero-summary` 요약 박스, build.mjs llms '혜택' 줄** (비교표·llms 옵션 목록은 빌드가 카드에서 자동으로 읽음)
 - 메인 FAQ 아래 '한눈에 비교' 표: index.html `<!-- COMPARE:START -->`~`<!-- COMPARE:END -->` 를 **빌드가 자동 생성**(집PC vs 원격임대, 옵션별 가격·사양·1순위 추천 게임=data.mjs `recommend.ids[0]`) → 직접 수정 금지
 - robots.txt: AI 크롤러(GPTBot·OAI-SearchBot·ChatGPT-User·ClaudeBot·Claude-SearchBot·PerplexityBot·Google-Extended) 명시 허용
 

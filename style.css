@@ -1994,20 +1994,23 @@ html[data-theme="light"] .compare-table a { color: #0891b2; }
 
 /* 옵션 카드 3개월 결제 금액 */
 .oc-price-3m { display: block; margin-top: 2px; font-size: 0.75rem; font-weight: 700; color: var(--tc, var(--accent)); }
-/* 서비스 요약 박스 (한눈에 비교 표 위) */
+/* 히어로 정의 문장 + 서비스 요약 박스 (제목 아래) */
+.hero-lead { font-size: clamp(1rem, 2vw, 1.12rem); color: var(--text-secondary); line-height: 1.75; margin: 0 0 1.2rem; max-width: 560px; word-break: keep-all; }
+.hero-lead strong { color: var(--text-primary); }
 .hero-summary {
-  padding: 16px 20px;
-  border: 1px solid rgba(0, 229, 255, 0.22);
+  margin: 0 0 1.8rem;
+  padding: 18px 22px;
+  max-width: 560px;
+  display: flex; flex-direction: column; gap: 10px;
+  border: 1px solid rgba(0, 229, 255, 0.25);
   border-left: 3px solid var(--accent);
-  border-radius: 10px;
-  background: rgba(0, 229, 255, 0.04);
+  border-radius: 12px;
+  background: rgba(0, 229, 255, 0.05);
 }
-.hero-summary-lead { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; word-break: keep-all; }
-.hero-summary-lead strong, .hero-summary-list strong { color: var(--text-primary); }
-.hero-summary-list { margin: 8px 0 0; display: flex; flex-direction: column; gap: 4px; }
-.hero-summary-list > div { display: flex; gap: 10px; font-size: 0.84rem; line-height: 1.6; }
-.hero-summary-list dt { flex-shrink: 0; width: 30px; font-weight: 700; color: var(--accent); }
-.hero-summary-list dd { margin: 0; color: var(--text-secondary); word-break: keep-all; }
-@media (max-width: 768px) { .hero-summary { padding: 12px 14px; } .hero-summary-lead { font-size: 0.84rem; } .hero-summary-list > div { font-size: 0.8rem; } }
+.hero-summary > div { display: flex; gap: 14px; font-size: 0.95rem; line-height: 1.6; }
+.hero-summary dt { flex-shrink: 0; width: 34px; font-weight: 700; color: var(--accent); }
+.hero-summary dd { margin: 0; color: var(--text-secondary); word-break: keep-all; }
+.hero-summary strong { color: var(--text-primary); }
+@media (max-width: 768px) { .hero-summary { padding: 14px 16px; gap: 8px; } .hero-summary > div { font-size: 0.86rem; gap: 10px; } .hero-lead { font-size: 0.95rem; } }
 html[data-theme="light"] .hero-summary { background: rgba(8, 145, 178, 0.05); border-color: rgba(8, 145, 178, 0.25); border-left-color: #0891b2; }
-html[data-theme="light"] .hero-summary-list dt { color: #0891b2; }
+html[data-theme="light"] .hero-summary dt { color: #0891b2; }
