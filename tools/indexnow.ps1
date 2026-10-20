@@ -36,4 +36,15 @@ try {
   "네이버 IndexNow 실패: $($_.Exception.Message)"
   exit 1
 }
+
+# 빙(Bing) — ChatGPT 검색·Copilot·DuckDuckGo 가 빙 색인을 사용 (GEO). 같은 키 파일로 동작, 실패해도 네이버 결과에는 영향 없음
+foreach ($ep in @('https://www.bing.com/indexnow', 'https://api.indexnow.org/indexnow')) {
+  try {
+    $r = Invoke-WebRequest $ep -Method Post -UseBasicParsing `
+      -ContentType 'application/json; charset=utf-8' -Body ([Text.Encoding]::UTF8.GetBytes($body))
+    "빙/IndexNow($ep) 응답: $($r.StatusCode)"
+  } catch {
+    "빙/IndexNow($ep) 실패: $($_.Exception.Message)"
+  }
+}
 $urls
