@@ -457,6 +457,15 @@ function renderLlms() {
 const only = process.argv.slice(2);
 updateIndexGames();
 updateIndexCompare();
+// 메인 FAQ "어떤 게임을 지원하나요?" 답변의 'N개 게임' 숫자를 실제 게임 페이지 수로 맞춤 (화면 + JSON-LD)
+{
+  const f = join(ROOT, "index.html");
+  const n = GAMES.filter((g) => g.kind !== "topic").length;
+  const t = readFileSync(f, "utf8");
+  const u = t.replace(/등 \d+개 게임별 이용 안내/g, `등 ${n}개 게임별 이용 안내`);
+  if (u !== t) writeFileSync(f, u);
+  console.log(`index.html (FAQ 게임 수 ${n}개)`);
+}
 for (const g of GAMES) if (!/^\d{4}-\d{2}-\d{2}$/.test(g.updated || "")) throw new Error(`${g.file}: updated(YYYY-MM-DD) 필요`);
 writeFileSync(join(ROOT, "rss.xml"), renderRss());
 writeFileSync(join(ROOT, "sitemap.xml"), renderSitemap());

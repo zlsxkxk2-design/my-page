@@ -26,7 +26,7 @@ https://xn--i89a73jyusvua.com/game/game/<파일명>.html
 
 ## 배포
 
-GitHub Pages로 배포 중: `https://github.com/zlsxkxk2-design/my-page` (main 브랜치)  
+**Vercel**로 배포 중 (GitHub `https://github.com/zlsxkxk2-design/my-page` main 브랜치에 push 하면 자동 배포)  
 운영 도메인: `https://원격임대.com/`
 
 ```bash
@@ -93,9 +93,11 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
      2. 공식 홈페이지 고해상도 로고/아이콘
      3. **네이버 검색 게임 정보 박스의 로고** (`search.naver.com`에서 게임명 검색 → `s.pstatic.net/dbscthumb.phinf/5116_...` 이미지)
      - 첫 글자 배지(자동 대체)는 위 3곳 모두 없을 때만. 로고가 가로형이면 엠블럼 부분을 잘라 정사각형으로
+2-1. **내용 분량 (필수)** — 게임 페이지 본문은 **2,000자 이상**을 목표로 한다. FAQ는 **최소 5개**(그 게임 원격PC 이용 시 실제로 궁금할 질문: 자동사냥·다계정 정책, 필요 옵션, PC/모바일 연동, 신규 서버, 주의할 점 등), 포인트·한눈에보기도 그 게임 고유 사실로 채운다. 확인 안 된 내용으로 분량을 늘리지 말 것 (공식 출처 확인한 사실만). 빌드 후 `game/game/<파일명>.html` 본문 글자 수를 확인해 보고에 한 줄로 적는다
 3. **HTML 생성 (생성기 사용)** — `tools/game-pages/data.mjs`의 `GAMES` 배열에 게임 데이터(`updated: "오늘 날짜"` 포함)를 추가하고 `node tools/game-pages/build.mjs <파일명>`으로 생성. 빌드 시 `rss.xml`도 자동 재생성되므로 커밋에 `rss.xml` 포함. 기존 페이지 내용을 고칠 때도 `updated`를 오늘 날짜로 갱신. HTML을 직접 복사해 만들지 않는다. 아래 **게임 페이지 개성 규칙**을 따른다
 4. **sitemap.xml** — 빌드 시 `data.mjs`로 자동 생성(이미지 사이트맵 포함, 퓨니코드 도메인). **직접 수정 금지** — 페이지 추가/수정은 data.mjs만 고치고 빌드
 4-1. **메인 "게임별 추천 사양" 섹션** — `index.html`의 `<!-- GAMES:START -->`~`<!-- GAMES:END -->` 카드 목록은 빌드 시 자동 갱신 (게임명 + `recommend.ids`의 추천 CPU명, 직접 수정 금지). 섹션을 빼려면 index.html의 '게임별 추천 사양 섹션 시작~끝' 주석 블록과 style.css의 '게임별 추천 사양' 블록을 삭제
+4-2. **메인 FAQ 게임 수** — "어떤 게임을 지원하나요?" 답변의 'N개 게임' 숫자는 **빌드가 게임 페이지 수로 자동 갱신**(화면+JSON-LD). 빌드 후 숫자가 맞는지만 확인
 5. **nav 드랍다운 업데이트** — `index.html`의 `.nav-dropdown-menu` 안에 `<li role="menuitem"><a href="game/game/<파일명>.html">게임명</a></li>` 항목 추가
 6. **업로드** — 사용자가 "업로드해줘"라고 하면 즉시 git add → commit → push
 7. **네이버 색인 요청** — push 후 운영 도메인에 새 페이지가 뜨는지(200) 확인하고 `powershell -NoProfile -ExecutionPolicy Bypass -File tools/indexnow.ps1 game/game/<파일명>.html` 실행 (IndexNow, 키 파일 `acf4f169846da306f06e75b21cbabdd6.txt`는 루트에 있으므로 삭제 금지). 페이지 내용 수정 시에도 동일하게 실행. 사용자에게 묻지 않고 매번 자동 실행하며, 완료 보고에 네이버 응답 코드를 함께 안내. (같은 스크립트가 **빙(Bing)·IndexNow 공용 서버에도 자동 전송** — ChatGPT 검색·Copilot이 빙 색인을 사용하므로 GEO에 필요. 빙 202=접수) (구글 서치콘솔은 사용자가 수동 처리 — 자동화하지 않음)
@@ -145,9 +147,9 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 - **파일명 변경**: 사용자가 올린 이미지(`banner3.jpg` 등)는 `git mv`로 게임 영문 슬러그 파일명으로 바꾼다 (예: `rf-online-next.jpg`, `dokkaebi-world.jpg`) — 이미지 검색 SEO용
 - 슬라이드 구조 (**해당 게임의 공식 홈페이지**를 웹 검색으로 찾아 새 탭 링크로 연결. 우리 사이트 서브페이지 아님):
   ```html
-  <a href="<공식 홈페이지>" target="_blank" rel="noopener" class="hero-banner-slide"><img src="banner/<슬러그>.jpg" alt="게임명 원격임대 · 원격PC 임대 - 나노원격임대" width="<실제 가로>" height="<실제 세로>"><span class="sr-only">게임명 원격PC 임대 · 게임명 원격임대 · 게임명 공식 홈페이지</span></a>
+  <a href="<공식 홈페이지>" target="_blank" rel="noopener" class="hero-banner-slide"><img src="banner/<슬러그>.jpg" alt="게임명 원격임대 · 원격PC 임대 - 나노원격임대" width="<실제 가로>" height="<실제 세로>"></a>
   ```
-- 게임명은 **화면에 보이지 않고 검색엔진에만 노출**: `alt` + `.sr-only` 숨김 텍스트(style.css에 정의). 이미지 위에 글자를 표시하지 말 것
+- 게임명은 이미지 `alt`에만 넣는다. **화면에 안 보이는 숨김 텍스트(`.sr-only` 등)로 키워드를 넣지 않는다** — 네이버·구글이 '숨긴 텍스트' 스팸으로 볼 수 있음. 이미지 위에 글자를 표시하지 말 것
 - width/height는 실제 이미지 픽셀 크기로 기입
 - 슬라이드와 dot `<button class="hero-banner-dot" role="tab" aria-label="배너 N로 이동"></button>` 은 **항상 개수를 맞출 것**
 - 첫 번째 슬라이드와 첫 번째 dot에만 `is-active` 클래스
@@ -189,5 +191,5 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 
 ## 팝업 로딩 방식
 
-`index.html`의 히어로 영상 로드 완료(`loadedmetadata`) 시점에 `fetch('popup.html')`로 내용을 가져와 `<body>`에 appendChild.  
+`index.html`이 페이지 로드(DOMContentLoaded) 후 (현재 `const hide = true`로 팝업 꺼져 있음) `fetch('popup.html')`로 내용을 가져와 `<body>`에 appendChild.  
 팝업 내 JS(쿠키 체크, 닫기 버튼)도 `popup.html` 내부 `<script>`에 포함되어 있어 주입 후 자동 실행됨.
