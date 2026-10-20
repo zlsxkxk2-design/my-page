@@ -327,15 +327,12 @@
     </section>
 
     <!-- 프로모 배너 -->
-    <div class="promo-banner" role="alert" aria-live="polite">
+    <div class="promo-banner" aria-label="이벤트 안내">
       <div class="promo-track">
-        <span class="promo-item">🎉 3개월 결제 시 <strong>할인 이벤트</strong> 진행중</span>
-        <span class="promo-item">💻 저사양 · 중사양 · 고사양 다양한 옵션</span>
+        <span class="promo-item">🎉 3개월 결제 시 <strong>90,000원부터</strong> 할인 진행중</span>
+        <span class="promo-item">💻 월 35,000원부터 · 저사양 · 중사양 · 고사양 다양한 옵션</span>
         <span class="promo-item">🔄 24시간 무중단 원격PC 서비스</span>
-        <!-- 무한 루프용 복사본 -->
-        <span class="promo-item" aria-hidden="true">🎉 3개월 결제 시 <strong>할인 이벤트</strong> 진행중</span>
-        <span class="promo-item" aria-hidden="true">💻 저사양 · 중사양 · 고사양 다양한 옵션</span>
-        <span class="promo-item" aria-hidden="true">🔄 24시간 무중단 원격PC 서비스</span>
+        <!-- 무한 루프용 복사본은 script.js 가 화면에서만 붙임 (검색엔진이 같은 문구를 두 번 읽지 않게) -->
       </div>
     </div>
 
@@ -810,7 +807,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20261015" defer></script>
+  <script src="script.js?v=20261020" defer></script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const hide = true || document.cookie.split(';').some(c => c.trim().startsWith('nanopopup=hide'));

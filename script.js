@@ -395,3 +395,14 @@ document.addEventListener("DOMContentLoaded", () => {
   ticker.addEventListener("focusout", () => { paused = false; });
   setInterval(step, 3000);
 })();
+
+/* ===== 프로모 띠: 끊김 없는 반복용 복사본을 화면에서만 붙임 (HTML에는 한 번만 있어 검색엔진은 한 번만 읽음) ===== */
+(function () {
+  const track = document.querySelector(".promo-track");
+  if (!track) return;
+  Array.from(track.querySelectorAll(".promo-item")).forEach((el) => {
+    const copy = el.cloneNode(true);
+    copy.setAttribute("aria-hidden", "true");
+    track.appendChild(copy);
+  });
+})();
