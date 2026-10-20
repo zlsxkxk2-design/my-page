@@ -372,11 +372,12 @@ function updateIndexCompare() {
   const re = /(<!-- COMPARE:START[^>]*-->)[\s\S]*?(<!-- COMPARE:END -->)/;
   if (!re.test(html)) return console.log("index.html: COMPARE 마커 없음 (비교표 생략)");
   const prices = [...html.matchAll(/oc-price-tag">([^<]+)</g)].map((m) => m[1].trim());
+  const prices3 = [...html.matchAll(/oc-price-3m">([^<]+)</g)].map((m) => m[1].trim());
   const games = GAMES.filter((g) => g.kind !== "topic");
   const rows = Object.entries(OPTIONS).map(([id, o], i) => {
     const fit = games.filter((g) => g.recommend.ids[0] === id).map((g) => `<a href="game/game/${g.file}.html">${g.name}</a>`);
     return `
-              <tr><th scope="row">${o.name}</th><td>${prices[i] || "-"}</td><td>${o.spec}</td><td>${o.tag}</td><td>${fit.join(", ") || "-"}</td></tr>`;
+              <tr><th scope="row">${o.name}</th><td>${prices[i] || "-"}</td><td>${prices3[i] || "-"}</td><td>${o.spec}</td><td>${o.tag}</td><td>${fit.join(", ") || "-"}</td></tr>`;
   }).join("");
   const minPrice = prices.map((p) => +p.replace(/[^\d]/g, "")).filter(Boolean).sort((a, b) => a - b)[0];
   const home = [
@@ -403,7 +404,7 @@ function updateIndexCompare() {
           <h3 class="compare-title">원격임대 옵션별 비교</h3>
           <div class="compare-scroll">
             <table class="compare-table compare-table--opt">
-              <thead><tr><th scope="col">옵션</th><th scope="col">월 요금</th><th scope="col">사양</th><th scope="col">용도</th><th scope="col">1순위 추천 게임</th></tr></thead>
+              <thead><tr><th scope="col">옵션</th><th scope="col">월 요금</th><th scope="col">3개월 결제</th><th scope="col">사양</th><th scope="col">용도</th><th scope="col">1순위 추천 게임</th></tr></thead>
               <tbody>${rows}
               </tbody>
             </table>
@@ -418,7 +419,8 @@ function updateIndexCompare() {
 function renderLlms() {
   const idx = readFileSync(join(ROOT, "index.html"), "utf8");
   const prices = [...idx.matchAll(/oc-price-tag">([^<]+)</g)].map((m) => m[1].trim());
-  const opts = Object.values(OPTIONS).map((o, i) => `- ${o.name}: ${o.spec} · ${o.tag}${prices[i] ? ` · ${prices[i]}` : ""}`);
+  const prices3 = [...idx.matchAll(/oc-price-3m">([^<]+)</g)].map((m) => m[1].trim());
+  const opts = Object.values(OPTIONS).map((o, i) => `- ${o.name}: ${o.spec} · ${o.tag}${prices[i] ? ` · ${prices[i]}` : ""}${prices3[i] ? ` (${prices3[i]})` : ""}`);
   const line = (g) => `- [${g.name} 원격임대](${SITE}/game/game/${g.file}.html): ${g.description}`;
   const games = GAMES.filter((g) => g.kind !== "topic").map(line);
   const topics = GAMES.filter((g) => g.kind === "topic").map(line);
@@ -430,7 +432,7 @@ function renderLlms() {
     "## 서비스 요약",
     "- 서비스: 게임용 원격PC 월 단위 임대 (24시간 365일 가동, 연중무휴 상담)",
     "- 대상: 앱플레이어·퍼플 등으로 모바일 게임을 PC에서 돌리거나, 다계정·장시간 접속이 필요한 이용자",
-    "- 혜택: 3개월 결제 시 할인",
+    "- 혜택: 3개월 결제 시 할인 (4350G 90,000원 · 2600 110,000원 · 5600GT 110,000원 · 5700G 120,000원)",
     "- 이용 절차: 카카오톡 문의(용도·옵션 상담) → 결제 → 원격 접속 정보 안내 → 접속해서 사용",
     "- 문의: 카카오톡 오픈채팅 https://open.kakao.com/o/gdQUrDrh",
     "- 공식 블로그: 네이버 블로그 https://blog.naver.com/nanoremote · 티스토리 https://nanoremote.tistory.com/",
