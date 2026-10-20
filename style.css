@@ -1992,10 +1992,25 @@ html[data-theme="light"] .compare-table a { color: #0891b2; }
 .compare-table--opt td:nth-child(4) { min-width: 190px; }
 .compare-table { word-break: keep-all; }
 
-/* 옵션 카드 3개월 결제 금액 + 히어로 아래 서비스 요약 */
+/* 옵션 카드 3개월 결제 금액 */
 .oc-price-3m { display: block; margin-top: 2px; font-size: 0.75rem; font-weight: 700; color: var(--tc, var(--accent)); }
-.intro-summary { max-width: 1200px; margin: 0 auto; padding: 36px 24px 8px; }
-.intro-summary p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.85; word-break: keep-all; }
-.intro-summary p + p { margin-top: 8px; }
-.intro-summary strong { color: var(--text-primary); }
-@media (max-width: 768px) { .intro-summary { padding: 28px 16px 4px; } .intro-summary p { font-size: 0.88rem; } }
+/* 히어로 서비스 요약 박스 (문구 아래) */
+.hero-desc { margin-bottom: 1.2rem; }
+.hero-summary {
+  margin-bottom: 1.8rem;
+  padding: 14px 18px;
+  border: 1px solid rgba(0, 229, 255, 0.22);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: rgba(0, 229, 255, 0.04);
+  max-width: 560px;
+}
+.hero-summary-lead { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; word-break: keep-all; }
+.hero-summary-lead strong, .hero-summary-list strong { color: var(--text-primary); }
+.hero-summary-list { margin: 8px 0 0; display: flex; flex-direction: column; gap: 4px; }
+.hero-summary-list > div { display: flex; gap: 10px; font-size: 0.84rem; line-height: 1.6; }
+.hero-summary-list dt { flex-shrink: 0; width: 30px; font-weight: 700; color: var(--accent); }
+.hero-summary-list dd { margin: 0; color: var(--text-secondary); word-break: keep-all; }
+@media (max-width: 768px) { .hero-summary { padding: 12px 14px; } .hero-summary-lead { font-size: 0.84rem; } .hero-summary-list > div { font-size: 0.8rem; } }
+html[data-theme="light"] .hero-summary { background: rgba(8, 145, 178, 0.05); border-color: rgba(8, 145, 178, 0.25); border-left-color: #0891b2; }
+html[data-theme="light"] .hero-summary-list dt { color: #0891b2; }
