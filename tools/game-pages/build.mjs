@@ -92,7 +92,11 @@ const CSS = `
     .btn-main{color:var(--muted);border:1px solid var(--border);font-size:0.9rem;}
     .btn-main:hover{color:var(--text);}
     .fact-head{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+    .price-table td:nth-child(3){white-space:nowrap;}
     @media (max-width:480px){.grid{grid-template-columns:1fr;}h1{font-size:1.4rem;}th{white-space:normal;}}`;
+
+// kind 가 없는 항목만 '게임' (kind: "topic"·"guide" 는 게임 메뉴·추천 사양 카드에서 제외, 사이트맵·RSS·llms.txt 에는 포함)
+const isGame = (g) => !g.kind;
 
 const hexToRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)).join(",");
 
@@ -100,7 +104,7 @@ const hexToRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)).jo
 const S = {
   image: (g) => `
     <div class="game-image">
-      <img src="../gimg/${g.img}" alt="${esc(g.name)} 원격임대 · 원격PC 임대 - 나노원격임대" loading="eager">
+      <img src="../gimg/${g.img}" alt="${esc(g.imgAlt || `${g.name} 원격임대 · 원격PC 임대 - 나노원격임대`)}" loading="eager">
     </div>`,
   head: (g) => `
     <div>
@@ -159,9 +163,10 @@ const S = {
     <div class="notice"><b>${g.notice[0]}</b>${g.notice[1]}</div>`,
   spec: (g) => {
     const sp = g.spec;
-    const body = sp.cols
+    let body = sp.cols
       ? `<table><thead><tr><th>항목</th>${sp.cols.map((c) => `<th>${c}</th>`).join("")}</tr></thead><tbody>${sp.rows.map(([k, ...v]) => `<tr><th>${esc(k)}</th>${v.map((x) => `<td>${x}</td>`).join("")}</tr>`).join("")}</tbody></table>`
       : `<table><tbody>${sp.rows.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${v}</td></tr>`).join("")}</tbody></table>`;
+    if (sp.auto === "prices") body = body.replace("<table>", "<table class=\"price-table\">"); // 가격 칸은 한 줄로
     return `
     <section class="card">
       <h2>${esc(sp.title)}</h2>
@@ -180,8 +185,13 @@ const S = {
     </section>`,
   faq: (g) => `
     <section>
-      <h2>${esc(g.name)} 원격 임대 자주 묻는 질문</h2>
+      <h2>${esc(g.faqTitle || `${g.name} 원격 임대 자주 묻는 질문`)}</h2>
       ${g.faq.map(([q, a]) => `<details><summary>${q}</summary><div class="faq-body">${a}</div></details>`).join("\n      ")}
+    </section>`,
+  links: (g) => `
+    <section class="card">
+      <h2>${esc(g.linksTitle)}</h2>
+      <ul class="points">${g.links.map(([t, u, d]) => `<li><span><a href="${u}" target="_blank" rel="noopener"><strong>${esc(t)}</strong></a>${d ? ` — ${d}` : ""}</span></li>`).join("")}</ul>
     </section>`,
   cta: (g) => `
     <div class="cta">
@@ -201,6 +211,8 @@ const LAYOUTS = {
   L3: ["image", "head", "steps", "facts", "spec", "notice", "recommend", "homeBtn", "faq", "cta"],
   L4: ["head", "homeBtn", "image", "compare", "grid", "recommend", "spec", "faq", "cta"],
   L5: ["factHead", "image", "notice", "points", "spec", "recommend", "homeBtn", "faq", "cta"],
+  // 안내(guide) 페이지: 정의 → 한눈에 보기 → 이용 순서 → 옵션별 가격표 → 집PC 비교 → 주의사항 → 블로그 → FAQ
+  LG: ["image", "head", "homeBtn", "facts", "steps", "spec", "compare", "notice", "links", "faq", "cta"],
 };
 
 function render(g) {
@@ -216,7 +228,7 @@ function render(g) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "원격임대", item: `${SITE}/` },
-      { "@type": "ListItem", position: 2, name: g.kind === "topic" ? g.name : `${g.name} 원격임대`, item: url },
+      { "@type": "ListItem", position: 2, name: g.kind ? g.name : `${g.name} 원격임대`, item: url },
     ],
   };
   // GEO: AI 검색이 최신성을 판단하도록 수정일 포함 WebPage 정보
@@ -330,7 +342,7 @@ function updateIndexGames() {
   const icon = (g) => existsSync(join(ROOT, "game/gimg/icons", `${g.file}.webp`))
     ? `<img class="game-card-icon" src="game/gimg/icons/${g.file}.webp" alt="${g.name} 아이콘" width="28" height="28" loading="lazy">`
     : `<span class="game-card-icon is-letter" aria-hidden="true">${[...g.name][0]}</span>`;
-  const cards = GAMES.filter((g) => g.kind !== "topic").map((g) => `
+  const cards = GAMES.filter(isGame).map((g) => `
           <a class="game-card" href="game/game/${g.file}.html" style="--gc:${g.accent}">
             <span class="game-card-name">${icon(g)}${g.name}</span>
             <span class="game-card-desc"><span class="lbl">추천</span><span class="cpus">${g.recommend.ids.map((id) => `<b>${OPTIONS[id].name}</b>`).join(`<span class="sep"> · </span>`)}</span></span>
@@ -339,7 +351,7 @@ function updateIndexGames() {
         <div class="games-grid">${cards}
         </div>
         $2`));
-  console.log("index.html (게임별 추천 사양 " + GAMES.filter((g) => g.kind !== "topic").length + "개)");
+  console.log("index.html (게임별 추천 사양 " + GAMES.filter(isGame).length + "개)");
 }
 
 // ---------- sitemap.xml (이미지 사이트맵 포함) — 메인 + 게임 페이지로 매번 재생성 ----------
@@ -373,7 +385,7 @@ function updateIndexCompare() {
   if (!re.test(html)) return console.log("index.html: COMPARE 마커 없음 (비교표 생략)");
   const prices = [...html.matchAll(/oc-price-tag">([^<]+)</g)].map((m) => m[1].trim());
   const prices3 = [...html.matchAll(/oc-price-3m">([^<]+)</g)].map((m) => m[1].trim());
-  const games = GAMES.filter((g) => g.kind !== "topic");
+  const games = GAMES.filter(isGame);
   const rows = Object.entries(OPTIONS).map(([id, o], i) => {
     const fit = games.filter((g) => g.recommend.ids[0] === id).map((g) => `<a href="game/game/${g.file}.html">${g.name}</a>`);
     return `
@@ -421,9 +433,10 @@ function renderLlms() {
   const prices = [...idx.matchAll(/oc-price-tag">([^<]+)</g)].map((m) => m[1].trim());
   const prices3 = [...idx.matchAll(/oc-price-3m">([^<]+)</g)].map((m) => m[1].trim());
   const opts = Object.values(OPTIONS).map((o, i) => `- ${o.name}: ${o.spec} · ${o.tag}${prices[i] ? ` · ${prices[i]}` : ""}${prices3[i] ? ` (${prices3[i]})` : ""}`);
-  const line = (g) => `- [${g.name} 원격임대](${SITE}/game/game/${g.file}.html): ${g.description}`;
-  const games = GAMES.filter((g) => g.kind !== "topic").map(line);
+  const line = (g) => `- [${g.kind ? g.name : g.name + " 원격임대"}](${SITE}/game/game/${g.file}.html): ${g.description}`;
+  const games = GAMES.filter(isGame).map(line);
   const topics = GAMES.filter((g) => g.kind === "topic").map(line);
+  const guides = GAMES.filter((g) => g.kind === "guide").map(line);
   return [
     "# 나노원격임대 (원격임대.com)",
     "",
@@ -442,6 +455,7 @@ function renderLlms() {
     "## 임대 옵션 (월 요금)",
     ...opts,
     "",
+    ...(guides.length ? ["## 이용 가이드", ...guides, ""] : []),
     "## 게임별 원격임대 안내",
     ...games,
     ...(topics.length ? ["", "## 주제별 안내", ...topics] : []),
@@ -454,13 +468,42 @@ function renderLlms() {
   ].join("\n");
 }
 
+// ---------- 안내(guide) 페이지: 가격 토큰·가격표 자동 채움 (옵션 가격은 index.html 옵션 카드가 기준) ----------
+function fillGuides() {
+  const idx = readFileSync(join(ROOT, "index.html"), "utf8");
+  const num = (m) => +m[1].replace(/,/g, "");
+  const p1 = [...idx.matchAll(/oc-price-tag">월 ([\d,]+)원</g)].map(num);
+  const p3 = [...idx.matchAll(/oc-price-3m">3개월 ([\d,]+)원</g)].map(num);
+  if (p1.length !== 4 || p3.length !== 4) throw new Error("index.html 옵션 카드에서 월·3개월 가격을 읽지 못했습니다");
+  const w = (n) => n.toLocaleString("ko-KR") + "원";
+  const T = { min1: w(Math.min(...p1)), max1: w(Math.max(...p1)), min3: w(Math.min(...p3)), max3: w(Math.max(...p3)) };
+  p1.forEach((v, i) => {
+    const k = "o" + (i + 1);
+    T["p1_" + k] = w(v); T["p3_" + k] = w(p3[i]); T["save_" + k] = w(v * 3 - p3[i]); T["mon3_" + k] = w(Math.round(p3[i] / 3));
+  });
+  const fill = (x) => typeof x === "string"
+    ? x.replace(/\{\{(\w+)\}\}/g, (m, k) => { if (!(k in T)) throw new Error("알 수 없는 가격 토큰 " + m); return T[k]; })
+    : Array.isArray(x) ? x.map(fill)
+    : x && typeof x === "object" ? Object.fromEntries(Object.entries(x).map(([k, v]) => [k, fill(v)])) : x;
+  for (const g of GAMES) {
+    if (g.kind !== "guide") continue;
+    const f = fill(g);
+    if (g.spec && g.spec.auto === "prices") {
+      f.spec.rows = Object.values(OPTIONS).map((o, j) => [o.name, o.spec, w(p1[j]), `${w(p3[j])} (월 ${w(Math.round(p3[j] / 3))})`]);
+    }
+    Object.assign(g, f);
+  }
+  console.log("guide 가격 반영:", T.min1, "~", T.max1, "/ 3개월", T.min3, "~", T.max3);
+}
+
 const only = process.argv.slice(2);
+fillGuides();
 updateIndexGames();
 updateIndexCompare();
 // 메인 FAQ "어떤 게임을 지원하나요?" 답변의 'N개 게임' 숫자를 실제 게임 페이지 수로 맞춤 (화면 + JSON-LD)
 {
   const f = join(ROOT, "index.html");
-  const n = GAMES.filter((g) => g.kind !== "topic").length;
+  const n = GAMES.filter(isGame).length;
   const t = readFileSync(f, "utf8");
   const u = t.replace(/등 \d+개 게임별 이용 안내/g, `등 ${n}개 게임별 이용 안내`);
   if (u !== t) writeFileSync(f, u);
