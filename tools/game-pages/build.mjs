@@ -489,7 +489,7 @@ function fillGuides() {
     if (g.kind !== "guide") continue;
     const f = fill(g);
     if (g.spec && g.spec.auto === "prices") {
-      f.spec.rows = Object.values(OPTIONS).map((o, j) => [o.name, o.spec, w(p1[j]), `${w(p3[j])} (월 ${w(Math.round(p3[j] / 3))})`]);
+      f.spec.rows = Object.values(OPTIONS).map((o, j) => [o.name, o.spec, w(p1[j]), w(p3[j])]);
     }
     Object.assign(g, f);
   }
