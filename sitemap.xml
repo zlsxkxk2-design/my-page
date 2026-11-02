@@ -224,4 +224,12 @@
     <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/eos-red-remote-pc.webp</image:loc></image:image>
   </url>
 
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/elancia.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/elancia-mobile-remote-pc.webp</image:loc></image:image>
+  </url>
+
 </urlset>
