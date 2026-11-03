@@ -240,4 +240,36 @@
     <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/fantasy-for-you-remote-pc.webp</image:loc></image:image>
   </url>
 
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/r2.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/r2-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/ragnarok.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/ragnarok-online-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/mapleland.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/mapleland-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/mu.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/mu-online-remote-pc.webp</image:loc></image:image>
+  </url>
+
 </urlset>
