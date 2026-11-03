@@ -26,10 +26,21 @@ const CSS = `
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100svh;display:flex;flex-direction:column;align-items:center;}
     a{color:inherit;}
-    .top-bar{width:100%;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+    .top-bar{width:100%;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:relative;border-bottom:1px solid var(--border);}
+    .top-nav-wrap{flex:1;display:flex;justify-content:center;}
+    .top-nav{display:flex;align-items:center;flex-wrap:wrap;gap:2px;list-style:none;}
+    .top-nav a,.top-dd-btn{display:inline-block;padding:8px 11px;font-family:inherit;font-size:0.84rem;font-weight:700;color:var(--muted);text-decoration:none;background:none;border:0;border-radius:8px;cursor:pointer;white-space:nowrap;}
+    .top-nav a:hover,.top-dd-btn:hover{color:var(--text);background:var(--chip-bg);}
+    .top-nav a.top-cta{border:1px solid var(--accent);color:var(--accent-text);}
+    .top-dd{position:relative;}
+    .top-dd-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;z-index:50;list-style:none;width:max-content;max-width:calc(100vw - 32px);padding:8px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,0.45);}
+    .top-dd-menu.open{display:grid;grid-template-columns:repeat(3,auto);gap:2px 4px;}
+    .top-dd-menu a{display:block;padding:8px 12px;font-size:0.82rem;}
+    .top-dd-menu a.cur{color:var(--accent-text);background:var(--chip-bg);}
+    @media (max-width:900px){.top-nav-wrap{order:3;flex-basis:100%;justify-content:flex-start;}.top-dd{position:static;}.top-dd-menu{left:16px;right:16px;top:100%;width:auto;max-width:none;}.top-dd-menu.open{grid-template-columns:repeat(2,1fr);}}
     .back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:700;text-decoration:none;background:var(--chip-bg);border:1px solid var(--border);padding:8px 14px;border-radius:8px;transition:background 0.2s;}
     .back-link:hover{background:var(--chip-bg-hover);}
-    .site-name{font-size:0.9rem;font-weight:900;background:linear-gradient(135deg,#7c3aed,#0088cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .site-name{text-decoration:none;font-size:0.9rem;font-weight:900;background:linear-gradient(135deg,#7c3aed,#0088cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .wrap{width:100%;max-width:680px;padding:44px 24px 64px;display:flex;flex-direction:column;gap:32px;}
     .game-image{width:100%;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
     .game-image img{width:100%;height:auto;display:block;}
@@ -215,6 +226,29 @@ const LAYOUTS = {
   LG: ["image", "head", "homeBtn", "facts", "steps", "spec", "compare", "notice", "links", "faq", "cta"],
 };
 
+// 상단 메뉴: 메인 페이지와 같은 항목. 게임 목록은 index.html 의 .nav-dropdown-menu 를 읽어 순서·이름을 맞춤
+let _navGames;
+function navGames() {
+  if (!_navGames) {
+    const idx = readFileSync(join(ROOT, "index.html"), "utf8");
+    const menu = (idx.match(/<ul class="nav-dropdown-menu"[\s\S]*?<\/ul>/) || [""])[0];
+    _navGames = [...menu.matchAll(/href="game\/game\/([^"]+)">([^<]+)</g)].map((m) => ({ file: m[1], label: m[2] }));
+  }
+  return _navGames;
+}
+function topNav(g) {
+  const items = navGames().map((x) => `<li><a href="${x.file}"${x.file === g.file + ".html" ? ' class="cur" aria-current="page"' : ""}>${esc(x.label)}</a></li>`).join("");
+  return `<nav class="top-nav-wrap" aria-label="주요 메뉴"><ul class="top-nav">
+      <li><a href="../../index.html#options">임대 옵션</a></li>
+      <li><a href="../../index.html#games">추천 사양</a></li>
+      <li><a href="../../index.html#service">장점</a></li>
+      <li><a href="../../index.html#gallery">갤러리</a></li>
+      <li><a href="../../index.html#faq">FAQ</a></li>
+      <li class="top-dd"><button class="top-dd-btn" type="button" aria-expanded="false" aria-haspopup="true">게임 ▾</button><ul class="top-dd-menu">${items}</ul></li>
+      <li><a class="top-cta" href="${KAKAO}" target="_blank" rel="noopener">문의하기</a></li>
+    </ul></nav>`;
+}
+
 function render(g) {
   const url = `${SITE}/game/game/${g.file}.html`;
   const ogImg = `${SITE}/game/gimg/${g.img}`;
@@ -283,8 +317,9 @@ function render(g) {
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
       메인으로
     </a>
+    ${topNav(g)}
     <div class="top-right">
-      <span class="site-name">나노원격임대</span>
+      <a class="site-name" href="../../index.html">나노원격임대</a>
       <button class="theme-toggle" type="button" aria-label="라이트/다크 모드 전환" title="라이트/다크 모드 전환">
         <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -296,6 +331,7 @@ function render(g) {
 ${body}
   </main>
 
+  <script>(function(){var b=document.querySelector(".top-dd-btn"),m=document.querySelector(".top-dd-menu");if(!b||!m)return;var c=function(){m.classList.remove("open");b.setAttribute("aria-expanded","false")};b.addEventListener("click",function(e){e.stopPropagation();var o=m.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false")});document.addEventListener("click",function(e){if(!m.contains(e.target))c()});document.addEventListener("keydown",function(e){if(e.key==="Escape")c()})})();</script>
   <script>document.querySelector(".theme-toggle").addEventListener("click",()=>{const r=document.documentElement,l=r.getAttribute("data-theme")!=="light";l?r.setAttribute("data-theme","light"):r.removeAttribute("data-theme");try{localStorage.setItem("nano-theme",l?"light":"dark")}catch(e){}});</script>
 </body>
 </html>

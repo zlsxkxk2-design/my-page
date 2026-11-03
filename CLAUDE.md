@@ -115,6 +115,8 @@ Google Sheets (ID: `1vwCFM0exXmgkN5vz06IA9j4LJxa95oeqtd-ew5cJFVc`) gviz API로 3
 
 `game/game/` 폴더에 게임별 HTML 파일. `tools/game-pages/build.mjs`(레이아웃·CSS) + `data.mjs`(게임별 내용)로 생성된다. **페이지를 고칠 때는 HTML이 아니라 data.mjs를 수정하고 다시 빌드**한다 (HTML 직접 수정 시 다음 빌드에서 덮어써짐).
 
+**게임 페이지 상단 메뉴**: 임대 옵션·추천 사양·장점·갤러리·FAQ·게임▾·문의하기가 모든 페이지 상단에 들어가며, 게임 목록(순서·이름)은 `index.html`의 `.nav-dropdown-menu`를 읽어 자동 생성한다(현재 페이지는 강조). 그래서 **새 게임을 추가하면 index.html 드랍다운에 먼저 넣고, `node tools/game-pages/build.mjs`를 파일명 인자 없이 전체 빌드**해야 기존 페이지 메뉴에도 새 게임이 들어간다 → 바뀐 `game/game/*.html`을 전부 커밋. 메인 게임 드랍다운은 `style.css` `.nav-dropdown-menu.open`에서 3열 격자.
+
 ### 주제 페이지 (kind: "topic")
 
 게임이 아닌 주제 페이지(예: `ssalmuk.html` 쌀먹+원격임대)는 `data.mjs`에 `kind: "topic"`으로 추가. 게임 메뉴 드롭다운에는 넣지 않고, 메인 '게임별 추천 사양' 카드에서도 자동 제외. 사이트맵·RSS에만 포함하고 **상단 메뉴·모바일 메뉴·푸터 등 메인 페이지 어디에도 링크하지 않는다** (페이지만 단독으로 존재). 쌀먹 관련 문구는 수익 보장 표현 금지, 게임 약관·공식 기능 범위 안내 유지

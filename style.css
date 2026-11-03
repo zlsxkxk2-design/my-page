@@ -237,7 +237,7 @@ ul { list-style: none; }
   z-index: 200;
   box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
-.nav-dropdown-menu.open { display: block; }
+.nav-dropdown-menu.open { display: grid; grid-template-columns: repeat(3, auto); gap: 2px 4px; width: max-content; } /* 게임이 많아 3열 격자 */
 .nav-dropdown-menu li a {
   display: block;
   padding: 9px 14px;
