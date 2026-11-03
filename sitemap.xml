@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://xn--i89a73jyusvua.com/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-ryzen-4350g.webp</image:loc></image:image>
@@ -230,6 +230,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/elancia-mobile-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/f4u.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/fantasy-for-you-remote-pc.webp</image:loc></image:image>
   </url>
 
 </urlset>
