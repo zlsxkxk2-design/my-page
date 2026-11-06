@@ -2015,6 +2015,3 @@ html[data-theme="light"] .compare-table a { color: #0891b2; }
 html[data-theme="light"] .hero-summary { background: rgba(8, 145, 178, 0.05); border-color: rgba(8, 145, 178, 0.25); border-left-color: #0891b2; }
 html[data-theme="light"] .hero-summary dt { color: #0891b2; }
 
-.footer-about { color: var(--text-muted); font-size: 0.85rem; margin: 0 0 12px; }
-.footer-tel { color: var(--text-muted); font-size: 0.85rem; margin: 6px 0 0; }
-.footer-tel a { color: var(--text-secondary); text-decoration: none; }
