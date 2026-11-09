@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let trackIdx = 0;
     let bannerTimer = null;
 
-    const setDot = (i) => bannerDots.forEach((d, idx) => d.classList.toggle("is-active", idx === i));
+    const setDot = (i) => bannerDots.forEach((d, idx) => { d.classList.toggle("is-active", idx === i); if (idx === i) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current"); });
 
     const goTo = (i, animate = true) => {
       bannerTrack.style.transition = animate ? "" : "none";

@@ -2015,3 +2015,8 @@ html[data-theme="light"] .compare-table a { color: #0891b2; }
 html[data-theme="light"] .hero-summary { background: rgba(8, 145, 178, 0.05); border-color: rgba(8, 145, 178, 0.25); border-left-color: #0891b2; }
 html[data-theme="light"] .hero-summary dt { color: #0891b2; }
 
+
+/* 시맨틱 보강: FAQ 질문 h3 래퍼·푸터 업데이트 표기 */
+.faq-h { margin: 0; font: inherit; }
+.footer-updated { margin: 6px 0 0; font-size: 12px; opacity: .7; }
+.site-header { display: contents; }
