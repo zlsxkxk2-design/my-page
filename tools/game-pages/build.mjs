@@ -376,7 +376,7 @@ function updateIndexGames() {
   if (!re.test(html)) return console.log("index.html: GAMES 마커 없음 (추천 사양 섹션 생략)");
   // 아이콘: game/gimg/icons/<file>.webp (공식 앱 아이콘 64px). 없으면 게임명 첫 글자 배지
   const icon = (g) => existsSync(join(ROOT, "game/gimg/icons", `${g.file}.webp`))
-    ? `<img class="game-card-icon" src="game/gimg/icons/${g.file}.webp" alt="${g.name} 아이콘" width="28" height="28" loading="lazy">`
+    ? `<img class="game-card-icon" src="game/gimg/icons/${g.file}.webp" alt="${g.name} 원격PC 임대 게임 아이콘" width="28" height="28" loading="lazy">`
     : `<span class="game-card-icon is-letter" aria-hidden="true">${[...g.name][0]}</span>`;
   const cards = GAMES.filter(isGame).map((g) => `
           <a class="game-card" href="game/game/${g.file}.html" style="--gc:${g.accent}">

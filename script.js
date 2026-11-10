@@ -406,3 +406,9 @@ document.addEventListener("DOMContentLoaded", () => {
     track.appendChild(copy);
   });
 })();
+
+// 순위 아이콘 alt 보강 (서버 자동 갱신으로 비어 와도 게임명으로 채움)
+document.querySelectorAll('.rank-ticker img[alt=""]').forEach(function (img) {
+  var n = img.parentElement && img.parentElement.querySelector('.rank-ticker-name');
+  if (n) img.alt = n.textContent.trim() + ' 원격임대 아이콘';
+});
