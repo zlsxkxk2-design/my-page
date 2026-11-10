@@ -260,6 +260,7 @@ function render(g) {
   const crumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${url}#breadcrumb`,
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "원격임대", item: `${SITE}/` },
       { "@type": "ListItem", position: 2, name: g.kind ? g.name : `${g.name} 원격임대`, item: url },
@@ -269,14 +270,17 @@ function render(g) {
   const pageLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": `${url}#webpage`,
     name: g.title.replace(/ \| 나노원격임대$/, ""),
     description: g.description,
     url,
     inLanguage: "ko-KR",
     dateModified: g.updated,
     primaryImageOfPage: ogImg,
-    isPartOf: { "@type": "WebSite", name: "나노원격임대", url: `${SITE}/` },
-    publisher: { "@type": "Organization", name: "나노원격임대", url: `${SITE}/` },
+    isPartOf: { "@id": `${SITE}/#website` },
+    publisher: { "@id": `${SITE}/#organization` },
+    author: { "@id": `${SITE}/#organization` },
+    about: { "@id": `${SITE}/#organization` },
   };
   const body = LAYOUTS[g.layout].map((k) => S[k](g)).join("\n");
   return `<!DOCTYPE html>
