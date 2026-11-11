@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://xn--i89a73jyusvua.com/</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image><image:loc>https://xn--i89a73jyusvua.com/images/remote-pc-ryzen-4350g.webp</image:loc></image:image>
@@ -158,6 +158,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/joseon-hyeopgaekjeon-classic-remote-pc.webp</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://xn--i89a73jyusvua.com/game/game/joseon2m.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://xn--i89a73jyusvua.com/game/gimg/joseon2m-remote-pc.webp</image:loc></image:image>
   </url>
 
   <url>
