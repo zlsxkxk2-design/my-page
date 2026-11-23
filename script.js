@@ -412,3 +412,31 @@ document.querySelectorAll('.rank-ticker img[alt=""]').forEach(function (img) {
   var n = img.parentElement && img.parentElement.querySelector('.rank-ticker-name');
   if (n) img.alt = n.textContent.trim() + ' 원격임대 아이콘';
 });
+
+// NANO 마스코트: 깜빡임 / 마우스 따라 기울기 / 클릭 반응
+(function () {
+  var m = document.getElementById('nanoMascot');
+  if (!m) return;
+  var imgs = m.querySelectorAll('.nm-img');
+  function blink() {
+    m.classList.add('is-blink');
+    setTimeout(function () { m.classList.remove('is-blink'); }, 160);
+    setTimeout(blink, 2200 + Math.random() * 2800);
+  }
+  setTimeout(blink, 1800);
+  if (window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('mousemove', function (e) {
+      var r = m.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width / 2)) / window.innerWidth;
+      var dy = (e.clientY - (r.top + r.height / 2)) / window.innerHeight;
+      var t = 'rotate(' + (dx * 14).toFixed(2) + 'deg) translate(' + (dx * 10).toFixed(1) + 'px,' + (dy * 6).toFixed(1) + 'px)';
+      imgs.forEach(function (i) { i.style.transform = t; });
+    });
+  }
+  m.addEventListener('click', function () {
+    m.classList.remove('is-hop');
+    void m.offsetWidth;
+    m.classList.add('is-hop');
+    setTimeout(function () { m.classList.remove('is-hop'); }, 650);
+  });
+})();
