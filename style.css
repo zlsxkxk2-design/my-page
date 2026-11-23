@@ -518,13 +518,6 @@ ul { list-style: none; }
 .vfc-bl { bottom: -1px; left: -1px;  border-width: 0 0 2px 2px; border-radius: 0 0 0 12px; }
 .vfc-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; border-radius: 0 0 12px 0; }
 
-.hero-video {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-}
-
 .hero-banner-slides {
   display: flex;
   width: 100%;
@@ -2034,18 +2027,3 @@ html[data-theme="light"] .hero-summary dt { color: #0891b2; }
 .howto-steps li { background: var(--bg-card); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 12px; padding: 20px; }
 .howto-steps h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--accent); }
 .howto-steps p { margin: 0; font-size: 0.92rem; line-height: 1.65; opacity: 0.9; }
-
-/* NANO 마스코트 */
-.nano-mascot { position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent; }
-.nano-mascot::before { content:""; position:absolute; width:60%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle, rgba(124,58,237,.45), transparent 68%); filter:blur(14px); animation:nmGlow 4s ease-in-out infinite; }
-.nm-img { position:absolute; height:94%; width:auto; max-width:94%; object-fit:contain; pointer-events:none; transform-origin:50% 90%; transition:transform .25s ease-out; will-change:transform; }
-.nano-mascot .nm-wrap { display:contents; }
-.nm-open { animation:nmFloat 3.6s ease-in-out infinite; }
-.nm-blink { opacity:0; animation:nmFloat 3.6s ease-in-out infinite; }
-.nano-mascot.is-blink .nm-blink { opacity:1; }
-.nano-mascot.is-blink .nm-open { opacity:0; }
-.nano-mascot.is-hop .nm-img { animation:nmHop .6s cubic-bezier(.3,1.6,.5,1); }
-@keyframes nmFloat { 0%,100% { translate:0 0; scale:1 1; } 50% { translate:0 -3.5%; scale:1.012 .988; } }
-@keyframes nmHop { 0% { translate:0 0; scale:1 1; } 30% { translate:0 -10%; scale:.96 1.06; } 60% { translate:0 0; scale:1.06 .94; } 100% { translate:0 0; scale:1 1; } }
-@keyframes nmGlow { 0%,100% { opacity:.7; transform:scale(1); } 50% { opacity:1; transform:scale(1.08); } }
-@media (prefers-reduced-motion: reduce) { .nm-img, .nano-mascot::before { animation:none !important; } }
